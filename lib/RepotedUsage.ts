@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 
-export const reportUsageToStripe = async () => {
+export const ReportUsageToStripe = async () => {
 	try {
 		console.log("Iniciando relatório de uso para o Stripe...");
 

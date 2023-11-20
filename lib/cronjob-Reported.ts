@@ -1,13 +1,13 @@
-import { reportUsageToStripe } from "@/lib/RepotedUsage";
+import { ReportUsageToStripe } from "@/lib/RepotedUsage";
 import { CronJob } from "cron";
 
-export const startCronJob = () => {
+export const StartCronJob = () => {
 	new CronJob(
 		"*/1 * * * *", // Expressão cron
 		async () => {
 			try {
 				console.log("Tarefa agendada iniciada.");
-				await reportUsageToStripe();
+				await ReportUsageToStripe();
 			} catch (error) {
 				console.error("Erro na tarefa agendada:", error);
 			}
@@ -20,4 +20,4 @@ export const startCronJob = () => {
 	);
 	console.log("CronJob criado.");
 };
-startCronJob();
+StartCronJob();
