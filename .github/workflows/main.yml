@@ -2,7 +2,7 @@ name: Executar Tarefa
 
 on:
   schedule:
-    - cron: '*/1 * * * *' # Expressão cron para executar a cada 30 minutos
+    - cron: "*/1 * * * *" # Expressão cron para executar a cada 30 minutos
 
 jobs:
   build:
@@ -15,12 +15,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "18"
 
       - name: Install dependencies
         run: npm install
 
       - name: Run task directly
-        run: node -e "require('./lib/RepotedUsage').reportUsageToStripe()"
+        run: node -e "require('.app/lib/RepotedUsage').reportUsageToStripe()"
 
       # Outras etapas, se necessário
