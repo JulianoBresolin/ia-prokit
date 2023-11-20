@@ -34,14 +34,13 @@ export const LandingHero = () => {
 				tenha acesso ao poder da I.A
 			</div>
 			<div>
-				<Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
-					<Button
-						variant="premium"
-						className="md:text-lg p-4 md:p-6 rounded-full font-semibold"
-					>
-						Comece Agora
-					</Button>
-				</Link>
+				<Button
+					disabled
+					variant="premium"
+					className="md:text-lg p-4 md:p-6 rounded-full font-semibold"
+				>
+					Comece Agora
+				</Button>
 			</div>
 			<div className="text-zinc-400 text-xs md:text-sm font-normal">
 				Não é necessário cartão de crédito para testar.
