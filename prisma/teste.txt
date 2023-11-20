@@ -1,0 +1,62 @@
+customer id = cus_P0Zw7nVanobGsx
+subsid = sub_1OCYmMDmtpt2jh5m4jEyAYHj
+price = price_1OCMmlDmtpt2jh5mhLDC39av
+start = 2023-11-15T02:24:34.000Z
+end = 2023-12-15T02:24:34.000Z
+count = 646
+
+end
+Sat Dec 16 2023 12:33:31
+2023-12-16T12:33:31.000Z
+
+start
+Thu Nov 16 2023 12:33:31 
+2023-11-16T12:33:31.000Z
+
+
+
+na data de dez
+invoice.upcoming
+invoice.created
+customer.subscription.updated
+
+depois da data da fatura 
+payment_intent.succeeded
+charge.succeeded
+customer.updated
+payment_intent.created
+invoice.updated
+invoice.paid
+invoice.finalized
+invoice.payment_succeeded
+
+
+
+
+ test_helpers.test_clock.advancing [evt_1ODAA4Dmtpt2jh5m7ueUrAL9]
+2023-11-16 15:19:35  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAA4Dmtpt2jh5m7ueUrAL9]
+2023-11-16 15:19:36   --> invoice.upcoming [evt_1ODAA7Dmtpt2jh5mxNU2xdfi]
+2023-11-16 15:19:36  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAA7Dmtpt2jh5mxNU2xdfi]
+2023-11-16 15:19:37   --> invoice.created [evt_1ODAA9Dmtpt2jh5mupvazkpO]
+2023-11-16 15:19:37  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAA9Dmtpt2jh5mupvazkpO]
+2023-11-16 15:19:37   --> customer.subscription.updated [evt_1ODAA9Dmtpt2jh5mSoJEWE2q]
+2023-11-16 15:19:38   --> test_helpers.test_clock.ready [evt_1ODAA9Dmtpt2jh5mTLYF3AwS]
+2023-11-16 15:19:38  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAA9Dmtpt2jh5mTLYF3AwS]
+2023-11-16 15:19:40  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAA9Dmtpt2jh5mSoJEWE2q]
+2023-11-16 15:27:46   --> test_helpers.test_clock.advancing [evt_1ODAI1Dmtpt2jh5meq5yJUwi]
+2023-11-16 15:27:47  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAI1Dmtpt2jh5meq5yJUwi]
+2023-11-16 15:27:51   --> payment_intent.succeeded [evt_3ODAI5Dmtpt2jh5m0ulf3WuY]
+2023-11-16 15:27:51  <--  [200] POST http://localhost:3000/api/webhook [evt_3ODAI5Dmtpt2jh5m0ulf3WuY]
+2023-11-16 15:27:51   --> charge.succeeded [evt_3ODAI5Dmtpt2jh5m089EHzSq]
+2023-11-16 15:27:51  <--  [200] POST http://localhost:3000/api/webhook [evt_3ODAI5Dmtpt2jh5m089EHzSq]
+2023-11-16 15:27:51   --> customer.updated [evt_1ODAI7Dmtpt2jh5m30gNjsFq]
+2023-11-16 15:27:52  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAI7Dmtpt2jh5m30gNjsFq]
+2023-11-16 15:27:52   --> payment_intent.created [evt_3ODAI5Dmtpt2jh5m0fAmiA7B]
+2023-11-16 15:27:52  <--  [200] POST http://localhost:3000/api/webhook [evt_3ODAI5Dmtpt2jh5m0fAmiA7B]
+2023-11-16 15:27:52   --> invoice.updated [evt_1ODAI7Dmtpt2jh5mLq0YF2L0]
+2023-11-16 15:27:52  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAI7Dmtpt2jh5mLq0YF2L0]
+2023-11-16 15:27:52   --> invoice.paid [evt_1ODAI7Dmtpt2jh5mpihix2F1]
+2023-11-16 15:27:52  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAI7Dmtpt2jh5mpihix2F1]
+2023-11-16 15:27:52   --> invoice.payment_succeeded [evt_1ODAI8Dmtpt2jh5mtSkZNRPV]
+2023-11-16 15:27:52   --> invoice.finalized [evt_1ODAI8Dmtpt2jh5mdsN4VWmW]
+2023-11-16 15:27:52  <--  [200] POST http://localhost:3000/api/webhook [evt_1ODAI8Dmtpt2jh5mdsN4VWmW]

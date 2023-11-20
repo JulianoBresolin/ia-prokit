@@ -1,0 +1,30 @@
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model UserApiLimit {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  count     Int      @default(0)
+  countReq  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserSubscription {
+  id                   String    @id @default(cuid())
+  userId               String    @unique
+  stripeCustomerId     String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId        String?   @map(name: "stripe_price_id")
+  period_start         DateTime? @map(name: "current_period_start") @db.Timestamp
+  period_end           DateTime? @map(name: "current_period_end") @db.Timestamp
+  stripeCustomerCount  Int       @default(0)
+  reported             Boolean   @default(false)
+}
