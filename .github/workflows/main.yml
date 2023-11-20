@@ -17,10 +17,14 @@ jobs:
         with:
           node-version: "18"
 
+      - name: Install TypeScript compiler
+        run: npm install -g typescript
+
       - name: Install dependencies
         run: npm install
 
-      - name: Run task directly
-        run: node -e "require('.app/lib/RepotedUsage').reportUsageToStripe()"
+      - name: Compile TypeScript to JavaScript
+        run: tsc .lib/cronjob-Reported.ts
 
-      # Outras etapas, se necessário
+      - name: Run cron job
+        run: node .lib/cronjob-Reported.js
