@@ -1,4 +1,4 @@
-import { ReportUsageToStripe } from "@/lib/RepotedUsage";
+import { ReportUsageToStripe } from "./lib/RepotedUsage";
 import { CronJob } from "cron";
 
 export const StartCronJob = () => {
