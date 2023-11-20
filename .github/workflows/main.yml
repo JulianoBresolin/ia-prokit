@@ -1,21 +1,26 @@
-name:
-  First Cron Job
- 
-  # Controls when the workflow will run
+name: Executar Tarefa
+
 on:
-  # Triggers the workflow every 5 minutes
   schedule:
-    - cron: "*/1 * * * *"
- 
-      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    - cron: '*/1 * * * *' # Expressão cron para executar a cada 30 minutos
+
 jobs:
-  # This workflow contains a single job called "cron"
-  cron:
-    # The type of runner that the job will run on
+  build:
     runs-on: ubuntu-latest
- 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run task directly
+        run: node -e "require('./lib/RepotedUsage').reportUsageToStripe()"
+
+      # Outras etapas, se necessário
