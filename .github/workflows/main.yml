@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Compile TypeScript to JavaScript
-        run: tsc ./lib/Cronjob-Reported.ts
+        run: tsc ./Cronjob-Reported.ts
 
       - name: Run cron job
-        run: node ./lib/Cronjob-Reported.js
+        run: node ./Cronjob-Reported.js
