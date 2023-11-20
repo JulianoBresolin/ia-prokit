@@ -1,5 +1,5 @@
-import prismadb from "@/lib/prismadb";
-import { stripe } from "@/lib/stripe";
+import prismadb from "../lib/prismadb";
+import { stripe } from "../lib/stripe";
 
 export const ReportUsageToStripe = async () => {
 	try {
