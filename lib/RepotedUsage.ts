@@ -1,9 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 
-import { CronJob } from "cron";
-
-const reportUsageToStripe = async () => {
+export const reportUsageToStripe = async () => {
 	try {
 		console.log("Iniciando relatório de uso para o Stripe...");
 
@@ -59,24 +57,3 @@ const reportUsageToStripe = async () => {
 };
 
 // Função para verificar e executar a tarefa no horário agendado// Função para agendar e executar a tarefa a cada 15 minutos
-
-export const startCronJob = () => {
-	new CronJob(
-		"*/30 * * * *", // Expressão cron
-		async () => {
-			try {
-				console.log("Tarefa agendada iniciada.");
-				await reportUsageToStripe();
-			} catch (error) {
-				console.error("Erro na tarefa agendada:", error);
-			}
-		},
-		null,
-		true,
-		"America/Sao_Paulo",
-		null, // context
-		true // runOnInit
-	);
-	console.log("CronJob criado.");
-};
-startCronJob();
