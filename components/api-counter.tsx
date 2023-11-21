@@ -48,7 +48,9 @@ export const ApiCounter = ({
 					<div className="text-center text-sm  text-white mb-4 space-y-2">
 						<div>
 							<p>
-								{isPro ? "tokens Pro" : "Limite Plano Grátis até 5 Requisições"}
+								{isPro
+									? "tokens Pro"
+									: "Limite Plano Grátis até 10 Requisições"}
 							</p>
 							{!isPro && (
 								<p>
