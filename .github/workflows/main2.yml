@@ -1,8 +1,8 @@
-name: Executar 
+name: Executar Tarefa
 
 on:
   schedule:
-    - cron: "*/1 * * * *" # Expressão cron para executar a cada 30 minutos
+    - cron: "0 * * * *" # Executa a cada hora
 
 jobs:
   build:
