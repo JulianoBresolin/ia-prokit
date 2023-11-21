@@ -1,4 +1,4 @@
-name: Executar Tarefa
+name: Executar 
 
 on:
   schedule:
