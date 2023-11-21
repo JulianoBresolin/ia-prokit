@@ -1,4 +1,4 @@
-import { ReportUsageToStripe } from "./RepotedUsage";
+import { ReportUsageToStripe } from "../../../RepotedUsage";
 
 export async function handler() {
 	await ReportUsageToStripe();
