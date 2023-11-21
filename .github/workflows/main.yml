@@ -1,0 +1,24 @@
+name: Executar Tarefa
+
+on:
+  schedule:
+    - cron: "*/2 * * * *" # Expressão cron para executar a cada 30 minutos
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run cron job
+        run: node ./RepotedUsage.js
