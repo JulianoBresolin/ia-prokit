@@ -1,0 +1,31 @@
+name: Executar Tarefa cronjob
+
+on:
+  schedule:
+    - cron: "*/3 * * * *" # Expressão cron para executar a cada 30 minutos
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install TypeScript compiler
+        run: npm install -g typescript
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Compile TypeScript to JavaScript
+        run: tsc ./RepotedUsage.ts
+
+      - name: Run function
+        run: |
+          node -e "require('./RepotedUsage.js').ReportUsageToStripe().then(() => console.log('Function executed successfully')).catch(err => console.error('Error:', err.message))"
