@@ -4,7 +4,7 @@ import "../globals.css";
 import { getApiLimitCountTokens, getApiLimitCountReq } from "@/lib/api-limit";
 import { getApiCountPro } from "@/lib/api-UsagePro";
 import { checkSubscription } from "@/lib/subscription";
-//import { startCronJob } from "@/lib/Cronjob-Reported";
+
 export default async function DashboardLayout({
 	children,
 }: {
@@ -19,7 +19,7 @@ export default async function DashboardLayout({
 	} else {
 		apiLimitCount = await getApiLimitCountTokens();
 	}
-	//startCronJob();
+
 	return (
 		<div className="h-full relative">
 			<div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 bg-gray-900">
