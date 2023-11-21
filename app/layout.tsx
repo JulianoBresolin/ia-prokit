@@ -9,8 +9,8 @@ import { checkSubscription } from "@/lib/subscription";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "IA Prokit",
-	description: "IA tools",
+	title: "IA-Prokit",
+	description: "Kit de Ferramentas de IA",
 };
 
 export default async function RootLayout({
