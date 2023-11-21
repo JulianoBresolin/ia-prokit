@@ -6,6 +6,7 @@ import { ModalProvider } from "@/components/modal-provider";
 import { ToasterProvider } from "@/components/toaster-provider";
 import { CrispProvider } from "@/components/crisp-provider";
 import { checkSubscription } from "@/lib/subscription";
+import Clarity from "@/components/Clarity";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default async function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="en">
+				<Clarity />
 				<CrispProvider />
 				<body className={inter.className}>
 					<ModalProvider isPro={isPro} />
