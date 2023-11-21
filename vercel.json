@@ -1,0 +1,8 @@
+{
+    "crons": [
+      {
+        "path": "/RepotedUsage",
+        "schedule": "50 13 * * *"
+      }
+    ]
+  }
