@@ -1,7 +1,7 @@
 import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
-	publicRoutes: ["/", "/api/webhook, /RepotedUsage"],
+	publicRoutes: ["/", "/api/webhook, /RepotedUsage,(.*)"],
 });
 
 export const config = {
