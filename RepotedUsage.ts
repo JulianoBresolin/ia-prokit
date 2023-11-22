@@ -37,17 +37,21 @@ export const ReportUsageToStripe = async () => {
 					const periodStart = report.period_start;
 					console.log("Período de início:", periodStart);
 
+					//const thirtyDaysAgo = new Date("2023-08-02T00:00:00");
+
 					if (periodStart) {
 						await stripe.subscriptionItems.createUsageRecord(
 							subscriptionItemId,
 							{
 								quantity: report.stripeCustomerCount,
-								timestamp: Math.ceil(new Date(periodStart).getTime() / 1000),
+								//timestamp: Math.ceil(thirtyDaysAgo.getTime() / 1000),
+								timestamp: Math.ceil(Date.now() / 1000),
 								action: "set",
 							}
 						);
 					}
 				}
+
 				console.log("Relatório de uso para o Stripe concluído.");
 			}
 		}
