@@ -1,7 +1,6 @@
+import { ReportUsageToStripe } from "../../../RepotedUsage";
 export async function GET() {
-	const repo = require("./RepotedUsage.ts");
-
-	await repo.ReportUsageToStripe();
+	await ReportUsageToStripe();
 
 	return new Response("Relatório de uso para o Stripe concluído.");
 }
