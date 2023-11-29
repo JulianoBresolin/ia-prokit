@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
 //import { startCronJob } from "@/lib/RepotedUsage";
 
-export const incrementPro = async (tokensUsed: number) => {
+export const incrementPro = async (totalTokens: number) => {
 	const { userId } = auth();
 
 	if (!userId) {
@@ -20,11 +20,11 @@ export const incrementPro = async (tokensUsed: number) => {
 		await prismadb.userSubscription.update({
 			where: { userId: userId },
 			data: {
-				stripeCustomerCount: userApi.stripeCustomerCount + tokensUsed,
+				stripeCustomerCount: userApi.stripeCustomerCount + totalTokens,
 			},
 		});
 
-		if (userApi.stripeCustomerCount + tokensUsed > 0 && userApi.reported) {
+		if (userApi.stripeCustomerCount + totalTokens > 0 && userApi.reported) {
 			await prismadb.userSubscription.update({
 				where: { userId: userId },
 				data: {

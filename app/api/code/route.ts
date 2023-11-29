@@ -1,30 +1,27 @@
-// Importação de módulos e funções necessárias
-import { auth } from "@clerk/nextjs"; // Importa funções de autenticação do Clerk
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server"; // Importa a classe NextResponse para manipular respostas HTTP
-import OpenAI from "openai"; // Importa módulos relacionados à API da OpenAI
-import { ChatCompletionMessageParam } from "openai/resources/chat/completions";
+import OpenAI from "openai";
+import { OpenAIStream, StreamingTextResponse } from "ai";
 import {
 	incrementApiLimitTokens,
 	incrementApiLimitReq,
 	checkApiLimitReq,
 } from "@/lib/api-limit";
 import { incrementPro } from "@/lib/api-UsagePro";
-import { checkSubscription } from "@/lib/subscription";
+import { checkSubscription } from "@/lib/subscription"; // Importa funções personalizadas para controle de assinatura
 // Cria uma instância de Configuration com a chave da API da OpenAI
+import { encodingForModel } from "js-tiktoken";
+
 const openai = new OpenAI({
-	apiKey: process.env.OPENAI_API_KEY, // Utiliza uma variável de ambiente para a chave da API
+	apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Cria uma instância da API da OpenAI com a configuração
-
-// Define uma mensagem de instrução que será enviada à OpenAI
-const instructionMessage: ChatCompletionMessageParam = {
+// Função que lida com a requisição HTTP POST
+const instructionMessage = {
 	role: "system",
 	content:
 		"You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations.",
 };
-
-// Função que lida com a requisição HTTP POST
 export async function POST(req: Request) {
 	try {
 		// Obtém o ID do usuário autenticado a partir das funções do Clerk
@@ -48,7 +45,6 @@ export async function POST(req: Request) {
 			});
 		}
 
-		// Verifica se as mensagens são fornecidas na requisição
 		if (!messages) {
 			return new NextResponse("Messages are required", { status: 400 });
 		}
@@ -63,36 +59,56 @@ export async function POST(req: Request) {
 			);
 		}
 
-		// Envia as mensagens para a API da OpenAI, incluindo a mensagem de instrução
+		// Envia as mensagens para a API da OpenAI e obtém uma resposta
 		const response = await openai.chat.completions.create({
 			model: "gpt-3.5-turbo",
+			stream: true,
 			messages: [instructionMessage, ...messages],
-			max_tokens: 1024,
 		});
-		// A resposta da API da OpenAI está em response.choices[0].message
-		if (response && response.usage) {
-			// Você pode agora extrair o número de tokens usados
-			const tokensUsed = response.usage.total_tokens;
-			console.log("response:", response);
-			console.log("Tokens used:", tokensUsed);
 
-			if (isPro) {
-				await incrementPro(tokensUsed);
-			} else {
-				await incrementApiLimitReq();
-				await incrementApiLimitTokens(tokensUsed);
-			}
-		}
-		// Retorna a resposta da API da OpenAI como JSON
-		return new NextResponse(JSON.stringify(response.choices[0].message), {
-			status: 200,
-			headers: {
-				"Content-Type": "application/json",
+		const model = "gpt-3.5-turbo";
+
+		const enc = encodingForModel(model);
+
+		const promptTokens = messages.reduce(
+			(total: number, msg: { content: string }) =>
+				total + enc.encode(msg.content ?? "").length,
+			0
+		);
+
+		let completionTokens = 0;
+		let totalTokens = 0;
+
+		const streamCallbacks = {
+			onToken: async (content: string) => {
+				const tokenList = enc.encode(content);
+				completionTokens += tokenList.length;
 			},
-		});
+			onFinal: async () => {
+				const totalTokensvalue = completionTokens + promptTokens;
+				totalTokens = totalTokensvalue;
+
+				console.log(
+					`Token completion: ${completionTokens}, prompt: ${promptTokens}, total: ${totalTokens}`
+				);
+
+				if (isPro) {
+					await incrementPro(totalTokens);
+				} else {
+					await Promise.all([
+						incrementApiLimitReq(),
+						incrementApiLimitTokens(totalTokens),
+					]);
+				}
+			},
+		};
+
+		const stream = OpenAIStream(response, streamCallbacks);
+
+		return new StreamingTextResponse(stream);
 	} catch (error) {
 		// Em caso de erro, registra o erro no console e retorna uma resposta de erro interno
-		console.log("[CODE_ERROR]", error);
+		console.log("[CONVERSATION_ERROR]", error);
 		return new NextResponse("Internal Error", { status: 500 });
 	}
 }

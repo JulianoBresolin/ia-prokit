@@ -4,7 +4,7 @@ import prismadb from "@/lib/prismadb";
 import { MAX_FREE_COUNTS } from "@/constants";
 
 // Função para incrementar o contador de tokens usados por um usuário autenticado.
-export const incrementApiLimitTokens = async (tokensUsed: number) => {
+export const incrementApiLimitTokens = async (totalTokens: number) => {
 	// Verifica se o usuário está autenticado. Se não estiver, a função retorna imediatamente.
 	const { userId } = auth();
 	if (!userId) {
@@ -20,12 +20,12 @@ export const incrementApiLimitTokens = async (tokensUsed: number) => {
 	if (userApiLimit) {
 		await prismadb.userApiLimit.update({
 			where: { userId: userId },
-			data: { count: userApiLimit.count + tokensUsed },
+			data: { count: userApiLimit.count + totalTokens },
 		});
 	} else {
 		// Se o registro de token usado pelo usuário não existe, cria um novo registro com a quantidade de tokens usados.
 		await prismadb.userApiLimit.create({
-			data: { userId: userId, count: tokensUsed },
+			data: { userId: userId, count: totalTokens },
 		});
 	}
 };
@@ -115,29 +115,3 @@ export const getApiLimitCountReq = async () => {
 
 	return userApiLimit.countReq;
 };
-
-/*export const checkIncrement = async (tokensUsed: number) => {
-	// Verifica se o usuário está autenticado. Se não estiver, a função retorna "false".
-	const { userId } = auth();
-	if (!userId) {
-		return false;
-	}
-
-	// Procura o registro de token usado pelo usuário no banco de dados.
-	const userApiLimit = await prismadb.userApiLimit.findUnique({
-		where: { userId: userId },
-	});
-
-	if (
-		(!userApiLimit && tokensUsed < MAX_FREE_COUNTS) || // Primeira requisição passa se o usuário não tem registro e tokensUsed está dentro do limite gratuito
-		(userApiLimit &&
-			(userApiLimit.count + tokensUsed < MAX_FREE_COUNTS ||
-				userApiLimit.count + tokensUsed / MAX_FREE_COUNTS < 1))
-	) {
-		return true;
-	} else {
-		// Caso contrário, retorna "false".
-		return false;
-	}
-};
-*/

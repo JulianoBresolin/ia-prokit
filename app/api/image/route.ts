@@ -71,17 +71,17 @@ export async function POST(req: Request) {
 			);
 		}
 		// Calcule o consumo total de tokens com base na quantidade e resolução escolhidas
-		const tokensUsed =
+		const totalTokens =
 			resolutionTokensMap[resolution as keyof typeof resolutionTokensMap] *
 			amount;
-		console.log("Tokens used:", tokensUsed);
+		console.log("Tokens used:", totalTokens);
 		// Verifique se o limite de tokens gratuito foi atingido
 
 		if (isPro) {
-			await incrementPro(tokensUsed);
+			await incrementPro(totalTokens);
 		} else {
 			await incrementApiLimitReq();
-			await incrementApiLimitTokens(tokensUsed);
+			await incrementApiLimitTokens(totalTokens);
 		}
 
 		// Envia o prompt, a quantidade e a resolução para a API da OpenAI e obtém uma resposta

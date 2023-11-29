@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server"; // Importa a classe NextResponse para manipular respostas HTTP
 import OpenAI from "openai";
+import { OpenAIStream, StreamingTextResponse } from "ai";
 import {
 	incrementApiLimitTokens,
 	incrementApiLimitReq,
@@ -9,6 +10,8 @@ import {
 import { incrementPro } from "@/lib/api-UsagePro";
 import { checkSubscription } from "@/lib/subscription"; // Importa funções personalizadas para controle de assinatura
 // Cria uma instância de Configuration com a chave da API da OpenAI
+import { encodingForModel } from "js-tiktoken";
+
 const openai = new OpenAI({
 	apiKey: process.env.OPENAI_API_KEY,
 });
@@ -54,31 +57,50 @@ export async function POST(req: Request) {
 		// Envia as mensagens para a API da OpenAI e obtém uma resposta
 		const response = await openai.chat.completions.create({
 			model: "gpt-3.5-turbo",
+			stream: true,
 			messages,
-			max_tokens: 1024,
 		});
 
-		if (response && response.usage) {
-			const tokensUsed = response.usage.total_tokens;
-			console.log("response:", response);
-			console.log("Tokens used:", tokensUsed);
+		const model = "gpt-3.5-turbo";
 
-			if (isPro) {
-				await incrementPro(tokensUsed);
-			} else {
-				await incrementApiLimitReq();
-				await incrementApiLimitTokens(tokensUsed);
-			}
-		}
-		// Verifica se o limite gratuito da API da OpenAI foi atingido
+		const enc = encodingForModel(model);
 
-		// Retorna a resposta da API da OpenAI como JSON
-		return new NextResponse(JSON.stringify(response.choices[0].message), {
-			status: 200,
-			headers: {
-				"Content-Type": "application/json",
+		const promptTokens = messages.reduce(
+			(total: number, msg: { content: string }) =>
+				total + enc.encode(msg.content ?? "").length,
+			0
+		);
+
+		let completionTokens = 0;
+		let totalTokens = 0;
+
+		const streamCallbacks = {
+			onToken: async (content: string) => {
+				const tokenList = enc.encode(content);
+				completionTokens += tokenList.length;
 			},
-		});
+			onFinal: async () => {
+				const totalTokensvalue = completionTokens + promptTokens;
+				totalTokens = totalTokensvalue;
+
+				console.log(
+					`Token completion: ${completionTokens}, prompt: ${promptTokens}, total: ${totalTokens}`
+				);
+
+				if (isPro) {
+					await incrementPro(totalTokens);
+				} else {
+					await Promise.all([
+						incrementApiLimitReq(),
+						incrementApiLimitTokens(totalTokens),
+					]);
+				}
+			},
+		};
+
+		const stream = OpenAIStream(response, streamCallbacks);
+
+		return new StreamingTextResponse(stream);
 	} catch (error) {
 		// Em caso de erro, registra o erro no console e retorna uma resposta de erro interno
 		console.log("[CONVERSATION_ERROR]", error);
