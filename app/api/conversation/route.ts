@@ -19,10 +19,6 @@ const openai = new OpenAI({
 // Função que lida com a requisição HTTP POST
 export async function POST(req: Request) {
 	try {
-		const immediateResponse = new NextResponse("Processing request...", {
-			status: 200,
-		});
-		await sendImmediateResponse(immediateResponse);
 		// Obtém o ID do usuário autenticado a partir das funções do Clerk
 		const { userId } = auth();
 
@@ -110,13 +106,4 @@ export async function POST(req: Request) {
 		console.log("[CONVERSATION_ERROR]", error);
 		return new NextResponse("Internal Error", { status: 500 });
 	}
-}
-
-// Função para enviar a resposta imediata
-async function sendImmediateResponse(response: NextResponse) {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(response);
-		}, 0);
-	});
 }
