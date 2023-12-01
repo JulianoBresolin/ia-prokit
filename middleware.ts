@@ -1,5 +1,5 @@
 import { authMiddleware } from "@clerk/nextjs";
-authMiddleware({ debug: true });
+
 export default authMiddleware({
 	publicRoutes: ["/", "/api/webhook"],
 });

@@ -13,11 +13,11 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-
+import { useEffect, useRef } from "react";
 const Chat = () => {
 	const ProModal = useProModal();
 	const router = useRouter();
-
+	const containerRef = useRef<HTMLDivElement>(null);
 	const {
 		messages,
 		input,
@@ -40,7 +40,11 @@ const Chat = () => {
 			toast.error("Something went wrong");
 		},
 	});
-
+	useEffect(() => {
+		if (containerRef.current) {
+			containerRef.current.scrollTop = containerRef.current.scrollHeight;
+		}
+	}, [messages]);
 	const handleClearChat = () => {
 		setMessages([]);
 	};
@@ -98,7 +102,10 @@ const Chat = () => {
 					)}
 				</div>
 
-				<div className="border-2 overflow-y-auto max-h-[75%] text-black space-y-4 mt-4  pb-32 lg:pb-20 scroll-smooth ">
+				<div
+					ref={containerRef}
+					className="border-2 overflow-y-auto max-h-[75%] text-black space-y-4 mt-4  pb-32 lg:pb-20 scroll-smooth "
+				>
 					{messages.length === 0 && <Empty label="Sem Mensagens" />}
 
 					{messages.map((m) => (
