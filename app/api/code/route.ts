@@ -94,11 +94,12 @@ export async function POST(req: Request) {
 
 				if (isPro) {
 					await incrementPro(totalTokens);
+				}
+				if (isPro) {
+					await incrementPro(totalTokens);
 				} else {
-					await Promise.all([
-						incrementApiLimitReq(),
-						incrementApiLimitTokens(totalTokens),
-					]);
+					await incrementApiLimitReq();
+					await incrementApiLimitTokens(totalTokens);
 				}
 			},
 		};
