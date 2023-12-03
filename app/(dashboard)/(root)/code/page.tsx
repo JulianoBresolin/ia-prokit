@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import { useEffect, useRef } from "react";
+import MarkdownResponse from "@/components/markdown-response";
 
 const CodePage = () => {
 	const ProModal = useProModal();
@@ -121,24 +122,8 @@ const CodePage = () => {
 							)}
 						>
 							{m.role === "user" ? <UserAvatar /> : <BotAvatar />}
-							<ReactMarkdown
-								components={{
-									pre: ({ node, ...props }) => (
-										<div className="overflow-auto w-full my-2 text-green-900 bg-white p-2 rounded-lg">
-											<pre {...props} />
-										</div>
-									),
-									code: ({ node, ...props }) => (
-										<code
-											className="text-white bg-green-900 rounded-lg p-1"
-											{...props}
-										/>
-									),
-								}}
-								className=" text-sm overflow-hidden leading-7"
-							>
-								{m.content || " "}
-							</ReactMarkdown>
+
+							<MarkdownResponse content={m.content} />
 						</div>
 					))}
 				</div>
