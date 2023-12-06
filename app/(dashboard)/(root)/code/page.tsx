@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import ReactMarkdown from "react-markdown";
 import { useEffect, useRef } from "react";
 import MarkdownResponse from "@/components/markdown-response";
 
