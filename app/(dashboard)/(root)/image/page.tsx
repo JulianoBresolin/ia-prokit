@@ -65,7 +65,7 @@ export default function Imagepage() {
 	return (
 		<>
 			<Heading
-				title="Geração de Imagens"
+				title="Gerar Imagens"
 				description="Seja criativo e crie imagens extraordinarias."
 				icon={ImageIcon}
 				iconColor="text-pink-700"

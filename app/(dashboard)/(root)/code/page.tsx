@@ -56,7 +56,7 @@ const CodePage = () => {
 			<div className="h-[83vh] overflow-hidden">
 				<div>
 					<Heading
-						title="Geração de Códigos"
+						title="Gerar Códigos"
 						description="O mais avancado e inteligente gerador de Códigos."
 						icon={Code}
 						iconColor="text-green-700"

@@ -3,52 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
-import {
-	Code,
-	ImageIcon,
-	LayoutDashboard,
-	MessageSquare,
-	Settings,
-} from "lucide-react";
-
+import { tools } from "@/constants";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ApiCounter } from "@/components/api-counter";
 
 const poppins = Montserrat({ weight: "600", subsets: ["latin"] });
-
-const routes = [
-	{
-		label: "Painel",
-		icon: LayoutDashboard,
-		href: "/dashboard",
-		color: "text-sky-500",
-	},
-	{
-		label: "Conversação",
-		icon: MessageSquare,
-		href: "/conversation",
-		color: "text-violet-500",
-	},
-	{
-		label: "Geração de Imagens",
-		icon: ImageIcon,
-		color: "text-pink-700",
-		href: "/image",
-	},
-
-	{
-		label: "Geração de Códigos",
-		icon: Code,
-		color: "text-green-700",
-		href: "/code",
-	},
-	{
-		label: "Configurações",
-		icon: Settings,
-		href: "/settings",
-	},
-];
 
 export const Sidebar = ({
 	apiLimitCount = 0,
@@ -70,7 +30,7 @@ export const Sidebar = ({
 						</div>
 					</Link>
 					<div className="space-y-1">
-						{routes.map((route, index) => (
+						{tools.map((route, index) => (
 							<Link
 								key={index}
 								href={route.href}

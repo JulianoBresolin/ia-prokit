@@ -1,5 +1,5 @@
 "use client";
-import { tools } from "./constants";
+import { tools } from "@/constants";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
@@ -26,7 +26,7 @@ export default function Dashboard() {
 							className="p-4 border-black/5 flex items-center justify-between hover:shadow-md transition cursor-pointer"
 						>
 							<div className="flex items-center gap-x-4">
-								<div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
+								<div className={cn("p-2 w-fit rounded-full", tool.bgColor)}>
 									<tool.icon className={cn("w-8 h-8", tool.color)} />
 								</div>
 								<div className="font-semibold">{tool.label}</div>
