@@ -109,7 +109,7 @@ export async function POST(req: Request) {
 		return new StreamingTextResponse(stream);
 	} catch (error) {
 		// Em caso de erro, registra o erro no console e retorna uma resposta de erro interno
-		console.log("[CONVERSATION_ERROR]", error);
+		console.log("[CODE_ERROR]", error);
 		return new NextResponse("Internal Error", { status: 500 });
 	}
 }

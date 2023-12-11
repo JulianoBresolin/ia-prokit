@@ -17,7 +17,7 @@ export const LandingNavbar = () => {
 		<nav className="p-4 bg-transparent flex items-center justify-between">
 			<Link href="/" className="flex items-center">
 				<div className="relative  mr-4">
-					<Image width={230} height={98} alt="Logo" src="/Logo.png" />
+					<Image width={230} height={49} alt="Logo" src="/iaprokit-logo.png" />
 				</div>
 			</Link>
 			<div className="flex items-center gap-x-2">

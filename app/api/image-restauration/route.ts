@@ -1,11 +1,11 @@
 import Replicate from "replicate";
+
 import { auth } from "@clerk/nextjs";
-import { writeFile } from "fs/promises";
-import { NextRequest, NextResponse } from "next/server";
-import { join } from "path";
+import { NextResponse } from "next/server";
 import { incrementApiLimitReq, checkApiLimitReq } from "@/lib/api-limit";
 //import { incrementPro } from "@/lib/api-UsagePro";
-import { checkSubscription } from "@/lib/subscription";
+import { checkSubscription } from "@/lib/subscription"; // Importa funções personalizadas para controle de assinatura
+// Cria uma instância de Configuration com a chave da API da OpenAI
 
 const replicate = new Replicate({
 	auth: process.env.REPLICATE_API_KEY,
@@ -15,9 +15,9 @@ export async function POST(req: Request) {
 	try {
 		const { userId } = auth();
 
-		const data = await req.formData();
-		const file: File | null = data.get("file") as unknown as File;
-		console.log(file, data);
+		const body = await req.json();
+
+		const { prompt } = body;
 
 		if (!userId) {
 			return new NextResponse("Unauthorized", { status: 401 });
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 			});
 		}
 
-		if (!file) {
+		if (!prompt) {
 			return new NextResponse("Messages are required", { status: 400 });
 		}
 
@@ -43,21 +43,14 @@ export async function POST(req: Request) {
 			);
 		}
 
-		const bytes = await file.arrayBuffer();
-		const buffer = Buffer.from(bytes);
-
-		const fileName = file.name;
-		const publicFolderPath = join(process.cwd(), "public/temp");
-		const filePath = join(publicFolderPath, fileName);
-
-		await writeFile(filePath, buffer);
-		console.log(`Arquivo salvo em ${filePath}`);
+		// Decodifica a imagem da string base64
 
 		const response = await replicate.run(
-			"tencentarc/gfpgan:9283608cc6b7be6b65a8e44983db012355fde4132009bf99d976b2f0896856a3",
+			"microsoft/bringing-old-photos-back-to-life:c75db81db6cbd809d93cc3b7e7a088a351a3349c9fa02b6d393e35e0d51ba799",
 			{
 				input: {
-					img: `https://ia-prokit.vercel.app/temp/${fileName}`,
+					image: prompt,
+					with_scratch: true,
 				},
 			}
 		);
@@ -68,7 +61,7 @@ export async function POST(req: Request) {
 
 		return NextResponse.json(response);
 	} catch (error) {
-		console.log("[IMAGE_ERROR]", error);
+		console.log("[IMAGE_RESTAURATION_ERROR]", error);
 		return new NextResponse("Internal Error", { status: 500 });
 	}
 }

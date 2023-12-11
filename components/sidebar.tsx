@@ -26,7 +26,12 @@ export const Sidebar = ({
 				<div className="px-3 py-2 flex-1">
 					<Link className="flex items-center pl-3 mb-14" href="/dashboard">
 						<div className="relative  mr-4">
-							<Image width={230} height={98} alt="Logo" src="/Logo.png" />
+							<Image
+								width={230}
+								height={49}
+								alt="Logo"
+								src="/iaprokit-logo.png"
+							/>
 						</div>
 					</Link>
 					<div className="space-y-1">

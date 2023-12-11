@@ -1,6 +1,6 @@
 "use client";
 import Heading from "@/components/heading";
-import { ImageIcon, Download } from "lucide-react";
+import { ImageIcon, Download, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { amountOptions, formSchema, resolutionsOptions } from "./constants";
@@ -165,7 +165,7 @@ export default function Imagepage() {
 								disabled={isChatBlocked}
 								size="icon"
 							>
-								Gerar Imagem
+								<Send />
 							</Button>
 						</form>
 					</Form>

@@ -7,6 +7,7 @@ import { ToasterProvider } from "@/components/toaster-provider";
 import { CrispProvider } from "@/components/crisp-provider";
 import { checkSubscription } from "@/lib/subscription";
 import Clarity from "@/components/Clarity";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default async function RootLayout({
 				<body className={inter.className}>
 					<ModalProvider isPro={isPro} />
 					<ToasterProvider />
-					{children}
+					<EdgeStoreProvider>{children}</EdgeStoreProvider>
 				</body>
 			</html>
 		</ClerkProvider>
