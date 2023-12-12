@@ -2,8 +2,12 @@ import Replicate from "replicate";
 
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { incrementApiLimitReq, checkApiLimitReq } from "@/lib/api-limit";
-//import { incrementPro } from "@/lib/api-UsagePro";
+import {
+	incrementApiLimitTokens,
+	incrementApiLimitReq,
+	checkApiLimitReq,
+} from "@/lib/api-limit";
+import { incrementPro } from "@/lib/api-UsagePro";
 import { checkSubscription } from "@/lib/subscription"; // Importa funções personalizadas para controle de assinatura
 // Cria uma instância de Configuration com a chave da API da OpenAI
 
@@ -55,8 +59,14 @@ export async function POST(req: Request) {
 			}
 		);
 
-		if (!isPro) {
+		const valueToAdd = 25;
+		let totalTokens = valueToAdd;
+
+		if (isPro) {
+			await incrementPro(totalTokens);
+		} else {
 			await incrementApiLimitReq();
+			await incrementApiLimitTokens(totalTokens);
 		}
 
 		return NextResponse.json(response);

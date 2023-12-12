@@ -1,8 +1,12 @@
 import Replicate from "replicate";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { incrementApiLimitReq, checkApiLimitReq } from "@/lib/api-limit";
-//import { incrementPro } from "@/lib/api-UsagePro";
+import {
+	incrementApiLimitTokens,
+	incrementApiLimitReq,
+	checkApiLimitReq,
+} from "@/lib/api-limit";
+import { incrementPro } from "@/lib/api-UsagePro";
 import { checkSubscription } from "@/lib/subscription"; // Importa funções personalizadas para controle de assinatura
 // Cria uma instância de Configuration com a chave da API da OpenAI
 
@@ -46,13 +50,23 @@ export async function POST(req: Request) {
 			"anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
 			{
 				input: {
+					fps: 24,
 					prompt: prompt,
+					negative_prompt: " dust, noisy, washed out, ugly, distorted, broken",
+					guidance_scale: 15,
+					num_inference_steps: 50,
 				},
 			}
 		);
 
-		if (!isPro) {
+		const valueToAdd = 20;
+		let totalTokens = valueToAdd;
+
+		if (isPro) {
+			await incrementPro(totalTokens);
+		} else {
 			await incrementApiLimitReq();
+			await incrementApiLimitTokens(totalTokens);
 		}
 
 		return NextResponse.json(response);
