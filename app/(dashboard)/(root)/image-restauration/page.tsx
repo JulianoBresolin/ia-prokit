@@ -14,6 +14,7 @@ import { Loader } from "@/components/Loader";
 import { Empty } from "@/components/ui/empty";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Card, CardFooter } from "@/components/ui/card";
+import HelpChatImgRest from "@/components/help-chat-img-rest";
 
 export default function RestaureImage() {
 	const proModal = useProModal();
@@ -60,13 +61,19 @@ export default function RestaureImage() {
 
 	return (
 		<div>
-			<Heading
-				title="Restaurar imagens"
-				description="Restaure fotos antigas."
-				icon={ImageDown}
-				iconColor="text-yellow-300"
-				bgColor="bg-yellow-300/10"
-			/>
+			<div className="flex justify-between gap-4 pr-4">
+				<Heading
+					title="Restaurar imagens"
+					description="Restaure fotos antigas."
+					icon={ImageDown}
+					iconColor="text-yellow-300"
+					bgColor="bg-yellow-300/10"
+				/>
+				<div>
+					<HelpChatImgRest />
+				</div>
+			</div>
+
 			<div className="flex flex-col justify-center items-center gap-4 w-full">
 				<SingleImageDropzone
 					width={200}

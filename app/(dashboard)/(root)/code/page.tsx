@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useEffect, useRef } from "react";
 import MarkdownResponse from "@/components/markdown-response";
-
+import HelpChat from "@/components/help-chat";
 const CodePage = () => {
 	const ProModal = useProModal();
 	const router = useRouter();
@@ -55,13 +55,19 @@ const CodePage = () => {
 		<>
 			<div className="h-[83vh] overflow-hidden">
 				<div>
-					<Heading
-						title="Gerar Códigos"
-						description="O mais avancado e inteligente gerador de Códigos."
-						icon={Code}
-						iconColor="text-green-700"
-						bgColor="bg-green-700/10"
-					/>
+					<div className="flex justify-between gap-4 pr-4">
+						<Heading
+							title="Gerar Códigos"
+							description="O mais avancado e inteligente gerador de Códigos."
+							icon={Code}
+							iconColor="text-green-700"
+							bgColor="bg-green-700/10"
+						/>
+						<div>
+							<HelpChat />
+						</div>
+					</div>
+
 					<form
 						onSubmit={isLoading ? stop : handleSubmit}
 						className="

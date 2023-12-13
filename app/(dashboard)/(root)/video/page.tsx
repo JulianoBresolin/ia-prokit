@@ -16,7 +16,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Loader } from "@/components/Loader";
 import { Empty } from "@/components/ui/empty";
 import { useProModal } from "@/hooks/use-pro-modal";
-
+import HelpChatReq from "@/components/help-chat-req";
 import { formSchema } from "./constants";
 
 const VideoPage = () => {
@@ -55,13 +55,19 @@ const VideoPage = () => {
 
 	return (
 		<div>
-			<Heading
-				title="Gerar Video"
-				description="Crie videos interessantes."
-				icon={Video}
-				iconColor="text-cyan-300"
-				bgColor="bg-cyan-300/10"
-			/>
+			<div className="flex justify-between gap-4 pr-4">
+				<Heading
+					title="Gerar Video"
+					description="Crie videos interessantes."
+					icon={Video}
+					iconColor="text-cyan-300"
+					bgColor="bg-cyan-300/10"
+				/>
+				<div>
+					<HelpChatReq Service="Video" Value="20" />
+				</div>
+			</div>
+
 			<div className="px-4 lg:px-8">
 				<Form {...form}>
 					<form

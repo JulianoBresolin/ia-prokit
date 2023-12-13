@@ -9,7 +9,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-
+import HelpChatImage from "@/components/help-chat-image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Empty from "@/components/empyt";
@@ -64,13 +64,18 @@ export default function Imagepage() {
 
 	return (
 		<>
-			<Heading
-				title="Gerar Imagens"
-				description="Seja criativo e crie imagens extraordinarias."
-				icon={ImageIcon}
-				iconColor="text-pink-700"
-				bgColor="bg-pink-700/10"
-			/>
+			<div className="flex justify-between gap-4 pr-4">
+				<Heading
+					title="Gerar Imagens"
+					description="Seja criativo e crie imagens extraordinarias."
+					icon={ImageIcon}
+					iconColor="text-pink-700"
+					bgColor="bg-pink-700/10"
+				/>
+				<div>
+					<HelpChatImage />
+				</div>
+			</div>
 			<div className="px-4 lg:px-8">
 				<div>
 					<Form {...form}>

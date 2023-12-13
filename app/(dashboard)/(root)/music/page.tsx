@@ -18,6 +18,7 @@ import { Empty } from "@/components/ui/empty";
 import { useProModal } from "@/hooks/use-pro-modal";
 
 import { formSchema } from "./constants";
+import HelpChatReq from "@/components/help-chat-req";
 
 const MusicPage = () => {
 	const proModal = useProModal();
@@ -53,13 +54,18 @@ const MusicPage = () => {
 
 	return (
 		<div>
-			<Heading
-				title="Gerar Música"
-				description="crie músicas incríveis."
-				icon={Music}
-				iconColor="text-orange-500"
-				bgColor="bg-orange-500/10"
-			/>
+			<div className="flex justify-between gap-4 pr-4">
+				<Heading
+					title="Gerar Música"
+					description="crie músicas incríveis."
+					icon={Music}
+					iconColor="text-orange-500"
+					bgColor="bg-orange-500/10"
+				/>
+				<div>
+					<HelpChatReq Service="Música" Value="10" />
+				</div>
+			</div>
 			<div className="px-4 lg:px-8">
 				<Form {...form}>
 					<form

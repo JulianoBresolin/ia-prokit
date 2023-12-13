@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useEffect, useRef } from "react";
+import HelpChat from "@/components/help-chat";
 const Chat = () => {
 	const ProModal = useProModal();
 	const router = useRouter();
@@ -53,13 +54,19 @@ const Chat = () => {
 		<>
 			<div className="h-[83vh] overflow-hidden">
 				<div>
-					<Heading
-						title="Conversação"
-						description="O Chat mais avançado de I.A"
-						icon={MessageSquare}
-						iconColor="text-violet-500"
-						bgColor="bg-violet-500/10"
-					/>
+					<div className="flex justify-between gap-4 pr-4">
+						<Heading
+							title="Conversação"
+							description="O Chat mais avançado de I.A"
+							icon={MessageSquare}
+							iconColor="text-violet-500"
+							bgColor="bg-violet-500/10"
+						/>
+						<div>
+							<HelpChat />
+						</div>
+					</div>
+
 					<form
 						onSubmit={isLoading ? stop : handleSubmit}
 						className="

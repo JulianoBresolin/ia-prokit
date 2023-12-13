@@ -8,8 +8,6 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ApiCounter } from "@/components/api-counter";
 
-const poppins = Montserrat({ weight: "600", subsets: ["latin"] });
-
 export const Sidebar = ({
 	apiLimitCount = 0,
 	apiLimitCountReq = 0,
@@ -31,27 +29,31 @@ export const Sidebar = ({
 								height={49}
 								alt="Logo"
 								src="/iaprokit-logo.png"
+								priority
+								className="w-[200px] lg:w-[230px]"
 							/>
 						</div>
 					</Link>
-					<div className="space-y-1">
-						{tools.map((route, index) => (
-							<Link
-								key={index}
-								href={route.href}
-								className={cn(
-									"text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
-									pathname === route.href
-										? "text-white bg-white/10"
-										: "text-zinc-400"
-								)}
-							>
-								<div className="flex items-center flex-1">
-									<route.icon className={cn("h-5 w-5 mr-3", route.color)} />
-									{route.label}
-								</div>
-							</Link>
-						))}
+					<div className=" overflow-y-auto max-h-[calc(100vh-400px)] md:overflow-hidden">
+						<div className="space-y-1 ">
+							{tools.map((route, index) => (
+								<Link
+									key={index}
+									href={route.href}
+									className={cn(
+										"text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
+										pathname === route.href
+											? "text-white bg-white/10"
+											: "text-zinc-400"
+									)}
+								>
+									<div className="flex items-center flex-1">
+										<route.icon className={cn("h-5 w-5 mr-3", route.color)} />
+										{route.label}
+									</div>
+								</Link>
+							))}
+						</div>
 					</div>
 				</div>
 				<ApiCounter

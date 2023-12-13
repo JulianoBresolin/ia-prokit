@@ -15,7 +15,7 @@ export const PRO_PRICE_AFTER_LIMIT = 0.0098;
 
 export const tools = [
 	{
-		label: "Dashboard",
+		label: "Painel Principal",
 		icon: LayoutDashboard,
 		href: "/dashboard",
 		color: "text-sky-500",
@@ -59,14 +59,14 @@ export const tools = [
 		bgColor: "bg-cyan-300/10",
 	},
 	{
-		label: "Restaurar foto",
+		label: "Restaurar Foto",
 		icon: ImageDown,
 		href: "/image-restauration",
 		color: "text-yellow-300",
 		bgColor: "bg-yellow-300/10",
 	},
 	{
-		label: "Settings",
+		label: "Configurações",
 		icon: Settings,
 		href: "/settings",
 		color: "text-gray-300",

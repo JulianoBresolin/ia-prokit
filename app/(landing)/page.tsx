@@ -2,6 +2,7 @@ import { LandingNavbar } from "@/components/landing-navbar";
 import { LandingHero } from "@/components/landing-hero";
 import { LandingContent } from "@/components/landing-content";
 import { LandingPrice } from "@/components/landing-price";
+import Faq from "@/components/faq";
 
 const LandingPage = () => {
 	return (
@@ -10,6 +11,7 @@ const LandingPage = () => {
 			<LandingHero />
 			<LandingContent />
 			<LandingPrice />
+			<Faq />
 		</div>
 	);
 };
