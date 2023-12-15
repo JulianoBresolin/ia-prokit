@@ -7,7 +7,7 @@ export default authMiddleware({
 		"/public",
 		"/api/edgestore/init",
 		"/politica-de-privacidade",
-		"api/cron",
+		"/api/cron",
 	],
 });
 
