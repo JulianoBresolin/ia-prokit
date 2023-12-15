@@ -42,7 +42,7 @@ export default function Demo() {
 				<div className=" shadow-white ">
 					<Image
 						className="rounded-lg drop-shadow-[-1px_-1px_15px_rgba(82,23,158,1)]"
-						src="/preview.png"
+						src="/preview.jpg"
 						alt="demo"
 						width={576}
 						height={634}
