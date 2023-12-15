@@ -32,7 +32,7 @@ const Plans = [
 export const LandingPrice = () => {
 	const { isSignedIn } = useAuth();
 	return (
-		<div className="px-10 pb-20">
+		<div className="px-10 space-y-5 mb-36">
 			<h2 className="text-center text-4xl text-white font-extrabold mb-10">
 				Planos
 			</h2>
