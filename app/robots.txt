@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+
+Sitemap: https://ia-prokit.vercel.app/sitemap.xml
