@@ -1,7 +1,8 @@
 import { ReportUsageToStripe } from "@/RepotedUsage";
 
+export const revalidate = 0;
 export async function GET() {
-	await ReportUsageToStripe();
+	const result = await ReportUsageToStripe();
 	console.log("Function executed successfully");
-	return new Response("Function executed successfully");
+	return Response.json({ result });
 }
