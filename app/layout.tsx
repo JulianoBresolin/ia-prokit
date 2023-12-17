@@ -21,6 +21,9 @@ export const metadata = {
 	icon: {
 		icon: "/favicon.ico",
 	},
+	verification: {
+		google: "Iqyg4JwyPmFqdG3rQUBSisq-92xy-SG2xvbmGaEwYmU",
+	},
 	robots: {
 		index: true,
 		follow: true,
