@@ -18,12 +18,12 @@ const Plans = [
 		description: " Use um limite de até 10 requisições de forma gratuita.",
 	},
 	{
-		plano: "Assinatura Plano Pro",
+		plano: "Assinatura Plano Pro ",
 		title: "Pague por uso Mensal",
 		price: "R$ 0,0054",
 		priceB: "R$ 0,0098",
 		description:
-			"Page por uso. Gaste até onde você quiser. A cada final de mês você paga a fatura do total de tokens que usou. ",
+			"Promoção de Lançamento . Page por uso. Gaste até onde você quiser. A cada final de mês você paga a fatura do total de tokens que usou. ",
 		descriptionPriceA: "Até 2000 tokens.",
 		descriptionPriceB: "Acima de 2000 tokens.",
 	},

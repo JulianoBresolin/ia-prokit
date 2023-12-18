@@ -30,10 +30,20 @@ export const LandingHero = () => {
 					/>
 				</div>
 			</div>
-			<div className="text-sm md:text-xl font-light text-zinc-400">
-				Pague por uso, menos que 1 centavo por Token. <br /> Crie conteúdos e
-				tenha acesso ao poder da I.A
+			<div className="space-y-3">
+				<div className="text-sm md:text-xl font-light text-white">
+					Valor Promocional de Lançamento
+				</div>
+				<div className="text-sm md:text-xl font-light text-zinc-400">
+					Pague por uso, menos que 1 centavo por Token. <br /> Crie conteúdos e
+					tenha acesso ao poder da I.A
+				</div>
+
+				<div className="text-zinc-400 text-xs md:text-sm font-normal">
+					Não é necessário cartão de crédito para testar.
+				</div>
 			</div>
+
 			<div>
 				<Button
 					disabled
@@ -42,9 +52,6 @@ export const LandingHero = () => {
 				>
 					Comece Agora
 				</Button>
-			</div>
-			<div className="text-zinc-400 text-xs md:text-sm font-normal">
-				Não é necessário cartão de crédito para testar.
 			</div>
 		</div>
 	);
