@@ -20,7 +20,7 @@ const Plans = [
 	{
 		plano: "Assinatura Plano Pro ",
 		title: "Pague por uso Mensal",
-		price: "R$ 0,0054",
+		price: "R$ 0,0084",
 		priceB: "R$ 0,0098",
 		description:
 			"Promoção de Lançamento. Page por uso. Gaste até onde você quiser. A cada final de mês você paga a fatura do total de tokens que usou. ",

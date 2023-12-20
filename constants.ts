@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export const MAX_FREE_COUNTS = 10;
-export const PRO_PRICE = 0.0054;
+export const PRO_PRICE = 0.0084;
 export const PRO_PRICE_AFTER_LIMIT = 0.0098;
 
 export const tools = [
