@@ -19,7 +19,7 @@ const Descriptions = [
 	},
 	{
 		description:
-			"Explore novos horizontes musicais com nossa IA de composição. De trilhas sonoras envolventes a batidas inovadoras, liberte sua criatividade musical.",
+			"Explore novos horizontes musicais com nossa IA de criação de músicas. De trilhas sonoras envolventes a batidas inovadoras, liberte sua criatividade musical.",
 	},
 	{
 		description:
