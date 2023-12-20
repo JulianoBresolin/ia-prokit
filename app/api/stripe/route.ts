@@ -49,7 +49,7 @@ export async function GET() {
 
 			line_items: [
 				{
-					price: "price_1OFg0iDmtpt2jh5mVry3NvaF",
+					price: "price_1OPTQbDmtpt2jh5mv2nktWeb",
 				},
 			],
 			metadata: {
