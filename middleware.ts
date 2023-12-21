@@ -8,6 +8,7 @@ export default authMiddleware({
 		"/api/edgestore/init",
 		"/politica-de-privacidade",
 		"/api/cron",
+		"/api/replicate-webhook",
 	],
 });
 

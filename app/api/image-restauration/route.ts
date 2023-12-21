@@ -9,6 +9,7 @@ import {
 } from "@/lib/api-limit";
 import { incrementPro } from "@/lib/api-UsagePro";
 import { checkSubscription } from "@/lib/subscription"; // Importa funções personalizadas para controle de assinatura
+
 // Cria uma instância de Configuration com a chave da API da OpenAI
 
 const replicate = new Replicate({
@@ -49,15 +50,15 @@ export async function POST(req: Request) {
 
 		// Decodifica a imagem da string base64
 
-		const response = await replicate.run(
-			"microsoft/bringing-old-photos-back-to-life:c75db81db6cbd809d93cc3b7e7a088a351a3349c9fa02b6d393e35e0d51ba799",
-			{
-				input: {
-					image: prompt,
-					with_scratch: true,
-				},
-			}
-		);
+		const response = await replicate.predictions.create({
+			version:
+				"microsoft/bringing-old-photos-back-to-life:c75db81db6cbd809d93cc3b7e7a088a351a3349c9fa02b6d393e35e0d51ba799",
+			input: {
+				image: prompt,
+				with_scratch: true,
+			},
+			webhook: "https://www.iaprokit.com.br/replicate-webhook",
+		});
 
 		const valueToAdd = 25;
 		let totalTokens = valueToAdd;
