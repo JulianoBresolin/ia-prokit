@@ -93,7 +93,7 @@ const VideoPage = () => {
 										<Input
 											className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
 											disabled={isLoading}
-											placeholder="nemo nadando em um rio"
+											placeholder="um cachorro correndo na rua"
 											{...field}
 										/>
 									</FormControl>
