@@ -2,7 +2,6 @@ import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
@@ -23,7 +22,7 @@ const Descriptions = [
 	},
 	{
 		description:
-			"Dê vida às suas histórias com vídeos extraordinários. Da concepção à produção, transforme suas ideias em filmes cativantes com a ajuda da nossa IA especializada.",
+			"Dê vida às suas imagens trasformando-as em vídeos extraordinários. transforme suas imagens estáticas em vídeos cativantes com a ajuda da nossa IA especializada.",
 	},
 	{
 		description:

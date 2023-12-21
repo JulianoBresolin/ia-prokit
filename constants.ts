@@ -52,9 +52,9 @@ export const tools = [
 		bgColor: "bg-orange-500/10",
 	},
 	{
-		label: "Gerar Video",
+		label: "Imagem para Video",
 		icon: Video,
-		href: "/video",
+		href: "/image-to-video",
 		color: "text-cyan-300",
 		bgColor: "bg-cyan-300/10",
 	},

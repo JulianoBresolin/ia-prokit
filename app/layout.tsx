@@ -13,7 +13,7 @@ import CookieBanner from "@/components/cookiebanner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	metadataBase: new URL("https://ia-prokit.vercel.app"),
+	metadataBase: new URL("https://www.iaprokit.com.br"),
 	title: "I.A Prokit",
 	description:
 		"Desperte a revolução da criatividade com o seu kit de ferramentas de Inteligência Artificial.",
@@ -45,17 +45,17 @@ export const metadata = {
 		siteName: "I.A Prokit",
 		images: [
 			{
-				url: "https://ia-prokit.vercel.app/og_image.png",
+				url: "https://www.iaprokit.com.br/og_image.png",
 				width: 1200,
 				height: 627,
 			},
 			{
-				url: "https://ia-prokit.vercel.app/og_image2.png",
+				url: "https://www.iaprokit.com.br/og_image2.png",
 				width: 300,
 				height: 300,
 			},
 			{
-				url: "https://ia-prokit.vercel.app/og_image3.png",
+				url: "https://www.iaprokit.com.br/og_image3.png",
 				width: 150,
 				height: 150,
 			},
