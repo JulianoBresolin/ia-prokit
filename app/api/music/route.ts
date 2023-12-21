@@ -51,9 +51,9 @@ export async function POST(req: Request) {
 			{
 				input: {
 					prompt: prompt,
-					duration: 20,
+					duration: 15,
 					continuation: false,
-					model_version: "stereo-large",
+					model_version: "stereo-melody-large",
 					multi_band_diffusion: false,
 					normalization_strategy: "peak",
 				},
