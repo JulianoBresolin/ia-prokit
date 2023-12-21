@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export default async function handler(req: Request) {
+export default async function GET(req: Request) {
 	console.log(" incoming webhook!", req.body);
 	const prediction = req.body;
 
