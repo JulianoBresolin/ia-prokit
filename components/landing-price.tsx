@@ -19,7 +19,7 @@ const Plans = [
 	},
 	{
 		plano: "Assinatura Plano Pro ",
-		title: "Pague por uso Mensal",
+		title: "Pague por uso mensal",
 		price: "R$ 0,0084",
 		priceB: "R$ 0,0098",
 		description:

@@ -21,8 +21,8 @@ export default function HelpChatImage() {
 					<DialogHeader>
 						<DialogTitle>Informações</DialogTitle>
 						<DialogDescription>
-							Veja informações de como usar o Chat de criação de imagens e
-							também sobre valores. Caso tenha mais dúvidas entre em contato.
+							Veja informações de como usar o Chat de I.A e também sobre
+							valores. Caso tenha mais dúvidas entre em contato.
 						</DialogDescription>
 					</DialogHeader>
 					<div className="overflow-y-auto max-h-[calc(100vh-400px)] ">
@@ -31,21 +31,21 @@ export default function HelpChatImage() {
 								<li>
 									<strong>Iniciar uma criação de imagem:</strong> Escreva sua
 									solicitação de criação de imagem através do formulário.
-									selecione as medidas e a quantidade de imagens que você
-									deseja. Clique no botão enviar para interagir com o modelo de
-									i.a.
+									Escolha as medidas e a quantidade de imagens desejadas no
+									formulário. Clique no botão enviar para interagir com o modelo
+									de i.a.
 								</li>
 								<li>
-									<strong>Erros:</strong> Caso tenha algum problema ou
-									console.error na resposta do modelo de i.a. , aguarde alguns
-									istantes e tente novamente, se persistir o erro entre em
-									contato. Você pode também tentar atualizar a página antes de
-									tentar uma nova requisição.
+									<strong>Erros:</strong> Caso tenha algum problema ou erro na
+									resposta do modelo de i.a. , aguarde alguns instantes e tente
+									novamente, se persistir o erro entre em contato. Você também
+									pode tentar atualizar a página antes de tentar uma nova
+									requisição.
 								</li>
 								<li>
 									<strong>Feedback:</strong> Seja parte do nosso aprimoramento
 									contínuo fornecendo feedback. Se encontrar problemas ou tiver
-									sugestões, informe-nos.
+									alguma sugestão, por favor, informe-nos.
 								</li>
 							</ol>
 						</section>
@@ -60,15 +60,16 @@ export default function HelpChatImage() {
 									<strong>Tokens:</strong> Nossa plataforma utiliza um sistema
 									de tokens para medir o uso do serviço. Cada interação ou
 									comando específico consome uma quantidade predeterminada de
-									tokens. Cada tamanho de imagem tem um valor de tokens e esse
-									valor é multiplicado a quantidade de imagens que você escolhe.
-									Com isso gera o valor total de tokens que foi consumido.
+									tokens. Cada tamanho de imagem tem um valor específico em
+									tokens. Ao escolher um tamanho e uma quantidade de imagens, o
+									valor de tokens é multiplicado pela quantidade de imagens
+									selecionadas, resultando no valor total de tokens consumidos.
 								</li>
 								<li>
 									<strong>Monitoramento de Uso:</strong> Mantenha-se informado
 									sobre o consumo de tokens através do menu lateral . Ele mostra
-									o valor total de tokens que foi consumido e o valor atual
-									gerado pelo consumo.
+									o total de tokens consumidos e o saldo atual resultante do
+									consumo.
 								</li>
 								<li>
 									<strong>Valores:</strong>
@@ -81,7 +82,7 @@ export default function HelpChatImage() {
 								</li>
 								<li>
 									<strong>Plano Pro:</strong> Você tem uma assinatura mensal e é
-									cobrado o valor do consumo no final do periodo.
+									cobrado o valor do consumo no final do período.
 								</li>
 							</ol>
 						</section>

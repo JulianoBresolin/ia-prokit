@@ -21,8 +21,8 @@ export default function HelpChat() {
 					<DialogHeader>
 						<DialogTitle>Informações</DialogTitle>
 						<DialogDescription>
-							Veja informações de como usar o Chat e também sobre valores. Caso
-							tenha mais dúvidas entre em contato.
+							Veja informações de como usar o Chat de I.A e também sobre
+							valores. Caso tenha mais dúvidas entre em contato.
 						</DialogDescription>
 					</DialogHeader>
 					<div className="overflow-y-auto max-h-[calc(100vh-400px)] ">
@@ -30,20 +30,20 @@ export default function HelpChat() {
 							<ol>
 								<li>
 									<strong>Iniciar uma Conversa:</strong> Escreva sua Pergunta ou
-									tenha uma converça com o modelo de i.a através do formulário.
+									tenha uma conversa com o modelo de i.a através do formulário.
 									Clique no botão enviar para interagir com o modelo de i.a.
 								</li>
 								<li>
-									<strong>Erros:</strong> Caso tenha algum problema ou
-									console.error na resposta do modelo de i.a. , aguarde alguns
-									istantes e tente novamente, se persistir o erro entre em
-									contato. Você pode também tentar atualizar a página antes de
-									tentar uma nova requisição.
+									<strong>Erros:</strong> Caso tenha algum problema ou erro na
+									resposta do modelo de i.a. , aguarde alguns instantes e tente
+									novamente, se persistir o erro entre em contato. Você também
+									pode tentar atualizar a página antes de tentar uma nova
+									requisição.
 								</li>
 								<li>
 									<strong>Feedback:</strong> Seja parte do nosso aprimoramento
 									contínuo fornecendo feedback. Se encontrar problemas ou tiver
-									sugestões, informe-nos.
+									alguma sugestão, por favor, informe-nos.
 								</li>
 							</ol>
 						</section>
@@ -87,7 +87,9 @@ export default function HelpChat() {
 											<p>31 caracteres = 8 tokens</p>
 										</li>
 										<li>
-											<p>Mensagem + Resposta = Valor Total</p>
+											<p>
+												Mensagem + Resposta = Valor Total de Tokens Consumidos
+											</p>
 											<p>7 + 8 = 15 tokens consumidos</p>
 										</li>
 									</ul>
@@ -96,8 +98,8 @@ export default function HelpChat() {
 								<li>
 									<strong>Monitoramento de Uso:</strong> Mantenha-se informado
 									sobre o consumo de tokens através do menu lateral . Ele mostra
-									o valor total de tokens que foi consumido e o valor atual
-									gerado pelo consumo.
+									o total de tokens consumidos e o saldo atual resultante do
+									consumo.
 								</li>
 								<li>
 									<strong>Plano Pro:</strong> Você tem uma assinatura mensal e é

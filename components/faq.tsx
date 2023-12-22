@@ -14,12 +14,12 @@ export default function Faq() {
 					<AccordionItem value="item-1">
 						<AccordionTrigger>Como funciona?</AccordionTrigger>
 						<AccordionContent>
-							Você faz o cadastro e pode usar até um limite de até 10
-							requisições sem precisar adicionar cartão de crédito ou fazer
-							pagamento. Depois que atingir o limite de 10 requisições, o
-							sistema vai bloquear o acesso para usar os modelos. Você pode
-							fazer a inscrição para o plano Pro , no plano Pro o acesso é
-							liberado e você paga por uso de tokens.
+							Você faz o cadastro e pode usar um limite de 10 requisições sem
+							precisar adicionar cartão de crédito ou fazer pagamento. Depois
+							que atingir o limite de 10 requisições, o sistema vai bloquear o
+							acesso para usar os modelos. Você pode fazer a inscrição para o
+							plano Pro , no plano Pro o acesso é liberado e você paga por uso
+							de tokens.
 						</AccordionContent>
 					</AccordionItem>
 					<AccordionItem value="item-2">
@@ -62,10 +62,10 @@ export default function Faq() {
 					<AccordionItem value="item-5">
 						<AccordionTrigger>Tem garantia?</AccordionTrigger>
 						<AccordionContent>
-							Não tem garantia de uso e as respostas dos modelos de i.a podem
-							não ser 100% precisas. Mas devido aos avanços tecnológicos, a cada
-							atualização as respostas dos modelos de i.a tem se tornado mais
-							precisas e acertivas.
+							Não há garantia de uso e as respostas dos modelos de i.a podem não
+							ser totalmente precisas. Devido aos avanços tecnológicos, a cada
+							atualização, as respostas dos modelos de i.a têm se tornado mais
+							precisas e assertivas.
 						</AccordionContent>
 					</AccordionItem>
 					<AccordionItem value="item-6">
