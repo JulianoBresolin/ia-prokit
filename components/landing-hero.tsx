@@ -45,13 +45,14 @@ export const LandingHero = () => {
 			</div>
 
 			<div>
-				<Button
-					disabled
-					variant="premium"
-					className="md:text-lg p-4 md:p-6 rounded-full font-semibold"
-				>
-					Comece Agora
-				</Button>
+				<Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
+					<Button
+						variant="premium"
+						className="md:text-lg p-4 md:p-6 rounded-full font-semibold"
+					>
+						Começe Agora
+					</Button>
+				</Link>
 			</div>
 		</div>
 	);

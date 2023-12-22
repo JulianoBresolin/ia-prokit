@@ -35,7 +35,13 @@ export default function HelpChatImgRest() {
 									restaurada. Você poderá fazer o download após a resposta do
 									modelo de i.a.
 								</li>
-
+								<li>
+									<strong>Erros:</strong> Caso tenha algum problema ou
+									console.error na resposta do modelo de i.a. , aguarde alguns
+									istantes e tente novamente, se persistir o erro entre em
+									contato. Você pode também tentar atualizar a página antes de
+									tentar uma nova requisição.
+								</li>
 								<li>
 									<strong>Feedback:</strong> Seja parte do nosso aprimoramento
 									contínuo fornecendo feedback. Se encontrar problemas ou tiver

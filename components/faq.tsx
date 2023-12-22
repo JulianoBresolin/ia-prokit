@@ -68,6 +68,18 @@ export default function Faq() {
 							precisas e acertivas.
 						</AccordionContent>
 					</AccordionItem>
+					<AccordionItem value="item-6">
+						<AccordionTrigger>
+							Quanto tempo demora para a I.A responser a minha solicitação?
+						</AccordionTrigger>
+						<AccordionContent>
+							Os Modelos de texto respondem em poucos segundos. Outros modelos
+							como criar música , imagem ou que requerem envio de arquivos
+							demoram entre 15 a 60 segundos. caso tenha algum problema aguarde
+							alguns instantes e faça uma nova requisição. Se o problema
+							persistir entre em contato.
+						</AccordionContent>
+					</AccordionItem>
 				</Accordion>
 			</div>
 		</>

@@ -66,13 +66,14 @@ export const LandingPrice = () => {
 						</CardContent>
 
 						<CardFooter>
-							<Button
-								disabled
-								variant="default"
-								className="rounded-full w-full font-semibold"
-							>
-								Comece Agora
-							</Button>
+							<Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
+								<Button
+									variant="default"
+									className="rounded-full w-full font-semibold"
+								>
+									Comece Agora
+								</Button>
+							</Link>
 						</CardFooter>
 					</Card>
 				))}
