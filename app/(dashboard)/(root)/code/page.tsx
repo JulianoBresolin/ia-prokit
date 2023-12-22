@@ -58,7 +58,7 @@ const CodePage = () => {
 					<div className="flex justify-between gap-4 pr-4">
 						<Heading
 							title="Gerar Códigos"
-							description="O mais avancado e inteligente gerador de Códigos."
+							description="O mais avançado e inteligente gerador de Códigos."
 							icon={Code}
 							iconColor="text-green-700"
 							bgColor="bg-green-700/10"

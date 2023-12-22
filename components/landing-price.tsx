@@ -12,23 +12,22 @@ import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 const Plans = [
 	{
-		plano: "Gratis",
-		title: "Use até 10x",
+		plano: "Grátis",
+		title: "Use até 10 vezes",
 		price: "R$ 0,00",
-		description: " Use um limite de até 10 requisições de forma gratuita.",
+		description: "Use um limite de até 10 requisições de forma gratuita.",
 	},
 	{
-		plano: "Assinatura Plano Pro ",
-		title: "Pague por uso mensal",
+		plano: "Assinatura Plano Pro",
+		title: "Pagamento por uso mensal",
 		price: "R$ 0,0084",
 		priceB: "R$ 0,0098",
 		description:
-			"Promoção de Lançamento. Page por uso. Gaste até onde você quiser. A cada final de mês você paga a fatura do total de tokens que usou. ",
+			"Promoção de Lançamento: Pague por uso. Gaste até onde você quiser. Ao final de cada mês, você paga a fatura do total de tokens que usou.",
 		descriptionPriceA: "Até 2000 tokens.",
 		descriptionPriceB: "Acima de 2000 tokens.",
 	},
 ];
-
 export const LandingPrice = () => {
 	const { isSignedIn } = useAuth();
 	return (

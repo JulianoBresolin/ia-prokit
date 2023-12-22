@@ -67,7 +67,7 @@ export default function Imagepage() {
 			<div className="flex justify-between gap-4 pr-4">
 				<Heading
 					title="Gerar Imagens"
-					description="Seja criativo e crie imagens extraordinarias."
+					description="Seja criativo e crie imagens extraordinárias."
 					icon={ImageIcon}
 					iconColor="text-pink-700"
 					bgColor="bg-pink-700/10"
@@ -103,7 +103,7 @@ export default function Imagepage() {
 											<Input
 												className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
 												disabled={isChatBlocked}
-												placeholder="um cachorro voador com um boneco de neve"
+												placeholder="Um astronauta andando a cavalo em estilo fotorrealista."
 												{...field}
 											/>
 										</FormControl>

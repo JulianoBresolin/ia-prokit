@@ -7,28 +7,28 @@ const testimonials = [
 		name: "Manuel",
 		avatar: "J",
 		title: "Engenheiro de software",
-		description: " Este app e muito bom! Também é muito poderoso!",
+		description: "Este app é muito bom! Também é muito poderoso!",
 	},
 	{
 		name: "Antonio",
 		avatar: "A",
 		title: "Designer",
 		description:
-			"Eu uso diariamente para gerar novas fotos para os perfis do istagram que administro.",
+			"Eu uso diariamente para gerar novas imagens para os perfis do Instagram que administro.",
 	},
 	{
 		name: "Marcos",
 		avatar: "M",
 		title: "Marketing",
 		description:
-			"Este app mudou minha vida,não consigo imaginar trabalhar sem ele!",
+			"Este app mudou minha vida, não consigo imaginar trabalhar sem ele!",
 	},
 	{
 		name: "Maria",
 		avatar: "M",
 		title: "CFO",
 		description:
-			"O melhor app para gerar conteudo, perfeito para o seu negócios!",
+			"O melhor app para gerar conteúdo, perfeito para o seu negócio!",
 	},
 ];
 

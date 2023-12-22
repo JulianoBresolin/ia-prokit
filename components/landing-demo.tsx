@@ -53,7 +53,7 @@ export default function Demo() {
 						<CardTitle className="text-3xl ">
 							Desperte a Magia da Inovação!
 						</CardTitle>
-						<CardDescription className="text-lg">
+						<CardDescription className="text-lg text-slate-300">
 							Seu Portal para a Criatividade Ilimitada está Agora Aberto
 						</CardDescription>
 					</CardHeader>

@@ -64,7 +64,7 @@ export default function RestaureImage() {
 		<div>
 			<div className="flex justify-between gap-4 pr-4">
 				<Heading
-					title="Restaurar imagens"
+					title="Restaurar Fotos"
 					description="Restaure fotos antigas."
 					icon={ImageDown}
 					iconColor="text-yellow-300"
@@ -81,6 +81,7 @@ export default function RestaureImage() {
 					height={200}
 					value={file}
 					onChange={handleFileChange}
+					dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
 				/>
 				<Button
 					size="icon"

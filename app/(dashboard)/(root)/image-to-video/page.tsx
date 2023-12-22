@@ -64,7 +64,7 @@ export default function ImageToVideo() {
 		<div>
 			<div className="flex justify-between gap-4 pr-4">
 				<Heading
-					title="Imagem para Video"
+					title="Imagem para Vídeo"
 					description="Crie videos interessantes apartir de suas imagens estáticas."
 					icon={Video}
 					iconColor="text-cyan-300"
@@ -81,6 +81,7 @@ export default function ImageToVideo() {
 					height={200}
 					value={file}
 					onChange={handleFileChange}
+					dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
 				/>
 				<Button
 					size="icon"
