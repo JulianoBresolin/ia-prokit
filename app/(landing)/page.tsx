@@ -3,6 +3,7 @@ import { LandingContent } from "@/components/landing-content";
 import { LandingPrice } from "@/components/landing-price";
 import Faq from "@/components/faq";
 import Demo from "@/components/landing-demo";
+import { LandingFooter } from "@/components/landing-footer";
 
 const LandingPage = () => {
 	return (
@@ -12,6 +13,7 @@ const LandingPage = () => {
 			<LandingContent />
 			<LandingPrice />
 			<Faq />
+			<LandingFooter />
 		</div>
 	);
 };
