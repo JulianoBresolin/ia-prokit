@@ -4,14 +4,8 @@
         "path": "/api/cron",
         "schedule": "0 23 * * *"
       }
-    ],
+    ]
 
-    "functions": {
    
-      "app/api/**/*": {
-        "memory": 3008,
-        "maxDuration": 10
-      }
-    }
   }
 

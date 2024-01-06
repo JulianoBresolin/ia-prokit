@@ -29,6 +29,15 @@ remotePatterns: [
   
   }
 
+  async redirects() {
+    return [
+      {
+        source: 'https://ia-prokit.vercel.app',
+        destination: 'https://www.iaprokit.com.br/',
+        permanent: true,
+      },
+    ]
+  },
  
   
   module.exports = nextConfig
