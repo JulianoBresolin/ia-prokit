@@ -17,9 +17,7 @@ export const metadata = {
 	title: "I.A Prokit",
 	description:
 		"Desperte a revolução da criatividade com o seu kit de ferramentas de Inteligência Artificial.",
-	alternates: {
-		canonical: "/",
-	},
+
 	icon: {
 		icon: "/favicon.ico",
 	},
