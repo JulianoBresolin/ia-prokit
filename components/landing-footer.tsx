@@ -6,25 +6,24 @@ import { FacebookIcon, InstagramIcon } from "lucide-react";
 
 export const LandingFooter = () => {
 	return (
-		<footer className="p-4 pb-16 bg-transparent gap-2 flex items-center justify-start">
+		<footer className="p-4 px-10 lg:px-72 pb-16 bg-transparent gap-2 flex items-center justify-end">
+			<p className=" text-white pl-3">
+				© 2023 IAPROKIT. Todos os direitos reservados.
+			</p>
 			<Link
 				target="_blank"
 				href="https://www.facebook.com/profile.php?id=61554635802528"
 				className="flex items-center"
 			>
-				<FacebookIcon className="w-8 h-8  text-blue-500 hover:text-white " />
+				<FacebookIcon className="w-8 h-8  text-[#8D495A] hover:text-white " />
 			</Link>
 			<Link
 				target="_blank"
 				href="https://www.instagram.com/iaprokit?igsh=eTRscjg4ZWZ1YXkz"
 				className="flex items-center"
 			>
-				<InstagramIcon className="w-8 h-8  text-blue-500 hover:text-white " />
+				<InstagramIcon className="w-8 h-8  text-[#8D495A] hover:text-white " />
 			</Link>
-
-			<p className="text-slate-400 pl-3">
-				© 2023 IAPROKIT. Todos os direitos reservados.
-			</p>
 		</footer>
 	);
 };

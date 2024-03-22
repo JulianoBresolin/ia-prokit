@@ -10,7 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@clerk/nextjs": "4.27.1",
+    "@clerk/nextjs": "^4.29.9",
     "@edgestore/react": "^0.1.4",
     "@edgestore/server": "^0.1.4",
     "@hookform/resolvers": "^3.3.2",
@@ -27,7 +27,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cookies-next": "^4.1.0",
-    "crisp-sdk-web": "^1.0.21",
     "cron": "^3.1.6",
     "js-tiktoken": "^1.0.8",
     "lucide-react": "^0.286.0",
@@ -39,6 +38,7 @@
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.47.0",
     "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.0.1",
     "react-markdown": "^9.0.0",
     "react-query": "^3.39.3",
     "react-syntax-highlighter": "^15.5.0",

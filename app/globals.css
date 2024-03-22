@@ -77,6 +77,54 @@ body,
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply text-foreground;
 	}
+}
+
+label h4 {
+	margin-top: 10px;
+}
+
+input {
+	border: 0px;
+	background-color: #ffffff;
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	padding-left: 10px;
+	outline: none;
+	font-size: 15px;
+	color: #000000;
+	font-weight: 600;
+}
+
+input:focus {
+	border: 2px solid orange;
+	outline: none;
+}
+
+textarea {
+	border: 0px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	padding-left: 10px;
+	width: 100%;
+	outline: none;
+	font-size: 15px;
+	color: #000000;
+	font-weight: 600;
+	height: 100px;
+}
+
+textarea:focus {
+	border: 2px solid orange;
+	outline: none;
+}
+
+.bntPrimaryEnv {
+	@apply bg-[#8D495A] w-[200px] h-[40px] rounded-xl font-bold text-xl lg:text-2xl text-[white] lg:w-[245px] hover:shadow-[white] shadow-md;
+}
+
+.bntSecundaryLimp {
+	@apply bg-[white] border-solid border-[4px] border-[#8D495A] w-[200px] h-[40px] rounded-xl font-bold text-xl lg:text-2xl text-black lg:w-[245px]  hover:shadow-[white] shadow-md;
 }

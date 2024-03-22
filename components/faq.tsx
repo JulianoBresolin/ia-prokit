@@ -8,7 +8,7 @@ import {
 export default function Faq() {
 	return (
 		<>
-			<div className="text-white space-y-5 pb-36 px-10 ">
+			<div className="text-white space-y-5 pb-36 px-10 lg:px-72">
 				<h1 className="text-4xl font-bold text-center">Perguntas Frequentes</h1>
 				<Accordion type="single" collapsible className="w-full">
 					<AccordionItem value="item-1">

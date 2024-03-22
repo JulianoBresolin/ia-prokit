@@ -1,16 +1,16 @@
 import "./globals.css";
 
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/components/modal-provider";
 import { ToasterProvider } from "@/components/toaster-provider";
-import { CrispProvider } from "@/components/crisp-provider";
+
 import { checkSubscription } from "@/lib/subscription";
 import Clarity from "@/components/Clarity";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import CookieBanner from "@/components/cookiebanner";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
 
 export const metadata = {
 	metadataBase: new URL("https://www.iaprokit.com.br"),
@@ -73,8 +73,8 @@ export default async function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<Clarity />
-				<CrispProvider />
-				<body className={inter.className}>
+
+				<body className={roboto.className}>
 					<ModalProvider isPro={isPro} />
 					<ToasterProvider />
 					<EdgeStoreProvider>{children}</EdgeStoreProvider>

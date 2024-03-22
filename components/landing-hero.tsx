@@ -10,49 +10,51 @@ export const LandingHero = () => {
 	const { isSignedIn } = useAuth();
 
 	return (
-		<div className="text-white font-bold py-36 text-center space-y-10">
-			<div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
-				<h1>Seu Kit de Ferramentas de IA! </h1>
-				<div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-					<TypewriterComponent
-						options={{
-							strings: [
-								"Chatbot.",
-								"Gerar Imagens.",
-								"Gerar Vídeos.",
-								"Gerar Códigos.",
-								"Gerar Musicas.",
-								"Restaurar Fotos.",
-							],
-							autoStart: true,
-							loop: true,
-						}}
-					/>
+		<div className="absolute top-0 left-0 right-0 bottom-0 items-center h-[90vh] z-20 ">
+			<div className="text-white px-10 font-bold py-36 text-center space-y-10">
+				<div className="text-4xl pt-24 sm:text-5xl md:text-6xl  space-y-5 font-bold">
+					<h1>Seu Kit de Ferramentas de IA! </h1>
+					<div className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB8C5] to-[#FF4C84]">
+						<TypewriterComponent
+							options={{
+								strings: [
+									"Chatbot.",
+									"Gerar Imagens.",
+									"Gerar Vídeos.",
+									"Gerar Códigos.",
+									"Gerar Musicas.",
+									"Restaurar Fotos.",
+								],
+								autoStart: true,
+								loop: true,
+							}}
+						/>
+					</div>
 				</div>
-			</div>
-			<div className="space-y-3">
-				<div className="text-sm md:text-xl font-light text-white">
-					Valor Promocional de Lançamento
-				</div>
-				<div className="text-sm md:text-xl font-light text-zinc-400">
-					Pague por uso, menos de 1 centavo por Token. <br /> Crie conteúdos e
-					tenha acesso ao poder da I.A.
+				<div className="space-y-3">
+					<div className="text-sm md:text-xl font-normal  text-white">
+						Valor Promocional de Lançamento
+					</div>
+					<div className="text-sm md:text-xl font-bold text-white">
+						Pague por uso, menos de 1 centavo por Token. <br /> Crie conteúdos e
+						tenha acesso ao poder da I.A.
+					</div>
+
+					<div className=" text-white text-xs md:text-lg font-normal ">
+						Não é necessário cartão de crédito para teste.
+					</div>
 				</div>
 
-				<div className="text-zinc-400 text-xs md:text-sm font-normal">
-					Não é necessário cartão de crédito para teste.
+				<div>
+					<Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
+						<Button
+							variant="premium"
+							className="md:text-lg p-4 md:p-6 rounded-full font-semibold shadow-md hover:shadow-fuchsia-600"
+						>
+							Começe Agora
+						</Button>
+					</Link>
 				</div>
-			</div>
-
-			<div>
-				<Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
-					<Button
-						variant="premium"
-						className="md:text-lg p-4 md:p-6 rounded-full font-semibold"
-					>
-						Começe Agora
-					</Button>
-				</Link>
 			</div>
 		</div>
 	);

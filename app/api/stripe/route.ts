@@ -49,7 +49,7 @@ export async function GET() {
 
 			line_items: [
 				{
-					price: "price_1OPTQbDmtpt2jh5mv2nktWeb",
+					price: "price_1OEfN7Dmtpt2jh5m3oN7bFqO",
 				},
 			],
 			metadata: {
@@ -65,3 +65,5 @@ export async function GET() {
 		return new NextResponse("Internal Server Error", { status: 500 });
 	}
 }
+
+//price_1OPTQbDmtpt2jh5mv2nktWeb produçao
