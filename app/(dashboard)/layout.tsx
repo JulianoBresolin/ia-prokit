@@ -29,7 +29,7 @@ export default async function DashboardLayout({
 					apiLimitCountReq={apiLimitCountReq}
 				/>
 			</div>
-			<main className="md:pl-72 pb-10">
+			<main className="md:pl-72 pb-10 bg-[#655C5D]  text-white h-full">
 				<Navbar />
 				{children}
 			</main>

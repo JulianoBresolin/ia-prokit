@@ -8,6 +8,8 @@ import { Progress } from "@/components/ui/progress";
 import { useProModal } from "@/hooks/use-pro-modal";
 import toast from "react-hot-toast";
 import numeral from "numeral";
+import { TbBrandSpeedtest } from "react-icons/tb";
+import { BsFire } from "react-icons/bs";
 export const ApiCounter = ({
 	apiLimitCount = 0,
 	apiLimitCountReq = 0,
@@ -42,14 +44,36 @@ export const ApiCounter = ({
 	return (
 		<div className="px-3">
 			<Card
-				className={isPro ? ` bg-violet-950 border-0` : `bg-white/10 border-0`}
+				className={isPro ? ` bg-[#7C4E7E] border-0` : `bg-[#75565C] border-0`}
 			>
 				<CardContent className="py-6">
 					<div className="text-center text-sm  text-white mb-4 space-y-2">
 						<div>
-							<p>
-								{isPro ? "Plano Pro" : "Limite Plano Grátis até 10 Requisições"}
-							</p>
+							<div className="flex items-center justify-center gap-2">
+								<div className="text-lg">
+									{isPro ? (
+										<BsFire
+											style={{
+												fontSize: "25px",
+
+												flexShrink: 0,
+											}}
+										/>
+									) : (
+										<TbBrandSpeedtest
+											style={{
+												fontSize: "25px",
+
+												flexShrink: 0,
+											}}
+										/>
+									)}
+								</div>
+								<p className="font-bold">
+									{isPro ? "Plano Pro" : "Plano Grátis"}
+								</p>
+							</div>
+
 							{!isPro && (
 								<p>
 									{apiLimitCountReq} / {MAX_FREE_COUNTS}
@@ -64,13 +88,15 @@ export const ApiCounter = ({
 							<br />
 						</div>
 						<div className=" flex justify-between ">
-							<div className="flex flex-col p-3  rounded-lg bg-slate-800 ">
-								<p>Quant.</p>
-								<p>{apiLimitCount}</p>
+							<div className="flex flex-col font-bold  ">
+								<p>Quant. Tokens</p>
+								<p className="p-3  rounded-lg bg-[#310937]">{apiLimitCount}</p>
 							</div>
-							<div className="flex flex-col p-3  rounded-lg bg-slate-800 ">
+							<div className="flex flex-col  font-bold  ">
 								<p>Valor</p>
-								<p> R$ {formattedPrice}</p>
+								<p className="p-3 min-w-[100px] rounded-lg bg-[#310937]">
+									R$ {formattedPrice}
+								</p>
 							</div>
 						</div>
 					</div>
@@ -78,7 +104,7 @@ export const ApiCounter = ({
 						disabled={loading}
 						onClick={onClick}
 						variant={isPro ? "default" : "premium"}
-						className="w-full"
+						className="w-full rounded-full font-bold "
 					>
 						{isPro ? "Gerenciar assinatura" : "Assinar Pro"}
 						{!isPro && <Zap className="w-4 h-4 ml-2 fill-white" />}

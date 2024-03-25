@@ -7,11 +7,12 @@ import axios from "axios";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ImageDown, Send, Download } from "lucide-react";
+import { Send, Download } from "lucide-react";
+import { BiImageAdd } from "react-icons/bi";
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
-import { Empty } from "@/components/ui/empty";
+import Empty from "@/components/empyt";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Card, CardFooter } from "@/components/ui/card";
 import HelpChatImgRest from "@/components/help-chat-img-rest";
@@ -61,22 +62,22 @@ export default function RestaureImage() {
 	};
 
 	return (
-		<div>
-			<div className="flex justify-between gap-4 pr-4">
+		<div className="h-[85vh]  flex flex-col justify-between overflow-hidden">
+			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
 				<Heading
 					title="Restaurar Fotos"
-					description="Restaure fotos antigas."
-					icon={ImageDown}
-					iconColor="text-yellow-300"
-					bgColor="bg-yellow-300/10"
+					icon={BiImageAdd}
+					iconColor="text-[#FFD9DF]"
+					bgColor="bg-[#8D495A]"
 				/>
 				<div>
 					<HelpChatImgRest />
 				</div>
 			</div>
 
-			<div className="flex flex-col justify-center items-center gap-4 w-full">
+			<div className="pt-8 flex flex-col justify-center items-center gap-4 w-full">
 				<SingleImageDropzone
+					className="bg-[#310937]"
 					width={200}
 					height={200}
 					value={file}
@@ -85,22 +86,27 @@ export default function RestaureImage() {
 				/>
 				<Button
 					size="icon"
-					className="w-[200px] bg-blue-500 text-white font-bold py-2 px-4 rounded"
+					variant="Enviar"
+					className="w-[200px]"
 					onClick={handleUpload}
 				>
-					<Send />
+					<div className="flex items-center justify-center gap-2 font-bold text-lg">
+						<Send /> Enviar
+					</div>
 				</Button>
 			</div>
-			<div>
+			<div className=" overflow-y-auto  max-h-[85vh] space-y-4 mt-4   scroll-smooth ">
 				{isLoading && (
 					<div className="p-20">
 						<Loader />
 					</div>
 				)}
-				{!img && !isLoading && <Empty label="Sem imagens geradas." />}
+				{!img && !isLoading && (
+					<Empty label="Envie uma foto Antiga para Restaurar." />
+				)}
 				{img && (
-					<div className="flex justify-center pt-6">
-						<Card className="rounded-lg overflow-hidden  h-full w-[400px]">
+					<div className=" flex justify-center pt-6">
+						<Card className="rounded-lg  bg-[#310937] overflow-hidden  h-[200px] w-[200px]">
 							<div className="relative ">
 								<Image
 									className="object-contain"
@@ -113,7 +119,7 @@ export default function RestaureImage() {
 							<CardFooter className="p-2">
 								<Button
 									onClick={() => window.open(img)}
-									variant="secondary"
+									variant="default"
 									className="w-full"
 								>
 									<Download className="h-4 w-4 mr-2" />

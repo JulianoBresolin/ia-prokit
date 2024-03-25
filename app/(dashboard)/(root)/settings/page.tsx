@@ -1,4 +1,4 @@
-import { Settings } from "lucide-react";
+import { LuSettings } from "react-icons/lu";
 
 import Heading from "@/components/heading";
 import { SubscriptionButton } from "@/components/subscription-button";
@@ -9,15 +9,16 @@ const SettingsPage = async () => {
 
 	return (
 		<div>
-			<Heading
-				title="Configurações"
-				description="Configuração da Conta."
-				icon={Settings}
-				iconColor="text-gray-700"
-				bgColor="bg-gray-700/10"
-			/>
-			<div className="px-4 lg:px-8 space-y-4">
-				<div className="text-muted-foreground text-lg">
+			<div className="flex bg-[#847375] justify-start gap-4 pr-4 items-center">
+				<Heading
+					title="Configurações"
+					icon={LuSettings}
+					iconColor="text-[#FFD9DF]"
+					bgColor="bg-[#8D495A]"
+				/>
+			</div>
+			<div className="px-4 pt-10 lg:px-8 space-y-4">
+				<div className=" text-lg">
 					{isPro
 						? "Você está atualmente no plano Pro."
 						: "Você está atualmente no plano Grátis."}

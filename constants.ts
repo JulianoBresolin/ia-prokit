@@ -1,13 +1,13 @@
+import { LayoutDashboard } from "lucide-react";
 import {
-	Code,
-	ImageDown,
-	ImageIcon,
-	LayoutDashboard,
-	MessageSquare,
-	Music,
-	Settings,
-	Video,
-} from "lucide-react";
+	BiConversation,
+	BiCodeAlt,
+	BiImage,
+	BiImageAdd,
+	BiMusic,
+} from "react-icons/bi";
+import { LiaPhotoVideoSolid } from "react-icons/lia";
+import { LuSettings } from "react-icons/lu";
 
 export const MAX_FREE_COUNTS = 10;
 export const PRO_PRICE = 0.0084;
@@ -18,58 +18,59 @@ export const tools = [
 		label: "Painel Principal",
 		icon: LayoutDashboard,
 		href: "/dashboard",
-		color: "text-sky-500",
-		bgColor: "bg-violet-500/10",
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
 	},
 	{
 		label: "Conversação",
-		icon: MessageSquare,
+		icon: BiConversation,
 		href: "/conversation",
-		color: "text-violet-500",
-		bgColor: "bg-violet-500/10",
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
+	},
+	{
+		label: "Gerar Código",
+		icon: BiCodeAlt,
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
+		href: "/code",
 	},
 
 	{
 		label: "Gerar Imagem",
-		icon: ImageIcon,
-		color: "text-pink-700",
-		bgColor: "bg-pink-700/10",
+		icon: BiImage,
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
 		href: "/image",
-	},
-
-	{
-		label: "Gerar Código",
-		icon: Code,
-		color: "text-green-700",
-		bgColor: "bg-green-700/10",
-		href: "/code",
-	},
-	{
-		label: "Gerar Musica",
-		icon: Music,
-		href: "/music",
-		color: "text-orange-500",
-		bgColor: "bg-orange-500/10",
-	},
-	{
-		label: "Imagem para Video",
-		icon: Video,
-		href: "/image-to-video",
-		color: "text-cyan-300",
-		bgColor: "bg-cyan-300/10",
 	},
 	{
 		label: "Restaurar Foto",
-		icon: ImageDown,
+		icon: BiImageAdd,
 		href: "/image-restauration",
-		color: "text-yellow-300",
-		bgColor: "bg-yellow-300/10",
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
 	},
 	{
+		label: "Imagem para Video",
+		icon: LiaPhotoVideoSolid,
+		href: "/image-to-video",
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
+	},
+
+	{
+		label: "Gerar Musica",
+		icon: BiMusic,
+		href: "/music",
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
+	},
+
+	{
 		label: "Configurações",
-		icon: Settings,
+		icon: LuSettings,
 		href: "/settings",
-		color: "text-gray-300",
-		bgColor: "bg-gray-300/10",
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
 	},
 ];

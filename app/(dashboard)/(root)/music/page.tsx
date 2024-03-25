@@ -7,14 +7,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Music, Send } from "lucide-react";
-
+import { Send } from "lucide-react";
+import { BiMusic } from "react-icons/bi";
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Loader } from "@/components/Loader";
-import { Empty } from "@/components/ui/empty";
+import Empty from "@/components/empyt";
 import { useProModal } from "@/hooks/use-pro-modal";
 
 import { formSchema } from "./constants";
@@ -53,26 +53,41 @@ const MusicPage = () => {
 	};
 
 	return (
-		<div>
-			<div className="flex justify-between gap-4 pr-4">
+		<div className="h-[85vh]  flex flex-col justify-between overflow-hidden">
+			<div className="flex  bg-[#847375] justify-between gap-4 pr-4 items-center">
 				<Heading
 					title="Gerar Música"
-					description="crie músicas incríveis."
-					icon={Music}
-					iconColor="text-orange-500"
-					bgColor="bg-orange-500/10"
+					icon={BiMusic}
+					iconColor="text-[#FFD9DF]"
+					bgColor="bg-[#8D495A]"
 				/>
 				<div>
 					<HelpChatReq Service="Música" Value="10" />
 				</div>
 			</div>
-			<div className="px-4 lg:px-8">
-				<Form {...form}>
-					<form
-						onSubmit={form.handleSubmit(onSubmit)}
-						className="
+			<div className=" overflow-y-auto max-h-[85vh]  text-white space-y-4 mt-4  pb-32 lg:pb-32 scroll-smooth ">
+				<div className="px-4 lg:px-8">
+					{isLoading && (
+						<div className="p-20">
+							<Loader />
+						</div>
+					)}
+					{!music && !isLoading && (
+						<Empty label="Sem Música, comece a criar agora mesmo!" />
+					)}
+					{music && (
+						<audio controls className="w-full mt-8">
+							<source src={music} />
+						</audio>
+					)}
+				</div>
+			</div>
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="
               rounded-lg 
-              border 
+          
               w-full 
               p-4 
               px-3 
@@ -82,44 +97,35 @@ const MusicPage = () => {
               grid-cols-12
               gap-2
             "
+				>
+					<FormField
+						name="prompt"
+						render={({ field }) => (
+							<FormItem className="col-span-12 lg:col-span-10">
+								<FormControl className="m-0 p-0">
+									<Input
+										className="bg-[#310937] px-2 text-white  border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+										disabled={isLoading}
+										placeholder="Piano solo com violino"
+										{...field}
+									/>
+								</FormControl>
+							</FormItem>
+						)}
+					/>
+					<Button
+						className="col-span-12 lg:col-span-2 w-full"
+						variant="Enviar"
+						type="submit"
+						disabled={isLoading}
+						size="icon"
 					>
-						<FormField
-							name="prompt"
-							render={({ field }) => (
-								<FormItem className="col-span-12 lg:col-span-10">
-									<FormControl className="m-0 p-0">
-										<Input
-											className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-											disabled={isLoading}
-											placeholder="Piano solo com violino"
-											{...field}
-										/>
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-						<Button
-							className="col-span-12 lg:col-span-2 w-full"
-							type="submit"
-							disabled={isLoading}
-							size="icon"
-						>
-							<Send />
-						</Button>
-					</form>
-				</Form>
-				{isLoading && (
-					<div className="p-20">
-						<Loader />
-					</div>
-				)}
-				{!music && !isLoading && <Empty label="Sem Músicas criadas." />}
-				{music && (
-					<audio controls className="w-full mt-8">
-						<source src={music} />
-					</audio>
-				)}
-			</div>
+						<div className="flex items-center justify-center gap-2 font-bold text-lg">
+							<Send /> Enviar
+						</div>
+					</Button>
+				</form>
+			</Form>
 		</div>
 	);
 };

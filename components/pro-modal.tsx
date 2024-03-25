@@ -39,25 +39,27 @@ export default function ProModal({ isPro = false }: { isPro: boolean }) {
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
-							<div className="flex items-center gap-x-2 font-bold text-xl text-center">
+							<div className="flex items-center gap-x-2 font-bold text-white text-lg text-center">
 								{isPro
 									? "Sua Pergunta e Resposta passou do Limite de Requisições Pro. Atualize sua Assinatura"
 									: "Sua Pergunta e Resposta passam do Limite de Requisições Grátis . Faça a Assinatura para o plano Pro!"}
 							</div>
 						</DialogTitle>
-						<DialogDescription className="text-center pt-2 space-y-2 text-zinc-900 font-medium">
+						<DialogDescription className="text-center pt-2 space-y-2 text-white font-medium">
 							{tools.map((tool) => (
 								<Card
 									key={tool.href}
-									className="p-3 border-black/5 flex items-center justify-between"
+									className="p-3 bg-[#847375] border-black/5 flex items-center justify-between"
 								>
 									<div className="flex items-center gap-x-4">
-										<div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
-											<tool.icon className={cn("w-6 h-6", tool.color)} />
+										<div className={cn("p-2 w-fit rounded-full", tool.bgColor)}>
+											<tool.icon className={cn("w-4 h-4", tool.color)} />
 										</div>
-										<div className="font-semibold text-sm">{tool.label}</div>
+										<div className="font-semibold text-sm text-white">
+											{tool.label}
+										</div>
 									</div>
-									<Check className="text-primary w-5 h-5" />
+									<Check className="text-white w-5 h-5" />
 								</Card>
 							))}
 						</DialogDescription>
@@ -68,7 +70,7 @@ export default function ProModal({ isPro = false }: { isPro: boolean }) {
 							onClick={onSubscribe}
 							size="lg"
 							variant={isPro ? "default" : "premium"}
-							className="w-full"
+							className="w-full font-bold"
 						>
 							{isPro ? "Gerenciar assinatura" : "Assinar Pro"}
 							{!isPro && <Zap className="w-4 h-4 ml-2 fill-white" />}

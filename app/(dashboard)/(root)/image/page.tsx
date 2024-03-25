@@ -1,6 +1,7 @@
 "use client";
 import Heading from "@/components/heading";
-import { ImageIcon, Download, Send } from "lucide-react";
+import { Download, Send } from "lucide-react";
+import { BiImage } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { amountOptions, formSchema, resolutionsOptions } from "./constants";
@@ -25,6 +26,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { useProModal } from "@/hooks/use-pro-modal";
 import toast from "react-hot-toast";
+import { cn } from "@/lib/utils";
 export default function Imagepage() {
 	const [isChatBlocked, setIsChatBlocked] = useState(false);
 	const ProModal = useProModal();
@@ -64,134 +66,43 @@ export default function Imagepage() {
 
 	return (
 		<>
-			<div className="flex justify-between gap-4 pr-4">
-				<Heading
-					title="Gerar Imagens"
-					description="Seja criativo e crie imagens extraordinárias."
-					icon={ImageIcon}
-					iconColor="text-pink-700"
-					bgColor="bg-pink-700/10"
-				/>
+			<div className="h-[90vh] flex flex-col justify-between overflow-hidden">
 				<div>
-					<HelpChatImage />
+					<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
+						<Heading
+							title="Gerar Imagens"
+							icon={BiImage}
+							iconColor="text-[#FFD9DF]"
+							bgColor="bg-[#8D495A]"
+						/>
+						<div>
+							<HelpChatImage />
+						</div>
+					</div>
 				</div>
-			</div>
-			<div className="px-4 lg:px-8">
-				<div>
-					<Form {...form}>
-						<form
-							onSubmit={form.handleSubmit(onSubmit)}
-							className="
-                rounded-lg 
-                border 
-                w-full 
-                p-4 
-                px-3 
-                md:px-6 
-                focus-within:shadow-sm
-                grid
-                grid-cols-12
-                gap-2
-              "
-						>
-							<FormField
-								control={form.control}
-								name="prompt"
-								render={({ field }) => (
-									<FormItem className="col-span-12 lg:col-span-6">
-										<FormControl className="m-0 p-0">
-											<Input
-												className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-												disabled={isChatBlocked}
-												placeholder="Um astronauta andando a cavalo em estilo fotorrealista."
-												{...field}
-											/>
-										</FormControl>
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="amount"
-								render={({ field }) => (
-									<FormItem className="col-span-12 lg:col-span-2">
-										<Select
-											disabled={isChatBlocked}
-											onValueChange={field.onChange}
-											value={field.value}
-											defaultValue={field.value}
-										>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue defaultValue={field.value} />
-												</SelectTrigger>
-											</FormControl>
-											<SelectContent>
-												{amountOptions.map((option) => (
-													<SelectItem key={option.value} value={option.value}>
-														{option.label}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="resolution"
-								render={({ field }) => (
-									<FormItem className="col-span-12 lg:col-span-2">
-										<Select
-											disabled={isChatBlocked}
-											onValueChange={field.onChange}
-											value={field.value}
-											defaultValue={field.value}
-										>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue defaultValue={field.value} />
-												</SelectTrigger>
-											</FormControl>
-											<SelectContent>
-												{resolutionsOptions.map((option) => (
-													<SelectItem key={option.value} value={option.value}>
-														{option.label}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
-									</FormItem>
-								)}
-							/>
-							<Button
-								className="col-span-12 lg:col-span-2 w-full"
-								type="submit"
-								disabled={isChatBlocked}
-								size="icon"
-							>
-								<Send />
-							</Button>
-						</form>
-					</Form>
+
+				<div className=" overflow-y-auto max-h-[85vh]  text-white space-y-4 mt-4   scroll-smooth ">
 					{isLoading && (
 						<div className="p-20">
 							<Loader />
 						</div>
 					)}
 					{images.length === 0 && !isLoading && (
-						<Empty label="Sem imagens geradas." />
+						<Empty label="Sem Imagens, comece a criar agora mesmo!" />
 					)}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+					<div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
 						{images.map((src) => (
-							<Card key={src} className="rounded-lg overflow-hidden">
+							<Card
+								key={src}
+								className="rounded-lg bg-[#310937] overflow-hidden"
+							>
 								<div className="relative aspect-square">
 									<Image fill alt="Generated" src={src} />
 								</div>
 								<CardFooter className="p-2">
 									<Button
 										onClick={() => window.open(src)}
-										variant="secondary"
+										variant="default"
 										className="w-full"
 									>
 										<Download className="h-4 w-4 mr-2" />
@@ -202,6 +113,106 @@ export default function Imagepage() {
 						))}
 					</div>
 				</div>
+				<Form {...form}>
+					<form
+						onSubmit={form.handleSubmit(onSubmit)}
+						className="
+                rounded-lg 
+               
+                w-full 
+                p-4 
+                px-3 
+                md:px-6 
+                focus-within:shadow-sm
+                grid
+                grid-cols-12
+                gap-2
+              "
+					>
+						<FormField
+							control={form.control}
+							name="prompt"
+							render={({ field }) => (
+								<FormItem className=" col-span-12 lg:col-span-6">
+									<FormControl className="m-0 p-0">
+										<Input
+											className="border-0 outline-none 
+												bg-[#310937] px-2 text-white focus-visible:ring-0 focus-visible:ring-transparent"
+											disabled={isChatBlocked}
+											placeholder="Um astronauta andando a cavalo em estilo fotorrealista."
+											{...field}
+										/>
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="amount"
+							render={({ field }) => (
+								<FormItem className="col-span-12  lg:col-span-2 ">
+									<Select
+										disabled={isChatBlocked}
+										onValueChange={field.onChange}
+										value={field.value}
+										defaultValue={field.value}
+									>
+										<FormControl>
+											<SelectTrigger className="bg-[#310937] text-white ">
+												<SelectValue defaultValue={field.value} />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent className="bg-[#310937] text-white ">
+											{amountOptions.map((option) => (
+												<SelectItem key={option.value} value={option.value}>
+													{option.label}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="resolution"
+							render={({ field }) => (
+								<FormItem className="col-span-12 lg:col-span-2">
+									<Select
+										disabled={isChatBlocked}
+										onValueChange={field.onChange}
+										value={field.value}
+										defaultValue={field.value}
+									>
+										<FormControl>
+											<SelectTrigger className="bg-[#310937] text-white ">
+												<SelectValue defaultValue={field.value} />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent className="bg-[#310937] text-white ">
+											{resolutionsOptions.map((option) => (
+												<SelectItem key={option.value} value={option.value}>
+													{option.label}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+								</FormItem>
+							)}
+						/>
+						<Button
+							className="col-span-12 lg:col-span-2 w-full"
+							variant="Enviar"
+							type="submit"
+							disabled={isChatBlocked}
+							size="icon"
+						>
+							<div className="flex items-center justify-center gap-2 font-bold text-lg">
+								<Send /> Enviar
+							</div>
+						</Button>
+					</form>
+				</Form>
 			</div>
 		</>
 	);

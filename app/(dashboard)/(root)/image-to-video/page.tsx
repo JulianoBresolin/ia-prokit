@@ -4,14 +4,14 @@ import { SingleImageDropzone } from "@/components/SingleImageDropzone";
 import { useEdgeStore } from "@/lib/edgestore";
 import { useState } from "react";
 import axios from "axios";
-
+import { LiaPhotoVideoSolid } from "react-icons/lia";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Video, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
-import { Empty } from "@/components/ui/empty";
+import Empty from "@/components/empyt";
 import { useProModal } from "@/hooks/use-pro-modal";
 
 import HelpChatImgToVideo from "@/components/help-chat-img-to-video";
@@ -61,22 +61,22 @@ export default function ImageToVideo() {
 	};
 
 	return (
-		<div>
-			<div className="flex justify-between gap-4 pr-4">
+		<div className="h-[85vh]  flex flex-col justify-between overflow-hidden">
+			<div className="flex bg-[#847375]  justify-between gap-4 pr-4 items-center">
 				<Heading
 					title="Imagem para Vídeo"
-					description="Crie videos interessantes apartir de suas imagens estáticas."
-					icon={Video}
-					iconColor="text-cyan-300"
-					bgColor="bg-cyan-300/10"
+					icon={LiaPhotoVideoSolid}
+					iconColor="text-[#FFD9DF]"
+					bgColor="bg-[#8D495A]"
 				/>
 				<div>
 					<HelpChatImgToVideo />
 				</div>
 			</div>
 
-			<div className="flex flex-col justify-center items-center gap-4 w-full">
+			<div className="pt-8 flex flex-col  justify-center items-center gap-4 w-full">
 				<SingleImageDropzone
+					className="bg-[#310937]"
 					width={200}
 					height={200}
 					value={file}
@@ -85,23 +85,28 @@ export default function ImageToVideo() {
 				/>
 				<Button
 					size="icon"
-					className="w-[200px] bg-blue-500 text-white font-bold py-2 px-4 rounded"
+					variant="Enviar"
+					className="w-[200px]"
 					onClick={handleUpload}
 				>
-					<Send />
+					<div className="flex items-center justify-center gap-2 font-bold text-lg">
+						<Send /> Enviar
+					</div>
 				</Button>
 			</div>
-			<div>
+			<div className=" overflow-y-auto  max-h-[85vh] space-y-4 mt-4   scroll-smooth ">
 				{isLoading && (
 					<div className="p-20">
 						<Loader />
 					</div>
 				)}
-				<div className="flex justify-center pt-6">
-					{!video && !isLoading && <Empty label="Sem videos criados." />}
+				<div className="flex justify-center ">
+					{!video && !isLoading && (
+						<Empty label="Envie uma imagem para criar uma animação." />
+					)}
 					{video && (
 						<video
-							className="w-[50%] aspect-video mt-8 rounded-lg border bg-black "
+							className="w-[25%] border aspect-video mt-8 rounded-lg  bg-[#310937]  "
 							controls
 						>
 							<source src={video} />

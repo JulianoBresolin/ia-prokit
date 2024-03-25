@@ -2,7 +2,7 @@
 
 import { useChat } from "ai/react";
 import { Send } from "lucide-react";
-import { MessageSquare } from "lucide-react";
+import { BiConversation } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
@@ -52,57 +52,23 @@ const Chat = () => {
 
 	return (
 		<>
-			<div className="h-[83vh] overflow-hidden">
+			<div className="h-[85vh] flex flex-col justify-between overflow-hidden">
 				<div>
-					<div className="flex justify-between gap-4 pr-4">
+					<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
 						<Heading
 							title="Conversação"
-							description="O Chat mais avançado de I.A"
-							icon={MessageSquare}
-							iconColor="text-violet-500"
-							bgColor="bg-violet-500/10"
+							icon={BiConversation}
+							iconColor="text-[#FFD9DF]"
+							bgColor="bg-[#8D495A]"
 						/>
 						<div>
 							<HelpChat />
 						</div>
 					</div>
 
-					<form
-						onSubmit={isLoading ? stop : handleSubmit}
-						className="
-                rounded-lg 
-                border 
-                w-full 
-                p-4 
-                px-3 
-                md:px-6 
-                focus-within:shadow-sm
-                grid
-                grid-cols-12
-                gap-2
-              "
-					>
-						<div className="col-span-12 lg:col-span-10">
-							<div className="m-0 p-0">
-								<Input
-									placeholder="Escreva um post para redes sociais..  "
-									value={input}
-									className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-									onChange={handleInputChange}
-								/>
-							</div>
-						</div>
-						<Button
-							type="submit"
-							disabled={!input}
-							className="col-span-12 lg:col-span-2 w-full"
-						>
-							{isLoading ? "Stop" : <Send />}
-						</Button>
-					</form>
 					{messages.length > 0 && (
 						<div className=" text-right w-full   pr-3">
-							<Button size="sm" onClick={handleClearChat} variant="outline">
+							<Button size="sm" onClick={handleClearChat} variant="default">
 								Limpar Chat
 							</Button>
 						</div>
@@ -111,9 +77,9 @@ const Chat = () => {
 
 				<div
 					ref={containerRef}
-					className="border-2 overflow-y-auto max-h-[75%] text-black space-y-4 mt-4  pb-32 lg:pb-20 scroll-smooth "
+					className=" overflow-y-auto max-h-[85vh] text-white space-y-4 mt-4  pb-32 lg:pb-32 scroll-smooth "
 				>
-					{messages.length === 0 && <Empty label="Sem Mensagens" />}
+					{messages.length === 0 && <Empty label="como posso ajudar ? " />}
 
 					{messages.map((m) => (
 						<div
@@ -121,8 +87,8 @@ const Chat = () => {
 							className={cn(
 								"p-8 w-full flex items-start justify-start gap-x-8 rounded-lg",
 								m.role === "user"
-									? "bg-white border border-black/10"
-									: "bg-muted"
+									? "bg-[#524345] border border-black/10"
+									: "bg-[#524345]"
 							)}
 						>
 							{m.role === "user" ? <UserAvatar /> : <BotAvatar />}
@@ -131,6 +97,49 @@ const Chat = () => {
 						</div>
 					))}
 				</div>
+				<form
+					onSubmit={isLoading ? stop : handleSubmit}
+					className="
+				
+					
+                rounded-lg 
+             
+                w-full 
+			
+                p-4 
+                px-3 
+                md:px-6 
+                focus-within:shadow-sm
+                grid
+                grid-cols-12
+                gap-2
+              "
+				>
+					<div className="col-span-12 lg:col-span-10">
+						<div className="m-0 p-0">
+							<Input
+								placeholder="Escreva um post para redes sociais..  "
+								value={input}
+								className="border-0 outline-none bg-[#310937] text-white focus-visible:ring-0 focus-visible:ring-transparent"
+								onChange={handleInputChange}
+							/>
+						</div>
+					</div>
+					<Button
+						variant="Enviar"
+						type="submit"
+						disabled={!input}
+						className="col-span-12 lg:col-span-2 w-full"
+					>
+						{isLoading ? (
+							"Stop"
+						) : (
+							<div className="flex items-center justify-center gap-2 font-bold text-lg">
+								<Send /> Enviar
+							</div>
+						)}
+					</Button>
+				</form>
 			</div>
 		</>
 	);
