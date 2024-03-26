@@ -17,10 +17,10 @@ export default function HelpChatImgRest() {
 				<DialogTrigger asChild>
 					<Button variant="destructive">Ajuda</Button>
 				</DialogTrigger>
-				<DialogContent className="max-w-[425px] md:max-w-[625px] lg:max-w-[725px]">
+				<DialogContent className="max-w-[425px] text-white md:max-w-[625px] lg:max-w-[725px]">
 					<DialogHeader>
 						<DialogTitle>Informações</DialogTitle>
-						<DialogDescription>
+						<DialogDescription className="text-white/75">
 							Veja informações de como usar o Chat de I.A e também sobre
 							valores. Caso tenha mais dúvidas entre em contato.
 						</DialogDescription>
@@ -89,7 +89,7 @@ export default function HelpChatImgRest() {
 					</div>
 					<DialogFooter>
 						<DialogClose asChild>
-							<Button type="button" variant="default">
+							<Button type="button" variant="outline">
 								Fechar
 							</Button>
 						</DialogClose>
