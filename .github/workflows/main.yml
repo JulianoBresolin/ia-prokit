@@ -3,7 +3,7 @@ name: Executar Tarefa cron
 on:
   schedule:
     - cron: "0 5 * * *"
-    - cron: "0 23 * * *"
+    - cron: "15 18 * * *"
 
 jobs:
   build:
