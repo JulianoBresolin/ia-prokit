@@ -33,7 +33,7 @@ export default function Background() {
 	};
 
 	return (
-		<div className="parallax-container flex justify-center items-center w-full h-[90vh] ">
+		<div className="parallax-container flex justify-center items-center w-[95%] h-[90vh] ">
 			<LandingHero />
 			<div
 				className="hidden absolute z-10 parallax-content  md:flex justify-center items-center opacity-60 md:opacity-60  "
