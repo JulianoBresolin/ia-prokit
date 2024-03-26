@@ -69,7 +69,7 @@ export default function ProModal({ isPro = false }: { isPro: boolean }) {
 							disabled={loading}
 							onClick={onSubscribe}
 							size="lg"
-							variant={isPro ? "outline" : "premium"}
+							variant={isPro ? "default" : "premium"}
 							className="w-full font-bold"
 						>
 							{isPro ? "Gerenciar assinatura" : "Assinar Pro"}

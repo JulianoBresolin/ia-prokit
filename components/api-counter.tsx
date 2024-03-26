@@ -103,7 +103,7 @@ export const ApiCounter = ({
 					<Button
 						disabled={loading}
 						onClick={onClick}
-						variant={isPro ? "default" : "premium"}
+						variant={isPro ? "outline" : "premium"}
 						className="w-full rounded-full font-bold "
 					>
 						{isPro ? "Gerenciar assinatura" : "Assinar Pro"}
