@@ -46,7 +46,8 @@ export async function POST(req: Request) {
 				{ status: 403 }
 			);
 		}
-
+		// Começamos a monitorar o tempo
+		const startTime = Date.now();
 		// Decodifica a imagem da string base64
 
 		const response = await replicate.run(
@@ -62,6 +63,21 @@ export async function POST(req: Request) {
 		const valueToAdd = 25;
 		let totalTokens = valueToAdd;
 
+		const elapsedTime = Date.now() - startTime;
+
+		// Se o tempo ultrapassar 50 segundos, envia um webhook
+		if (elapsedTime > 50000) {
+			await fetch("https://www.iaprokit.com.br/api/replicate-webhook", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					message: "Tempo de execução superior a 50 segundos.",
+					userId,
+				}),
+			});
+		}
 		if (isPro) {
 			await incrementPro(totalTokens);
 		} else {
