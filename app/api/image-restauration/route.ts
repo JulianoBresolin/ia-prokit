@@ -66,7 +66,7 @@ export async function POST(req: Request) {
 		const elapsedTime = Date.now() - startTime;
 
 		// Se o tempo ultrapassar 50 segundos, envia um webhook
-		if (elapsedTime > 50000) {
+		if (elapsedTime > 8000) {
 			await fetch("https://www.iaprokit.com.br/api/replicate-webhook", {
 				method: "POST",
 				headers: {
