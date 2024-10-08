@@ -18,12 +18,10 @@ export const LandingHero = () => {
 						<TypewriterComponent
 							options={{
 								strings: [
-									"Chatbot.",
 									"Gerar Imagens.",
-									"Gerar Vídeos.",
-									"Gerar Códigos.",
-									"Gerar Musicas.",
-									"Restaurar Fotos.",
+									"Gerar Vídeos de Imagens.",
+									"Remova Fundo de Imagens.",
+									"Restaurar Fotos Antigas.",
 								],
 								autoStart: true,
 								loop: true,

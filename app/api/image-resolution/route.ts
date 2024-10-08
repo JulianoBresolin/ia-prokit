@@ -1,4 +1,5 @@
 import Replicate from "replicate";
+
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import {
@@ -46,21 +47,20 @@ export async function POST(req: Request) {
 			);
 		}
 
+		// Decodifica a imagem da string base64
+
 		const response = await replicate.run(
-			"meta/musicgen:7be0f12c54a8d033a0fbd14418c9af98962da9a86f5ff7811f9b3423a1f0b7d7",
+			"nightmareai/real-esrgan:f121d640bd286e1fdc67f9799164c1d5be36ff74576ee11c803ae5b665dd46aa",
 			{
 				input: {
-					prompt: prompt,
-					duration: 15,
-					continuation: false,
-					model_version: "stereo-melody-large",
-					multi_band_diffusion: false,
-					normalization_strategy: "peak",
+					image: prompt,
+					scale: 2,
+					face_enhance: false,
 				},
 			}
 		);
 
-		const valueToAdd = 10;
+		const valueToAdd = 25;
 		let totalTokens = valueToAdd;
 
 		if (isPro) {
@@ -72,7 +72,7 @@ export async function POST(req: Request) {
 
 		return NextResponse.json(response);
 	} catch (error) {
-		console.log("[MUSIC_ERROR]", error);
+		console.log("[IMAGE_RESTAURATION_ERROR]", error);
 		return new NextResponse("Internal Error", { status: 500 });
 	}
 }

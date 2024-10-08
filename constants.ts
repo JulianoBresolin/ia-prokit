@@ -5,9 +5,13 @@ import {
 	BiImage,
 	BiImageAdd,
 	BiMusic,
+	BiCrop,
+	BiPalette,
+	BiZoomIn,
 } from "react-icons/bi";
 import { LiaPhotoVideoSolid } from "react-icons/lia";
 import { LuSettings } from "react-icons/lu";
+import { BsPersonBoundingBox } from "react-icons/bs";
 
 export const MAX_FREE_COUNTS = 10;
 export const PRO_PRICE = 0.0084;
@@ -22,26 +26,18 @@ export const tools = [
 		bgColor: "bg-[#8D495A]",
 	},
 	{
-		label: "Conversação",
-		icon: BiConversation,
-		href: "/conversation",
-		color: "text-[#FFD9DF]",
-		bgColor: "bg-[#8D495A]",
-	},
-	{
-		label: "Gerar Código",
-		icon: BiCodeAlt,
-		color: "text-[#FFD9DF]",
-		bgColor: "bg-[#8D495A]",
-		href: "/code",
-	},
-
-	{
 		label: "Gerar Imagem",
 		icon: BiImage,
 		color: "text-[#FFD9DF]",
 		bgColor: "bg-[#8D495A]",
 		href: "/image",
+	},
+	{
+		label: "Transforme suas fotos",
+		icon: BsPersonBoundingBox,
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
+		href: "/transforme-suas-fotos",
 	},
 	{
 		label: "Restaurar Foto",
@@ -51,17 +47,23 @@ export const tools = [
 		bgColor: "bg-[#8D495A]",
 	},
 	{
-		label: "Imagem para Video",
-		icon: LiaPhotoVideoSolid,
-		href: "/image-to-video",
+		label: "Colorir Memórias Fotograficas",
+		icon: BiPalette,
+		href: "/image-colors",
 		color: "text-[#FFD9DF]",
 		bgColor: "bg-[#8D495A]",
 	},
-
 	{
-		label: "Gerar Musica",
-		icon: BiMusic,
-		href: "/music",
+		label: "Remover fundo",
+		icon: BiCrop,
+		href: "/image-remove-bg",
+		color: "text-[#FFD9DF]",
+		bgColor: "bg-[#8D495A]",
+	},
+	{
+		label: "Aumentar Resolução",
+		icon: BiZoomIn,
+		href: "/image-resolution",
 		color: "text-[#FFD9DF]",
 		bgColor: "bg-[#8D495A]",
 	},

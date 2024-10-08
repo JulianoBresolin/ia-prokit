@@ -28,7 +28,6 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 export default function Imagepage() {
-	const [isChatBlocked, setIsChatBlocked] = useState(false);
 	const ProModal = useProModal();
 	const router = useRouter();
 	const [images, setImages] = useState<string[]>([]);
@@ -37,7 +36,7 @@ export default function Imagepage() {
 		defaultValues: {
 			prompt: "",
 			amount: "1",
-			resolution: "256x256",
+			resolution: "1:1",
 		},
 	});
 
@@ -47,15 +46,19 @@ export default function Imagepage() {
 			setImages([]);
 			console.log(values);
 			const response = await axios.post("/api/image", values);
-			const urls = response.data.map((image: { url: string }) => image.url);
-
-			setImages(urls);
+			// Verifique se a resposta contém um array de imagens
+			// Verifica se 'output' existe e contém URLs
+			if (response.data && Array.isArray(response.data)) {
+				const urls = response.data.map((url: string) => url); // Mapeia todas as URLs
+				setImages(urls); // Define todas as URLs das imagens no estado
+			} else {
+				toast.error("Nenhuma imagem retornada pela API.");
+			}
 			form.reset();
 		} catch (error: any) {
-			if (error?.response?.status === 403 || form.formState.isSubmitting) {
+			if (error?.response?.status === 403) {
 				// Abre um modal se o status da resposta for 403 (problema de autorização).
 				ProModal.onOpen();
-				setIsChatBlocked(true);
 			} else {
 				toast.error("Something went wrong");
 			}
@@ -91,17 +94,17 @@ export default function Imagepage() {
 						<Empty label="Sem Imagens, comece a criar agora mesmo!" />
 					)}
 					<div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-						{images.map((src) => (
+						{images.map((urls) => (
 							<Card
-								key={src}
+								key={urls}
 								className="rounded-lg bg-[#310937] overflow-hidden"
 							>
 								<div className="relative aspect-square">
-									<Image fill alt="Generated" src={src} />
+									<Image fill alt="Generated" src={urls} />
 								</div>
 								<CardFooter className="p-2">
 									<Button
-										onClick={() => window.open(src)}
+										onClick={() => window.open(urls)}
 										variant="default"
 										className="w-full"
 									>
@@ -138,8 +141,8 @@ export default function Imagepage() {
 										<Input
 											className="border-0 outline-none 
 												bg-[#310937] px-2 text-white focus-visible:ring-0 focus-visible:ring-transparent"
-											disabled={isChatBlocked}
-											placeholder="Um astronauta andando a cavalo em estilo fotorrealista."
+											disabled={isLoading}
+											placeholder="o texto funciona melhor em inglês"
 											{...field}
 										/>
 									</FormControl>
@@ -152,7 +155,7 @@ export default function Imagepage() {
 							render={({ field }) => (
 								<FormItem className="col-span-12  lg:col-span-2 ">
 									<Select
-										disabled={isChatBlocked}
+										disabled={isLoading}
 										onValueChange={field.onChange}
 										value={field.value}
 										defaultValue={field.value}
@@ -179,7 +182,7 @@ export default function Imagepage() {
 							render={({ field }) => (
 								<FormItem className="col-span-12 lg:col-span-2">
 									<Select
-										disabled={isChatBlocked}
+										disabled={isLoading}
 										onValueChange={field.onChange}
 										value={field.value}
 										defaultValue={field.value}
@@ -204,7 +207,7 @@ export default function Imagepage() {
 							className="col-span-12 lg:col-span-2 w-full"
 							variant="Enviar"
 							type="submit"
-							disabled={isChatBlocked}
+							disabled={isLoading}
 							size="icon"
 						>
 							<div className="flex items-center justify-center gap-2 font-bold text-lg">

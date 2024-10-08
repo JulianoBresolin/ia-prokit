@@ -50,15 +50,18 @@ export async function POST(req: Request) {
 		// Decodifica a imagem da string base64
 
 		const response = await replicate.run(
-			"stability-ai/stable-video-diffusion:3f0457e4619daac51203dedb472816fd4af51f3149fa7a9e0b5ffcf1b8172438",
+			"arielreplicate/deoldify_image:0da600fab0c45a66211339f1c16b71345d22f26ef5fea3dca1bb90bb5711e950",
 			{
 				input: {
+					model_name: "Artistic",
 					input_image: prompt,
+					with_scratch: true,
+					render_factor: 35,
 				},
 			}
 		);
 
-		const valueToAdd = 30;
+		const valueToAdd = 32;
 		let totalTokens = valueToAdd;
 
 		if (isPro) {

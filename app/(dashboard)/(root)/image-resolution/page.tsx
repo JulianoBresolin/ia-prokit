@@ -8,7 +8,7 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Send, Download } from "lucide-react";
-import { BiImageAdd } from "react-icons/bi";
+import { BiZoomIn } from "react-icons/bi";
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
@@ -17,7 +17,7 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import { Card, CardFooter } from "@/components/ui/card";
 import HelpChatImgRest from "@/components/help-chat-img-rest";
 
-export default function RestaureImage() {
+export default function RestaureImageResolution() {
 	const proModal = useProModal();
 	const router = useRouter();
 	const [file, setFile] = useState<File>();
@@ -39,7 +39,7 @@ export default function RestaureImage() {
 					url: res.url,
 				});
 
-				const response = await axios.post("/api/image-restauration", {
+				const response = await axios.post("/api/image-resolution", {
 					prompt: res.url,
 				});
 
@@ -65,8 +65,8 @@ export default function RestaureImage() {
 		<div className="h-[90vh]  flex flex-col justify-start overflow-hidden gap-4">
 			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
 				<Heading
-					title="Restaurar Fotos"
-					icon={BiImageAdd}
+					title="Aumentar Resolução"
+					icon={BiZoomIn}
 					iconColor="text-[#FFD9DF]"
 					bgColor="bg-[#8D495A]"
 				/>

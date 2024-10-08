@@ -19,12 +19,11 @@ const Plans = [
 		iconPg: FaCheckCircle,
 		descriptions: [
 			"Use um limite de até 10 requisições de forma gratuita.",
-			"Conversação com I.A",
-			"Gerar Códigos",
 			"Gerar Imagens",
 			"Restauração de Fotos",
-			"Imagem para Animação",
-			"Gerar Música",
+			"Imagem para Video",
+			"Remover fundo de Imagens",
+			"Transforme suas Fotos",
 		],
 	},
 ];
@@ -39,12 +38,11 @@ const PlansPro = [
 		iconPg: FaCheckCircle,
 		descriptionsB: [
 			"Sem Limite de uso.",
-			"Conversação com I.A",
-			"Gerar Códigos",
 			"Gerar Imagens",
 			"Restauração de Fotos",
-			"Imagem para Animação",
-			"Gerar Música",
+			"Imagem para Video",
+			"Remover fundo de Imagens",
+			"Transforme suas Fotos",
 		],
 	},
 ];

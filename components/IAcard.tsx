@@ -5,34 +5,30 @@ import Link from "next/link";
 
 export const exploreIA = [
 	{
-		id: "Conversacao",
-		imgUrl: "/01-conversacao.jpg",
-		title: "Coversação",
-	},
-	{
-		id: "codigo",
-		imgUrl: "/02-codigo.jpg",
-		title: "Gerar Código",
-	},
-	{
 		id: "imagem",
 		imgUrl: "/03-image.jpg",
 		title: "Gerar Imagens",
 	},
+	{
+		id: "Remover-fundos",
+		imgUrl: "/08-removebg.jpg",
+		title: "Remover fundos",
+	},
+	{
+		id: "Transforme-suas-Fotos",
+		imgUrl: "/07-transforme.jpg",
+		title: "Transforme suas Fotos",
+	},
+
 	{
 		id: "restauracao",
 		imgUrl: "/04-restauraçao.jpg",
 		title: "Restaurar Fotos",
 	},
 	{
-		id: "animacao",
+		id: "Imagem-para-Video",
 		imgUrl: "/05-animaçao.jpg",
-		title: "Imagem Para Animação",
-	},
-	{
-		id: "musica",
-		imgUrl: "/06-musica.jpg",
-		title: "Gerar Música",
+		title: "Imagem Para Video",
 	},
 ];
 
