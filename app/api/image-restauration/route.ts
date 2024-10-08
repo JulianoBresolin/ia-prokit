@@ -46,9 +46,6 @@ export async function POST(req: Request) {
 				{ status: 403 }
 			);
 		}
-		// Começamos a monitorar o tempo
-		const startTime = Date.now();
-		// Decodifica a imagem da string base64
 
 		const response = await replicate.run(
 			"microsoft/bringing-old-photos-back-to-life:c75db81db6cbd809d93cc3b7e7a088a351a3349c9fa02b6d393e35e0d51ba799",
@@ -63,21 +60,6 @@ export async function POST(req: Request) {
 		const valueToAdd = 25;
 		let totalTokens = valueToAdd;
 
-		const elapsedTime = Date.now() - startTime;
-
-		// Se o tempo ultrapassar 50 segundos, envia um webhook
-		if (elapsedTime > 8000) {
-			await fetch("https://www.iaprokit.com.br/api/replicate-webhook", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					message: "Tempo de execução superior a 50 segundos.",
-					userId,
-				}),
-			});
-		}
 		if (isPro) {
 			await incrementPro(totalTokens);
 		} else {

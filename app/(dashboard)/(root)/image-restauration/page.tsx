@@ -25,23 +25,7 @@ export default function RestaureImage() {
 	const [Urls, setUrls] = useState<{ url: string }>();
 	const [img, setImg] = useState<string>();
 	const [isLoading, setIsLoading] = useState(false);
-	const [timeoutMessage, setTimeoutMessage] = useState<string>("");
 
-	const checkStatus = async () => {
-		// Simulação de polling para verificar se o tempo limite foi atingido
-		const res = await axios.get("/api/check-status");
-		if (res.data.status === "timeout") {
-			setTimeoutMessage(
-				"O processo está demorando mais de 50 segundos. Você será notificado quando estiver pronto."
-			);
-		}
-	};
-
-	useEffect(() => {
-		// Intervalo de polling para verificar o status
-		const interval = setInterval(checkStatus, 10000); // Checa a cada 10 segundos
-		return () => clearInterval(interval);
-	}, []);
 	const handleUpload = async () => {
 		if (file) {
 			try {
@@ -100,7 +84,7 @@ export default function RestaureImage() {
 					onChange={handleFileChange}
 					dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
 				/>
-				{timeoutMessage && <p>{timeoutMessage}</p>}
+
 				<Button
 					size="icon"
 					variant="Enviar"
