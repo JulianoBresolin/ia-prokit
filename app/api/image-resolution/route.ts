@@ -14,14 +14,14 @@ const replicate = new Replicate({
 	auth: process.env.REPLICATE_API_KEY,
 });
 
-// Prevent Next.js / Vercel from caching responses
+// Prevent Next.js
 replicate.fetch = (url, options) => {
 	return fetch(url, { ...options, cache: "no-store" });
 };
 
 // Define o host para o webhook
 const WEBHOOK_HOST = process.env.NEX_PUBLIC_APP_URL
-	? `https://${process.env.NEX_PUBLIC_APP_URL}`
+	? process.env.NEX_PUBLIC_APP_URL
 	: process.env.NGROK_HOST; // Atualize se necessário
 
 export async function POST(req: Request) {
