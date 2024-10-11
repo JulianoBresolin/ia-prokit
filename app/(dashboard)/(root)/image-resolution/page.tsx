@@ -17,6 +17,9 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import { Card, CardFooter } from "@/components/ui/card";
 import HelpChatImgRest from "@/components/help-chat-img-rest";
 
+// Função de sleep para aguardar entre as verificações
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default function RestaureImageResolution() {
 	const proModal = useProModal();
 	const router = useRouter();
@@ -25,6 +28,7 @@ export default function RestaureImageResolution() {
 	const [Urls, setUrls] = useState<{ url: string }>();
 	const [img, setImg] = useState<string>();
 	const [isLoading, setIsLoading] = useState(false);
+	const [predictionStatus, setPredictionStatus] = useState<string>("");
 
 	const handleUpload = async () => {
 		if (file) {
@@ -43,7 +47,33 @@ export default function RestaureImageResolution() {
 					prompt: res.url,
 				});
 
-				setImg(response.data);
+				let prediction = response.data;
+				setPredictionStatus(prediction.status);
+
+				// Loop para verificar o status da predição
+
+				while (
+					prediction.status !== "succeeded" &&
+					prediction.status !== "failed"
+				) {
+					await sleep(3000);
+					const statusResponse = await axios.get(
+						`/api/image-resolution/${prediction.id}`
+					);
+					prediction = statusResponse.data;
+					setPredictionStatus(prediction.status);
+
+					if (statusResponse.status !== 200) {
+						toast.error("Failed to fetch prediction status.");
+						return;
+					}
+				}
+
+				if (prediction.status === "succeeded") {
+					setImg(prediction.output);
+				} else {
+					toast.error("Prediction failed.");
+				}
 			} catch (error: any) {
 				if (error?.response?.status === 403) {
 					proModal.onOpen();
@@ -99,6 +129,7 @@ export default function RestaureImageResolution() {
 				{isLoading && (
 					<div className="p-20">
 						<Loader />
+						<p className="text-sm text-white">Status: {predictionStatus}</p>
 					</div>
 				)}
 				{!img && !isLoading && (

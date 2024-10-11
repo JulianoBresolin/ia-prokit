@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 	};
 
 	if (WEBHOOK_HOST) {
-		options.webhook = `${WEBHOOK_HOST}/api/replicate-webhook`;
+		options.webhook = `${WEBHOOK_HOST}/api/replicate-webhook-email`;
 		options.webhook_events_filter = ["start", "completed"];
 	}
 
