@@ -1,12 +1,10 @@
 "use client";
-
 import { useState, useEffect, useRef, FormEvent } from "react";
 import Image from "next/image";
 
-// Função para criar um delay com tipagem
+// Função para criar um delay
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Definição do tipo para o objeto Prediction
 interface Prediction {
 	id: string;
 	status: string;
@@ -17,6 +15,7 @@ interface Prediction {
 export default function ImageRestauration2() {
 	const [prediction, setPrediction] = useState<Prediction | null>(null);
 	const [error, setError] = useState<string | null>(null);
+	const [emailNotification, setEmailNotification] = useState(false);
 	const promptInputRef = useRef<HTMLInputElement | null>(null);
 
 	useEffect(() => {
@@ -25,10 +24,10 @@ export default function ImageRestauration2() {
 		}
 	}, []);
 
-	// Tipagem para o evento de submissão
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setError(null); // Resetando o erro ao submeter novamente
+		setError(null);
+		setEmailNotification(false); // Reseta a notificação por e-mail
 
 		const form = e.currentTarget;
 		const promptValue = form.prompt.value;
@@ -52,12 +51,19 @@ export default function ImageRestauration2() {
 
 		setPrediction(prediction);
 
-		// Verifica status da predição enquanto ela está em andamento
+		// Verificação do tempo para exibir notificação de e-mail
+		let elapsed = 0;
 		while (
 			prediction.status !== "succeeded" &&
 			prediction.status !== "failed"
 		) {
 			await sleep(1000);
+			elapsed += 1;
+
+			// Se o tempo for superior a 8 segundos, exibe notificação de envio por e-mail
+			if (elapsed > 5 && !emailNotification) {
+				setEmailNotification(true);
+			}
 
 			const statusResponse = await fetch(`/api/predictions/${prediction.id}`);
 			prediction = await statusResponse.json();
@@ -69,7 +75,6 @@ export default function ImageRestauration2() {
 				return;
 			}
 
-			console.log({ prediction });
 			setPrediction(prediction);
 		}
 	};
@@ -98,21 +103,27 @@ export default function ImageRestauration2() {
 
 			{error && <div className="text-red-500">{error}</div>}
 
+			{emailNotification && (
+				<div className="text-blue-500">
+					O processo está demorando, a URL da imagem será enviada para o seu
+					e-mail.
+				</div>
+			)}
+
+			{prediction && prediction.output && (
+				<div className="image-wrapper mt-5">
+					<Image
+						width={200}
+						height={200}
+						src={prediction.output[prediction.output.length - 1]}
+						alt="output"
+						sizes="100vw"
+					/>
+				</div>
+			)}
+
 			{prediction && (
-				<>
-					{prediction.output && (
-						<div className="image-wrapper mt-5">
-							<Image
-								width={200}
-								height={200}
-								src={prediction.output[prediction.output.length - 1]}
-								alt="output"
-								sizes="100vw"
-							/>
-						</div>
-					)}
-					<p className="py-3 text-sm opacity-50">status: {prediction.status}</p>
-				</>
+				<p className="py-3 text-sm opacity-50">status: {prediction.status}</p>
 			)}
 		</div>
 	);

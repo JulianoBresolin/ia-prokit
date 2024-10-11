@@ -1,3 +1,5 @@
+// ai-saas/ia-prokit/app/api/predictions/[id]/route.ts
+
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
 
