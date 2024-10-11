@@ -1,6 +1,6 @@
 // ai-saas\ia-prokit\components\email-template.tsx
 import * as React from "react";
-import Image from "next/image";
+
 interface EmailTemplateProps {
 	firstName: string;
 	imageUrl: string;
@@ -13,13 +13,9 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
 	<div>
 		<h1>
 			Welcome, {firstName} !
-			<Image
-				width={200}
-				height={200}
-				src={imageUrl}
-				alt="output"
-				sizes="100vw"
-			/>
+			<a href={imageUrl}>
+				<img border="0" alt="img" src={imageUrl} width="100" height="100" />
+			</a>
 		</h1>
 	</div>
 );

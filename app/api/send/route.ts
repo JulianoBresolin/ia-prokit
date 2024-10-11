@@ -25,3 +25,4 @@ export async function POST() {
 
 //curl -X POST https://e702-191-177-138-95.ngrok-free.app/api/send
 //curl -X POST http://localhost:3000/api/send
+//curl -X POST https://www.iaprokit.com.br/api/send
