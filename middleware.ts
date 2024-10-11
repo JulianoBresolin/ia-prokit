@@ -11,7 +11,7 @@ export default authMiddleware({
 		"/api/replicate-webhook",
 		"api/send",
 	],
-	ignoredRoutes: ["/api/send"],
+	ignoredRoutes: ["/api/send", "/api/replicate-webhook"],
 });
 
 export const config = {

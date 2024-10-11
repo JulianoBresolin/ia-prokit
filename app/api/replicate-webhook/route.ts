@@ -1,12 +1,11 @@
-// The Replicate webhook is a POST request where the request body is a prediction object.
-// Identical webhooks can be sent multiple times, so this handler must be idempotent.
-
 import { NextResponse } from "next/server";
 import { validateWebhook } from "replicate";
 import { Resend } from "resend";
 import { EmailTemplate } from "../../../components/email-template";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+let emailSent = false;
+
 export async function POST(request: Request) {
 	console.log("Received webhook...");
 
@@ -30,25 +29,35 @@ export async function POST(request: Request) {
 		return NextResponse.json({ detail: "Webhook is invalid" }, { status: 401 });
 	}
 
-	// process validated webhook here...
 	console.log("Webhook is valid!");
 	const body = await request.json();
 	console.log(body);
 
-	if (body.status === "completed") {
-		const imageUrl = body.output[0]; // URL da imagem gerada
+	if (body.status === "succeeded") {
+		const imageUrl = body.output[0];
 		console.log(imageUrl);
+
 		try {
-			console.log("Enviando o e-mail...");
-			// Envia o e-mail com a URL da imagem
-			await resend.emails.send({
-				from: "Acme <onboarding@resend.dev>",
-				to: ["bresolinfotografia@gmail.com"], // Troque pelo e-mail correto do usuário
-				subject: "Sua imagem está pronta!",
-				react: EmailTemplate({ firstName: "Usuário", imageUrl }), // Template do e-mail com URL da imagem
-			});
-		} catch (error) {
+			if (!emailSent) {
+				console.log("Enviando o e-mail...");
+				const { data } = await resend.emails.send({
+					from: "Acme <onboarding@resend.dev>",
+					to: ["bresolinfotografia@gmail.com"],
+					subject: "Sua imagem está pronta!",
+					react: EmailTemplate({ firstName: "Usuário", imageUrl }),
+				});
+				console.log("E-mail enviado com sucesso:", data);
+
+				// Marcar como enviado após o envio bem-sucedido
+				emailSent = true;
+			} else {
+				console.log("Email já foi enviado anteriormente.");
+			}
+		} catch (error: any) {
 			console.error("Erro ao enviar o e-mail:", error);
+			if (error.response && error.response.status >= 400) {
+				console.error("Resend retornou um erro HTTP:", error.response.status);
+			}
 		}
 	}
 
