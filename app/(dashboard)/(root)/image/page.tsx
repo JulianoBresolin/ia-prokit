@@ -27,10 +27,14 @@ import Image from "next/image";
 import { useProModal } from "@/hooks/use-pro-modal";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default function Imagepage() {
 	const ProModal = useProModal();
 	const router = useRouter();
 	const [images, setImages] = useState<string[]>([]);
+	const [predictionStatus, setPredictionStatus] = useState<string>("");
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -48,8 +52,25 @@ export default function Imagepage() {
 			const response = await axios.post("/api/image", values);
 			// Verifique se a resposta contém um array de imagens
 			// Verifica se 'output' existe e contém URLs
-			if (response.data && Array.isArray(response.data)) {
-				const urls = response.data.map((url: string) => url); // Mapeia todas as URLs
+			let prediction = response.data;
+			setPredictionStatus(prediction.status);
+			while (
+				prediction.status !== "succeeded" &&
+				prediction.status !== "failed"
+			) {
+				await sleep(5000);
+				const statusResponse = await axios.get(`/api/image/${prediction.id}`);
+				prediction = statusResponse.data;
+				setPredictionStatus(prediction.status);
+
+				if (statusResponse.status !== 200) {
+					toast.error("Failed to fetch prediction status.");
+					return;
+				}
+			}
+
+			if (prediction.status === "succeeded") {
+				const urls = prediction.output.map((url: string) => url); // Mapeia todas as URLs
 				setImages(urls); // Define todas as URLs das imagens no estado
 			} else {
 				toast.error("Nenhuma imagem retornada pela API.");
@@ -86,8 +107,9 @@ export default function Imagepage() {
 
 				<div className=" overflow-y-auto max-h-[85vh]  text-white space-y-4 mt-4   scroll-smooth ">
 					{isLoading && (
-						<div className="p-20">
+						<div className="p-20 flex flex-col gap-4 items-center justify-center">
 							<Loader />
+							<p className="text-sm text-white">Status: {predictionStatus}</p>
 						</div>
 					)}
 					{images.length === 0 && !isLoading && (

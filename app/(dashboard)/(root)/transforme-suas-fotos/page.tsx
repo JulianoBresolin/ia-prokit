@@ -55,8 +55,11 @@ export default function FaceImage() {
 	const { edgestore } = useEdgeStore();
 	const [Urls, setUrls] = useState<{ url: string }[]>([]);
 	const [images, setImages] = useState<string[]>([]);
-
+	const [predictionStatus, setPredictionStatus] = useState<string>("");
 	const isLoading = form.formState.isSubmitting;
+
+	const sleep = (ms: number) =>
+		new Promise((resolve) => setTimeout(resolve, ms));
 	const uploadImages = async () => {
 		const files = [file1, file2, file3, file4].filter(Boolean); // Filtra os arquivos não nulos
 
@@ -100,8 +103,28 @@ export default function FaceImage() {
 			});
 
 			// Verifica se a resposta contém um array de URLs de imagens
-			if (response.data && Array.isArray(response.data)) {
-				setImages(response.data); // Define as URLs das imagens retornadas
+			let prediction = response.data;
+			setPredictionStatus(prediction.status);
+			while (
+				prediction.status !== "succeeded" &&
+				prediction.status !== "failed"
+			) {
+				await sleep(5000);
+				const statusResponse = await axios.get(
+					`/api/transforme-suas-fotos/${prediction.id}`
+				);
+				prediction = statusResponse.data;
+				setPredictionStatus(prediction.status);
+
+				if (statusResponse.status !== 200) {
+					toast.error("Failed to fetch prediction status.");
+					return;
+				}
+			}
+
+			if (prediction.status === "succeeded") {
+				const urls = prediction.output.map((url: string) => url); // Mapeia todas as URLs
+				setImages(urls); // Define todas as URLs das imagens no estado
 			} else {
 				toast.error("Nenhuma imagem retornada pela API.");
 			}
@@ -336,11 +359,14 @@ export default function FaceImage() {
 				</form>
 			</Form>
 			<div className=" max-h-[85vh] space-y-4 mt-4 scroll-smooth">
+				{isLoading && (
+					<div className="p-20 flex flex-col gap-4 items-center justify-center">
+						<Loader />
+						<p className="text-sm text-white">Status: {predictionStatus}</p>
+					</div>
+				)}
 				{images.length === 0 && !isLoading && (
 					<Empty label="Sem Imagens, comece a criar agora mesmo!" />
-				)}
-				{!images && !isLoading && (
-					<Empty label="Envie suas fotos para restaurar." />
 				)}
 
 				<div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 mx-4">

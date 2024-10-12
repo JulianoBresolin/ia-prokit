@@ -14,8 +14,14 @@ import { checkSubscription } from "@/lib/subscription";
 const replicate = new Replicate({
 	auth: process.env.REPLICATE_API_KEY,
 });
+// Prevent Next.js
+replicate.fetch = (url, options) => {
+	return fetch(url, { ...options, cache: "no-store" });
+};
 
-// Função que lida com a requisição HTTP POST
+// Define o host para o webhook
+const WEBHOOK_HOST = process.env.NEX_PUBLIC_APP_URL;
+
 export async function POST(req: Request) {
 	try {
 		// Obtém o ID do usuário autenticado a partir das funções do Clerk
@@ -25,20 +31,7 @@ export async function POST(req: Request) {
 		const body = await req.json();
 
 		// Extrai as informações do corpo da requisição, incluindo o prompt, a quantidade e a resolução
-		const { prompt, amount = 1, resolution = "1:1" } = body;
-
-		const resolutionTokensMap = {
-			"1:1": 20,
-			"2:3": 20,
-			"3:2": 20,
-			"3:4": 20,
-			"4:3": 20,
-			"4:5": 20,
-			"9:16": 30,
-			"9:21": 30,
-			"16:9": 30,
-			"21:9": 30,
-		};
+		const { prompt, amount, resolution } = body;
 
 		// Verifica se o usuário não está autenticado
 		if (!userId) {
@@ -77,21 +70,9 @@ export async function POST(req: Request) {
 				{ status: 403 }
 			);
 		}
-		// Calcule o consumo total de tokens com base na quantidade e resolução escolhidas
-		const totalTokens =
-			resolutionTokensMap[resolution as keyof typeof resolutionTokensMap] *
-			amount;
-		console.log("Tokens used:", totalTokens);
-		// Verifique se o limite de tokens gratuito foi atingido
 
-		if (isPro) {
-			await incrementPro(totalTokens);
-		} else {
-			await incrementApiLimitReq();
-			await incrementApiLimitTokens(totalTokens);
-		}
-
-		const response = await replicate.run("black-forest-labs/flux-schnell", {
+		const options: any = {
+			model: "black-forest-labs/flux-schnell", // Atualize para a versão desejada
 			input: {
 				prompt: prompt,
 				go_fast: true,
@@ -101,13 +82,36 @@ export async function POST(req: Request) {
 				output_format: "jpg",
 				output_quality: 80,
 			},
-		});
+		};
 
-		// Retorna a resposta da API da OpenAI como JSON
-		return NextResponse.json(response);
+		// Adiciona o webhook se o host estiver definido
+		if (WEBHOOK_HOST) {
+			options.webhook = `${WEBHOOK_HOST}/api/replicate-webhook`; // URL do webhook
+			options.webhook_events_filter = ["start", "completed"]; // Eventos a serem monitorados
+		}
+
+		// Faz a chamada à API da Replicate com o webhook
+		const prediction = await replicate.predictions.create(options);
+
+		if (prediction?.error) {
+			return NextResponse.json({ detail: prediction.error }, { status: 500 });
+		}
+
+		// Incrementa os limites de requisição e tokens conforme o plano do usuário
+		const valueToAdd = 50;
+		let totalTokens = valueToAdd;
+
+		if (isPro) {
+			await incrementPro(totalTokens);
+		} else {
+			await incrementApiLimitReq();
+			await incrementApiLimitTokens(totalTokens);
+		}
+
+		// Retorna a resposta da API da Replicate
+		return NextResponse.json(prediction, { status: 201 });
 	} catch (error) {
-		// Em caso de erro, registra o erro no console e retorna uma resposta de erro interno
-		console.log("[IMAGE_ERROR]", error);
+		console.log("[IMAGE_FLUX_GENERATE_ERROR]", error);
 		return new NextResponse("Internal Error", { status: 500 });
 	}
 }

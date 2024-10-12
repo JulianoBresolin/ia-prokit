@@ -20,9 +20,7 @@ replicate.fetch = (url, options) => {
 };
 
 // Define o host para o webhook
-const WEBHOOK_HOST = process.env.NEX_PUBLIC_APP_URL
-	? process.env.NEX_PUBLIC_APP_URL
-	: process.env.NGROK_HOST; // Atualize se necessário
+const WEBHOOK_HOST = process.env.NEX_PUBLIC_APP_URL;
 
 export async function POST(req: Request) {
 	try {

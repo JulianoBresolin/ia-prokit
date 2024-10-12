@@ -10,25 +10,30 @@ export const exploreIA = [
 		title: "Gerar Imagens",
 	},
 	{
-		id: "Remover-fundos",
-		imgUrl: "/08-removebg.jpg",
-		title: "Remover fundos",
-	},
-	{
 		id: "Transforme-suas-Fotos",
 		imgUrl: "/07-transforme.jpg",
 		title: "Transforme suas Fotos",
 	},
-
 	{
 		id: "restauracao",
 		imgUrl: "/04-restauraçao.jpg",
 		title: "Restaurar Fotos",
 	},
 	{
-		id: "Imagem-para-Video",
+		id: "Remover-fundos",
+		imgUrl: "/08-removebg.jpg",
+		title: "Remover fundos",
+	},
+
+	{
+		id: "Colorir-Fotos",
 		imgUrl: "/05-animaçao.jpg",
-		title: "Imagem Para Video",
+		title: "Colorir Memórias Fotograficas",
+	},
+	{
+		id: "Aumentar-Resolução",
+		imgUrl: "/05-animaçao.jpg",
+		title: "Aumentar Resolução",
 	},
 ];
 
