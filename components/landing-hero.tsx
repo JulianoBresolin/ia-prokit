@@ -19,9 +19,11 @@ export const LandingHero = () => {
 							options={{
 								strings: [
 									"Gerar Imagens.",
-									"Gerar Vídeos de Imagens.",
-									"Remova Fundo de Imagens.",
-									"Restaurar Fotos Antigas.",
+									"Transforme suas fotos",
+									"Restaurar Foto",
+									"Colorir fotos PB",
+									"Remover fundo",
+									"Aumentar Resolução",
 								],
 								autoStart: true,
 								loop: true,

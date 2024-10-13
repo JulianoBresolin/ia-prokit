@@ -174,16 +174,16 @@ export default function FaceImage() {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="rounded-lg 
+					className="
                
-                w-full 
-              
+               p-3 max-w-7xl mx-auto 
+             
                 focus-within:shadow-sm
                
-                gap-4 "
+                  border-red-400"
 				>
-					<div className=" flex items-center justify-center flex-wrap gap-2 lg:m-2 ">
-						<div className="flex items-center justify-center flex-wrap gap-2 ">
+					<div className=" flex items-center justify-center flex-wrap gap-2 ">
+						<div className="flex items-center justify-center flex-wrap gap-2  ">
 							<SingleImageDropzone
 								className="bg-[#310937]"
 								width={100}
@@ -217,12 +217,12 @@ export default function FaceImage() {
 								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
 							/>
 						</div>
-						<div className="  flex items-center justify-center flex-col gap-2 pb-2">
+						<div className="  flex items-center justify-center flex-col gap-2 pb-2 ">
 							<FormField
 								control={form.control}
 								name="photoStyle"
 								render={({ field }) => (
-									<FormItem className="col-span-12  lg:col-span-2  w-[390px] ">
+									<FormItem className="col-span-12  lg:col-span-2 w-full ">
 										<Select
 											disabled={isLoading}
 											onValueChange={field.onChange}
@@ -258,13 +258,13 @@ export default function FaceImage() {
 									</FormItem>
 								)}
 							/>
-							<div className="grid grid-cols-2 gap-2  ">
+							<div className="grid grid-cols-2 gap-2   ">
 								<div>
 									<FormField
 										control={form.control}
 										name="forceStyle"
 										render={({ field }) => (
-											<FormItem className="col-span-12  lg:col-span-2 w-48">
+											<FormItem className="col-span-12  lg:col-span-2 w-full">
 												<Select
 													disabled={isLoading}
 													onValueChange={field.onChange}
@@ -296,7 +296,7 @@ export default function FaceImage() {
 										control={form.control}
 										name="amountOptions"
 										render={({ field }) => (
-											<FormItem className="col-span-12 lg:col-span-2 w-48">
+											<FormItem className="col-span-12 lg:col-span-2 w-full">
 												<Select
 													disabled={isLoading}
 													onValueChange={field.onChange}
@@ -326,7 +326,7 @@ export default function FaceImage() {
 							</div>
 						</div>
 					</div>
-					<div className=" flex items-center justify-center flex-wrap gap-2 px-4 lg:px-48">
+					<div className=" flex items-center justify-center flex-wrap gap-2  ">
 						<FormField
 							control={form.control}
 							name="prompt"
