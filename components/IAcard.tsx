@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
 export const exploreIA = [
 	{
@@ -27,12 +26,12 @@ export const exploreIA = [
 
 	{
 		id: "Colorir-Fotos",
-		imgUrl: "/05-animaçao.jpg",
+		imgUrl: "/09-colors.jpg",
 		title: "Colorir Memórias Fotograficas",
 	},
 	{
 		id: "Aumentar-Resolução",
-		imgUrl: "/05-animaçao.jpg",
+		imgUrl: "/10-melhorar.jpg",
 		title: "Aumentar Resolução",
 	},
 ];

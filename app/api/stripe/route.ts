@@ -1,5 +1,5 @@
 // Importação de módulos e funções necessárias
-import { auth, currentUser } from "@clerk/nextjs"; // Clerk é usado para autenticação
+import { auth, currentUser } from "@clerk/nextjs/server"; // Clerk é usado para autenticação
 import { NextResponse } from "next/server"; // NextResponse para manipular respostas
 import prismadb from "@/lib/prismadb"; // Acesso ao banco de dados com Prisma
 import { stripe } from "@/lib/stripe"; // Integração com Stripe para pagamentos

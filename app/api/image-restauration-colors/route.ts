@@ -1,5 +1,5 @@
 import Replicate from "replicate";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import {
 	incrementApiLimitTokens,
@@ -78,7 +78,7 @@ export async function POST(req: Request) {
 		}
 
 		// Incrementa os limites de requisição e tokens conforme o plano do usuário
-		const valueToAdd = 36;
+		const valueToAdd = 25;
 		let totalTokens = valueToAdd;
 
 		if (isPro) {

@@ -56,7 +56,7 @@ export default function Demopro() {
 						))}
 					</CardContent>
 				</Card>
-				<div className=" shadow-white lg:w-[30rem] ">
+				<div>
 					<Image
 						className="rounded-lg drop-shadow-[-1px_-1px_15px_rgba(82,23,158,1)]"
 						src="/plano-pro.png"

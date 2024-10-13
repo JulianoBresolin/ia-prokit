@@ -9,7 +9,7 @@ export default function ImageRemoveBg() {
 			title="Remover fundo"
 			icon={BiCrop}
 			apiUrl="/api/image-remove-bg"
-			DescriptionModel="Envie uma foto para remover o fundo esse modelo custa 25 tokens ou 0,25 centavos por requisição"
+			DescriptionModel="Envie uma foto para remover o fundo esse modelo custa 25 tokens ou 0,21 centavos por requisição"
 		/>
 	);
 }

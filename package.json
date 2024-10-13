@@ -10,7 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.9",
+    "@clerk/nextjs": "^5.7.2",
     "@edgestore/react": "^0.1.4",
     "@edgestore/server": "^0.1.4",
     "@hookform/resolvers": "^3.3.2",

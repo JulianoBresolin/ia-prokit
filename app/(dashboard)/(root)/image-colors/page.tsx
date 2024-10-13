@@ -9,7 +9,7 @@ export default function RestaureImageColors() {
 			title="Colorir Memórias Fotograficas"
 			icon={BiPalette}
 			apiUrl="/api/image-restauration-colors"
-			DescriptionModel="Envie uma foto antiga para restaurar as cores e dar uma nova vida a elas esse modelo custa 25 tokens ou 0,25 centavos por requisição"
+			DescriptionModel="Envie uma foto antiga para restaurar as cores e dar uma nova vida a elas esse modelo custa 25 tokens ou 0,21 centavos por requisição"
 		/>
 	);
 }

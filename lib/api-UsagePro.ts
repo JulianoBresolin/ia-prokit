@@ -1,5 +1,5 @@
 // api-limit.ts
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import prismadb from "@/lib/prismadb";
 //import { startCronJob } from "@/lib/RepotedUsage";
 

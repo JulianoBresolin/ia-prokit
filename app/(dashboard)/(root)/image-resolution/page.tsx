@@ -9,7 +9,7 @@ export default function RestaureImageResolution() {
 			title="Aumentar Resolução"
 			icon={BiZoomIn}
 			apiUrl="/api/image-resolution"
-			DescriptionModel="Envie uma foto antiga para restaurar esse modelo custa 25 tokens ou 0,25 centavos por requisição"
+			DescriptionModel="Envie uma foto antiga para restaurar esse modelo custa 25 tokens ou 0,21 centavos por requisição"
 		/>
 	);
 }

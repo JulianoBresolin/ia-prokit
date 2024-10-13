@@ -1,5 +1,5 @@
 // Importação de módulos e funções necessárias
-import { auth } from "@clerk/nextjs"; // Importa funções de autenticação do Clerk
+import { auth } from "@clerk/nextjs/server"; // Importa funções de autenticação do Clerk
 import { NextResponse } from "next/server"; // Importa a classe NextResponse para manipular respostas HTTP
 import Replicate from "replicate";
 import {
