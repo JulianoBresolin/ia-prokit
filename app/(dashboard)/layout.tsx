@@ -21,7 +21,7 @@ export default async function DashboardLayout({
 	}
 	//ReportUsageToStripe();
 	return (
-		<div className="h-full relative">
+		<div className="h-full relative  bg-[#655C5D]">
 			<div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 bg-gray-900">
 				<Sidebar
 					isPro={isPro}
@@ -29,7 +29,7 @@ export default async function DashboardLayout({
 					apiLimitCountReq={apiLimitCountReq}
 				/>
 			</div>
-			<main className="md:pl-72 pb-10 bg-[#655C5D]  text-white h-screen">
+			<main className="md:pl-72 bg-[#655C5D] h-auto lg:h-screen md:h-screen text-white ">
 				<Navbar />
 				{children}
 			</main>

@@ -49,7 +49,7 @@ export async function GET() {
 
 			line_items: [
 				{
-					price: "price_1OCMmlDmtpt2jh5mhLDC39av",
+					price: "price_1OPTQbDmtpt2jh5mv2nktWeb",
 				},
 			],
 			metadata: {
@@ -67,3 +67,5 @@ export async function GET() {
 }
 
 //price_1OPTQbDmtpt2jh5mv2nktWeb produçao
+
+//price_1OCMmlDmtpt2jh5mhLDC39av teste
