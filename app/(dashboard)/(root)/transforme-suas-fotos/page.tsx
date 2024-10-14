@@ -182,6 +182,7 @@ export default function FaceImage() {
                
                   border-red-400"
 				>
+					<h1 className="text-center text-2xl mb-2">Insira 4 fotos de Rosto</h1>
 					<div className=" flex items-center justify-center flex-wrap gap-2 ">
 						<div className="flex items-center justify-center flex-wrap gap-2  ">
 							<SingleImageDropzone
