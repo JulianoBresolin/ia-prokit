@@ -60,6 +60,7 @@ export default function Background() {
 					quality={90}
 					placeholder="blur"
 					className="object-cover"
+					priority
 				/>
 			</div>
 			<div

@@ -3,15 +3,20 @@ import "./globals.css";
 import { Roboto } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/components/modal-provider";
+import { checkSubscription } from "@/lib/subscription";
+import { EdgeStoreProvider } from "@/lib/edgestore";
+import dynamic from "next/dynamic";
 import { ToasterProvider } from "@/components/toaster-provider";
 
-import { checkSubscription } from "@/lib/subscription";
-import Clarity from "@/components/Clarity";
-import { EdgeStoreProvider } from "@/lib/edgestore";
-import CookieBanner from "@/components/cookiebanner";
-
 const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
+const Clarity = dynamic(() => delay(import("@/components/Clarity")));
+const CookieBanner = dynamic(() => delay(import("@/components/cookiebanner")));
 
+function delay(promise: Promise<any>) {
+	return new Promise((resolve) => {
+		setTimeout(resolve, 7000);
+	}).then(() => promise);
+}
 export const metadata = {
 	metadataBase: new URL("https://www.iaprokit.com.br"),
 	title: "I.A Prokit",
