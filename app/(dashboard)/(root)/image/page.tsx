@@ -26,7 +26,13 @@ import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { useProModal } from "@/hooks/use-pro-modal";
 import toast from "react-hot-toast";
-import { cn } from "@/lib/utils";
+import { useQRCode } from "next-qrcode";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -35,6 +41,7 @@ export default function Imagepage() {
 	const router = useRouter();
 	const [images, setImages] = useState<string[]>([]);
 	const [predictionStatus, setPredictionStatus] = useState<string>("");
+	const { Canvas } = useQRCode();
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -124,7 +131,7 @@ export default function Imagepage() {
 								<div className="relative aspect-square">
 									<Image fill alt="Generated" src={urls} />
 								</div>
-								<CardFooter className="p-2">
+								<CardFooter className=" grid grid-cols-1 p-4 ">
 									<Button
 										onClick={() => window.open(urls)}
 										variant="default"
@@ -133,6 +140,24 @@ export default function Imagepage() {
 										<Download className="h-4 w-4 mr-2" />
 										Download
 									</Button>
+									<Accordion type="single" collapsible className="w-full">
+										<AccordionItem value="item-1">
+											<AccordionTrigger className="text-white text-sm">
+												Download com QRcode
+											</AccordionTrigger>
+											<AccordionContent className="flex justify-center">
+												<Canvas
+													text={urls}
+													options={{
+														errorCorrectionLevel: "M",
+														margin: 1,
+														scale: 1,
+														width: 60,
+													}}
+												/>
+											</AccordionContent>
+										</AccordionItem>
+									</Accordion>
 								</CardFooter>
 							</Card>
 						))}

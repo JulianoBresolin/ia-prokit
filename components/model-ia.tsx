@@ -17,6 +17,13 @@ import Empty from "@/components/empyt";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Card, CardFooter } from "@/components/ui/card";
 import HelpChatImgRest from "@/components/help-chat-img-rest";
+import { useQRCode } from "next-qrcode";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -39,6 +46,7 @@ export default function ModelIa({
 	const [img, setImg] = useState<string>();
 	const [isLoading, setIsLoading] = useState(false);
 	const [predictionStatus, setPredictionStatus] = useState<string>("");
+	const { Canvas } = useQRCode();
 
 	const handleUpload = async () => {
 		if (file) {
@@ -126,7 +134,7 @@ export default function ModelIa({
 					size="icon"
 					variant="Enviar"
 					className="w-[200px]"
-					onClick={handleUpload}
+					//onClick={handleUpload}
 				>
 					<div className="flex items-center justify-center gap-2 font-bold text-lg">
 						<Send /> Enviar
@@ -151,7 +159,7 @@ export default function ModelIa({
 								className="object-contain"
 							/>
 						</div>
-						<CardFooter className="p-4">
+						<CardFooter className=" grid grid-cols-1 p-4 ">
 							<Button
 								onClick={() => window.open(img)}
 								variant="default"
@@ -160,6 +168,24 @@ export default function ModelIa({
 								<Download className="h-4 w-4 mr-2" />
 								Download
 							</Button>
+							<Accordion type="single" collapsible className="w-full">
+								<AccordionItem value="item-1">
+									<AccordionTrigger className="text-white text-sm">
+										Download com QRcode
+									</AccordionTrigger>
+									<AccordionContent className="flex justify-center">
+										<Canvas
+											text={img}
+											options={{
+												errorCorrectionLevel: "M",
+												margin: 1,
+												scale: 1,
+												width: 60,
+											}}
+										/>
+									</AccordionContent>
+								</AccordionItem>
+							</Accordion>
 						</CardFooter>
 					</Card>
 				)}

@@ -35,7 +35,13 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { photoStyle, formSchema, forceStyle, amountOptions } from "./constants";
-
+import { useQRCode } from "next-qrcode";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
 export default function FaceImage() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -57,6 +63,7 @@ export default function FaceImage() {
 	const [images, setImages] = useState<string[]>([]);
 	const [predictionStatus, setPredictionStatus] = useState<string>("");
 	const isLoading = form.formState.isSubmitting;
+	const { Canvas } = useQRCode();
 
 	const sleep = (ms: number) =>
 		new Promise((resolve) => setTimeout(resolve, ms));
@@ -379,7 +386,7 @@ export default function FaceImage() {
 							<div className="relative aspect-square">
 								<Image fill alt="Generated" src={urls} />
 							</div>
-							<CardFooter className="p-2">
+							<CardFooter className=" grid grid-cols-1 p-4 ">
 								<Button
 									onClick={() => window.open(urls)}
 									variant="default"
@@ -388,6 +395,24 @@ export default function FaceImage() {
 									<Download className="h-4 w-4 mr-2" />
 									Download
 								</Button>
+								<Accordion type="single" collapsible className="w-full">
+									<AccordionItem value="item-1">
+										<AccordionTrigger className="text-white text-sm">
+											Download com QRcode
+										</AccordionTrigger>
+										<AccordionContent className="flex justify-center">
+											<Canvas
+												text={urls}
+												options={{
+													errorCorrectionLevel: "M",
+													margin: 1,
+													scale: 1,
+													width: 60,
+												}}
+											/>
+										</AccordionContent>
+									</AccordionItem>
+								</Accordion>
 							</CardFooter>
 						</Card>
 					))}
