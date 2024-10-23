@@ -42,11 +42,11 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-export default function FaceImage() {
+export default function FaceImageNiver() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			photoStyle: "Photographic (Default)",
+			photoStyle: "Disney Charactor",
 			forceStyle: "15",
 			amountOptions: "1",
 			prompt: "",
@@ -104,7 +104,7 @@ export default function FaceImage() {
 			setUrls(uploadedUrls);
 
 			// Faz a requisição para a API com os dados do formulário e URLs das imagens carregadas
-			const response = await axios.post("/api/transforme-suas-fotos", {
+			const response = await axios.post("/api/transforme-suas-fotos-niver", {
 				...values,
 				input_images: uploadedUrls.map((file) => file.url),
 			});
@@ -164,11 +164,14 @@ export default function FaceImage() {
 		setFile4(file);
 	};
 
+	const handleInput = (value: string) => {
+		form.setValue("prompt", value); // Atualiza o campo "prompt" do formulário com a pergunta predefinida
+	};
 	return (
 		<div className="h-auto flex flex-col justify-between rounded-lg text-white">
 			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
 				<Heading
-					title="Transforme suas Fotos"
+					title="Transforme suas Fotos Felipe 1 ano "
 					icon={BsPersonBoundingBox}
 					iconColor="text-[#FFD9DF]"
 					bgColor="bg-[#8D495A]"
@@ -235,7 +238,15 @@ export default function FaceImage() {
 									<FormItem className="col-span-12  lg:col-span-2 w-full ">
 										<Select
 											disabled={isLoading}
-											onValueChange={field.onChange}
+											onValueChange={(value) => {
+												const selectedOption = photoStyle.find(
+													(option) => option.value === value
+												);
+												if (selectedOption) {
+													form.setValue("photoStyle", value);
+													handleInput(selectedOption.prompt); // Atualiza o prompt com base no estilo selecionado
+												}
+											}}
 											defaultValue={field.value}
 										>
 											<FormControl>
@@ -376,7 +387,10 @@ export default function FaceImage() {
 					</div>
 				)}
 				{images.length === 0 && !isLoading && (
-					<Empty label="Trasforme suas fotos em imagens criativas esse modelo custa 75 tokens ou 0,63 centavos por requisição" />
+					<div className="p-20 flex flex-col gap-4 items-center justify-center">
+						<Image src="/toy.webp" width={200} height={125} alt="Empty" />
+						<p className="text-lg text-muted/50">Vamos Brincar? </p>
+					</div>
 				)}
 
 				<div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 mx-4">

@@ -1,13 +1,6 @@
 import Replicate from "replicate";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import {
-	incrementApiLimitTokens,
-	incrementApiLimitReq,
-	checkApiLimitReq,
-} from "@/lib/api-limit";
-import { incrementPro } from "@/lib/api-UsagePro";
-import { checkSubscription } from "@/lib/subscription"; // Controle de assinatura personalizado
 
 const replicate = new Replicate({
 	auth: process.env.REPLICATE_API_KEY,
@@ -44,16 +37,6 @@ export async function POST(req: Request) {
 			});
 		}
 
-		const freeTrial = await checkApiLimitReq();
-		const isPro = await checkSubscription();
-
-		if (!freeTrial && !isPro) {
-			return new NextResponse(
-				"Free trial has expired. Please upgrade to pro.",
-				{ status: 403 }
-			);
-		}
-
 		// Chama a API Replicate com os parâmetros recebidos
 
 		const options: any = {
@@ -86,16 +69,6 @@ export async function POST(req: Request) {
 
 		if (prediction?.error) {
 			return NextResponse.json({ detail: prediction.error }, { status: 500 });
-		}
-
-		const valueToAdd = 75;
-		let totalTokens = valueToAdd;
-
-		if (isPro) {
-			await incrementPro(totalTokens);
-		} else {
-			await incrementApiLimitReq();
-			await incrementApiLimitTokens(totalTokens);
 		}
 
 		// Retorna a resposta da API da Replicate
