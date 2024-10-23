@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 			});
 		}
 
-		if (!prompt || !input_images || input_images.length !== 0) {
+		if (!prompt || !input_images || input_images.length !== 4) {
 			return new NextResponse("Prompt and 4 input images are required", {
 				status: 400,
 			});
@@ -99,7 +99,7 @@ export async function POST(req: Request) {
 		return NextResponse.json(
 			{
 				message: "Fotolembrança criada com sucesso!",
-				imagePath: `/public/final-photo.png`,
+				output: `/public/final-photo.png`,
 			},
 			{ status: 201 }
 		);

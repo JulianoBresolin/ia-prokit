@@ -118,7 +118,7 @@ export default function FaceImageNiver() {
 			) {
 				await sleep(5000);
 				const statusResponse = await axios.get(
-					`/api/transforme-suas-fotos/${prediction.id}`
+					`/api/transforme-suas-fotos-niver/${prediction.id}`
 				);
 				prediction = statusResponse.data;
 				setPredictionStatus(prediction.status);
