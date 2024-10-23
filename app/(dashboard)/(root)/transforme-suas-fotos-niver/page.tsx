@@ -55,9 +55,7 @@ export default function FaceImageNiver() {
 	const proModal = useProModal();
 	const router = useRouter();
 	const [file1, setFile1] = useState<File>();
-	const [file2, setFile2] = useState<File>();
-	const [file3, setFile3] = useState<File>();
-	const [file4, setFile4] = useState<File>();
+
 	const { edgestore } = useEdgeStore();
 	const [Urls, setUrls] = useState<{ url: string }[]>([]);
 	const [images, setImages] = useState<string[]>([]);
@@ -68,7 +66,7 @@ export default function FaceImageNiver() {
 	const sleep = (ms: number) =>
 		new Promise((resolve) => setTimeout(resolve, ms));
 	const uploadImages = async () => {
-		const files = [file1, file2, file3, file4].filter(Boolean); // Filtra os arquivos não nulos
+		const files = [file1].filter(Boolean); // Filtra os arquivos não nulos
 
 		if (!files.length) {
 			toast.error("Nenhuma imagem selecionada para upload.");
@@ -152,18 +150,6 @@ export default function FaceImageNiver() {
 		setFile1(file);
 	};
 
-	const handleFileChange2 = (file?: File) => {
-		setFile2(file);
-	};
-
-	const handleFileChange3 = (file?: File) => {
-		setFile3(file);
-	};
-
-	const handleFileChange4 = (file?: File) => {
-		setFile4(file);
-	};
-
 	const handleInput = (value: string) => {
 		form.setValue("prompt", value); // Atualiza o campo "prompt" do formulário com a pergunta predefinida
 	};
@@ -203,30 +189,6 @@ export default function FaceImageNiver() {
 								height={100}
 								value={file1}
 								onChange={handleFileChange1}
-								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
-							/>
-							<SingleImageDropzone
-								className="bg-[#310937]"
-								width={100}
-								height={100}
-								value={file2}
-								onChange={handleFileChange2}
-								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
-							/>
-							<SingleImageDropzone
-								className="bg-[#310937]"
-								width={100}
-								height={100}
-								value={file3}
-								onChange={handleFileChange3}
-								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
-							/>
-							<SingleImageDropzone
-								className="bg-[#310937]"
-								width={100}
-								height={100}
-								value={file4}
-								onChange={handleFileChange4}
 								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
 							/>
 						</div>

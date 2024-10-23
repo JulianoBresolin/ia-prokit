@@ -9,7 +9,7 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Send, Download } from "lucide-react";
-import { BiZoomIn } from "react-icons/bi";
+
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
@@ -134,7 +134,7 @@ export default function ModelIa({
 					size="icon"
 					variant="Enviar"
 					className="w-[200px]"
-					//onClick={handleUpload}
+					onClick={handleUpload}
 				>
 					<div className="flex items-center justify-center gap-2 font-bold text-lg">
 						<Send /> Enviar
