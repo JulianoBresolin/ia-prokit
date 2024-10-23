@@ -168,7 +168,7 @@ export default function FaceImageNiver() {
 		form.setValue("prompt", value); // Atualiza o campo "prompt" do formulário com a pergunta predefinida
 	};
 	return (
-		<div className="h-auto flex flex-col justify-between rounded-lg text-white">
+		<div className="h-auto flex flex-col justify-between rounded-lg text-white bg-[#655C5D]">
 			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
 				<Heading
 					title="Transforme suas Fotos Felipe 1 ano "
