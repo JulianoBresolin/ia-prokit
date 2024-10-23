@@ -1,6 +1,9 @@
 import Replicate from "replicate";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import sharp from "sharp";
+// Para baixar a imagem gerada pela IA
+import path from "path";
 
 const replicate = new Replicate({
 	auth: process.env.REPLICATE_API_KEY,
@@ -12,6 +15,7 @@ replicate.fetch = (url, options) => {
 
 const WEBHOOK_HOST = process.env.NEX_PUBLIC_APP_URL;
 
+const framePath = "/frame.png"; // Caminho para o frame PNG
 // Função que lida com a requisição HTTP POST
 export async function POST(req: Request) {
 	try {
@@ -70,9 +74,35 @@ export async function POST(req: Request) {
 		if (prediction?.error) {
 			return NextResponse.json({ detail: prediction.error }, { status: 500 });
 		}
+		// Baixa a imagem gerada pela IA usando a URL recebida
+		const imageUrl = prediction.output[0]; // URL da imagem gerada pela IA
+		const response = await fetch(imageUrl);
+		const imageBuffer = await response.arrayBuffer();
+
+		// Caminho para salvar a imagem final
+		const outputPath = path.resolve("/public", "final-photo.png");
+
+		// Carrega a imagem gerada e o frame PNG, e os combina usando Sharp
+		const baseImage = sharp(imageBuffer);
+		const frameImage = sharp(framePath).resize({
+			fit: "cover",
+			width: 1000,
+			height: 1000,
+		});
+
+		// Compor o frame sobre a imagem gerada
+		await baseImage
+			.composite([{ input: await frameImage.toBuffer(), blend: "over" }])
+			.toFile(outputPath);
 
 		// Retorna a resposta da API da Replicate
-		return NextResponse.json(prediction, { status: 201 });
+		return NextResponse.json(
+			{
+				message: "Fotolembrança criada com sucesso!",
+				imagePath: `/public/final-photo.png`,
+			},
+			{ status: 201 }
+		);
 	} catch (error) {
 		console.log("[IMAGE_FLUX_GENERATE_ERROR]", error);
 		return new NextResponse("Internal Error", { status: 500 });
