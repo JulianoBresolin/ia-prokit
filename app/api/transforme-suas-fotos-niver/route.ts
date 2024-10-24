@@ -30,11 +30,13 @@ export async function POST(req: Request) {
 			});
 		}
 
-		if (!prompt) {
+		if (!prompt || !input_images || input_images.length !== 4) {
 			return new NextResponse("Prompt and 4 input images are required", {
 				status: 400,
 			});
 		}
+
+		// Chama a API Replicate com os parâmetros recebidos
 
 		const options: any = {
 			version:
@@ -45,7 +47,9 @@ export async function POST(req: Request) {
 				style_name: "Disney Charactor",
 				num_outputs: parseInt(amountOptions, 10),
 				input_image: input_images[0], // Primeira imagem
-
+				input_image2: input_images[1], // Segunda imagem
+				input_image3: input_images[2], // Terceira imagem
+				input_image4: input_images[3], // Quarta imagem
 				guidance_scale: 5,
 				negative_prompt:
 					"nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry",
