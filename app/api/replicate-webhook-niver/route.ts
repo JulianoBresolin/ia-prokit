@@ -3,7 +3,7 @@ import { validateWebhook } from "replicate";
 import sharp from "sharp";
 import path from "path"; // Para tratar paths corretamente
 
-const framePath = path.resolve("/mnt/data", "image.png"); // Corrija o caminho para o frame
+const framePath = path.resolve("./public", "frame.png"); // Corrija o caminho para o frame
 
 export async function POST(request: Request) {
 	console.log("Received webhook...");
@@ -44,7 +44,12 @@ export async function POST(request: Request) {
 				// Faz o download da imagem gerada pela IA
 				const response = await fetch(imageUrl);
 				const imageBuffer = await response.arrayBuffer();
-				const outputPath = path.resolve("./public", "final-photo.png");
+
+				// Caminho onde a imagem final será salva
+				const outputPath = path.resolve(
+					"./public",
+					`final-photo-${Date.now()}.png`
+				);
 
 				// Carrega a imagem base e o frame PNG, e os combina usando Sharp
 				const baseImage = sharp(Buffer.from(imageBuffer)); // Converte ArrayBuffer para Buffer
@@ -58,6 +63,14 @@ export async function POST(request: Request) {
 					.toFile(outputPath); // Salva a imagem final no caminho especificado
 
 				console.log("Imagem final criada com sucesso:", outputPath);
+
+				// Gera a URL da imagem final
+				const finalImageUrl = `${
+					process.env.NEX_PUBLIC_APP_URL
+				}/final-photo-${Date.now()}.png`;
+
+				// Envia a URL de volta para o front-end
+				return NextResponse.json({ url: finalImageUrl }, { status: 200 });
 			} catch (error: any) {
 				// Tratamento de erro durante o processo de download e composição de imagens
 				console.error("Erro ao processar a imagem:", error);

@@ -128,8 +128,9 @@ export default function FaceImageNiver() {
 			}
 
 			if (prediction.status === "succeeded") {
-				const urls = prediction.output.map((url: string) => url); // Mapeia todas as URLs
-				setImages(urls); // Define todas as URLs das imagens no estado
+				const data = await response.data;
+				const finalImageUrl = data.url; // Mapeia todas as URLs
+				setImages(finalImageUrl); // Define todas as URLs das imagens no estado
 			} else {
 				toast.error("Nenhuma imagem retornada pela API.");
 			}
@@ -348,7 +349,7 @@ export default function FaceImageNiver() {
 						<p className="text-sm text-white">Status: {predictionStatus}</p>
 					</div>
 				)}
-				{images.length === 0 && !isLoading && (
+				{images && !isLoading && (
 					<div className="p-20 flex flex-col gap-4 items-center justify-center">
 						<Image src="/toy.webp" width={200} height={125} alt="Empty" />
 						<p className="text-lg text-muted/50">Vamos Brincar? </p>
