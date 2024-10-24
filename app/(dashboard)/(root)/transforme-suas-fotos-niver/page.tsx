@@ -46,7 +46,7 @@ export default function FaceImage() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			forceStyle: "15",
+			forceStyle: "20",
 			amountOptions: "1",
 			prompt: "",
 		},
@@ -169,7 +169,7 @@ export default function FaceImage() {
 		<div className="h-auto flex flex-col justify-between rounded-lg text-white bg-[#655C5D]">
 			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
 				<Heading
-					title="Transforme suas Fotos"
+					title="Aniversário de 1 Ano Felipe"
 					icon={BsPersonBoundingBox}
 					iconColor="text-[#FFD9DF]"
 					bgColor="bg-[#8D495A]"
@@ -420,7 +420,7 @@ export default function FaceImage() {
 													errorCorrectionLevel: "M",
 													margin: 1,
 													scale: 1,
-													width: 60,
+													width: 80,
 												}}
 											/>
 										</AccordionContent>

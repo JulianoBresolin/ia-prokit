@@ -152,7 +152,7 @@ export default function Imagepage() {
 														errorCorrectionLevel: "M",
 														margin: 1,
 														scale: 1,
-														width: 60,
+														width: 80,
 													}}
 												/>
 											</AccordionContent>

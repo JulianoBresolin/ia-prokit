@@ -36,7 +36,7 @@ export const photoStyle = [
 	{
 		value: "Disney Charactor2",
 		label: "Jessie",
-		src: "/jessie.JPG",
+		src: "/Jessie.JPG",
 		prompt:
 			"A Toy Story character resembling Jessie, with a cowgirl outfit and a bright smile.",
 	},
