@@ -18,8 +18,7 @@ export async function POST(req: Request) {
 		const { userId } = auth();
 		const body = await req.json();
 		console.log("Valores recebidos no corpo da requisição:", body);
-		const { prompt, amountOptions, forceStyle, photoStyle, input_images } =
-			body;
+		const { prompt, amountOptions, forceStyle, input_images } = body;
 
 		if (!userId) {
 			return new NextResponse("Unauthorized", { status: 401 });
@@ -43,7 +42,7 @@ export async function POST(req: Request) {
 			input: {
 				prompt: `img ${prompt}`,
 				num_steps: 50,
-				style_name: photoStyle,
+				style_name: "Disney Charactor",
 				num_outputs: parseInt(amountOptions, 10),
 				input_image: input_images[0], // Primeira imagem
 
@@ -56,7 +55,7 @@ export async function POST(req: Request) {
 
 		// Adiciona o webhook se o host estiver definido
 		if (WEBHOOK_HOST) {
-			options.webhook = `${WEBHOOK_HOST}/api/replicate-webhook-niver`; // URL do webhook
+			options.webhook = `${WEBHOOK_HOST}/api/replicate-webhook`; // URL do webhook
 			options.webhook_events_filter = ["start", "completed"]; // Eventos a serem monitorados
 		}
 

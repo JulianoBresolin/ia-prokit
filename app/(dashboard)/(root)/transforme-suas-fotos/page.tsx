@@ -163,7 +163,9 @@ export default function FaceImage() {
 	const handleFileChange4 = (file?: File) => {
 		setFile4(file);
 	};
-
+	const handleInput = (value: string) => {
+		form.setValue("prompt", value); // Atualiza o campo "prompt" do formulário com a pergunta predefinida
+	};
 	return (
 		<div className="h-auto flex flex-col justify-between rounded-lg text-white bg-[#655C5D]">
 			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
@@ -189,9 +191,7 @@ export default function FaceImage() {
                
                   border-red-400"
 				>
-					<h1 className="text-center text-2xl mb-2">
-						Insira 1 ou 4 fotos de Rosto
-					</h1>
+					<h1 className="text-center text-2xl mb-2">Insira 4 fotos de Rosto</h1>
 					<div className=" flex items-center justify-center flex-wrap gap-2 ">
 						<div className="flex items-center justify-center flex-wrap gap-2  ">
 							<SingleImageDropzone
@@ -235,7 +235,15 @@ export default function FaceImage() {
 									<FormItem className="col-span-12  lg:col-span-2 w-full ">
 										<Select
 											disabled={isLoading}
-											onValueChange={field.onChange}
+											onValueChange={(value) => {
+												const selectedOption = photoStyle.find(
+													(option) => option.value === value
+												);
+												if (selectedOption) {
+													form.setValue("photoStyle", value);
+													handleInput(selectedOption.prompt); // Atualiza o prompt com base no estilo selecionado
+												}
+											}}
 											defaultValue={field.value}
 										>
 											<FormControl>

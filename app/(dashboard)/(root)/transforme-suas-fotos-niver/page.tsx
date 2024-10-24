@@ -42,11 +42,10 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-export default function FaceImageNiver() {
+export default function FaceImage() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			photoStyle: "Disney Charactor",
 			forceStyle: "15",
 			amountOptions: "1",
 			prompt: "",
@@ -55,7 +54,9 @@ export default function FaceImageNiver() {
 	const proModal = useProModal();
 	const router = useRouter();
 	const [file1, setFile1] = useState<File>();
-
+	const [file2, setFile2] = useState<File>();
+	const [file3, setFile3] = useState<File>();
+	const [file4, setFile4] = useState<File>();
 	const { edgestore } = useEdgeStore();
 	const [Urls, setUrls] = useState<{ url: string }[]>([]);
 	const [images, setImages] = useState<string[]>([]);
@@ -66,7 +67,7 @@ export default function FaceImageNiver() {
 	const sleep = (ms: number) =>
 		new Promise((resolve) => setTimeout(resolve, ms));
 	const uploadImages = async () => {
-		const files = [file1].filter(Boolean); // Filtra os arquivos não nulos
+		const files = [file1, file2, file3, file4].filter(Boolean); // Filtra os arquivos não nulos
 
 		if (!files.length) {
 			toast.error("Nenhuma imagem selecionada para upload.");
@@ -128,9 +129,8 @@ export default function FaceImageNiver() {
 			}
 
 			if (prediction.status === "succeeded") {
-				const data = await response.data;
-				const finalImageUrl = data.url; // Mapeia todas as URLs
-				setImages(finalImageUrl); // Define todas as URLs das imagens no estado
+				const urls = prediction.output.map((url: string) => url); // Mapeia todas as URLs
+				setImages(urls); // Define todas as URLs das imagens no estado
 			} else {
 				toast.error("Nenhuma imagem retornada pela API.");
 			}
@@ -151,6 +151,17 @@ export default function FaceImageNiver() {
 		setFile1(file);
 	};
 
+	const handleFileChange2 = (file?: File) => {
+		setFile2(file);
+	};
+
+	const handleFileChange3 = (file?: File) => {
+		setFile3(file);
+	};
+
+	const handleFileChange4 = (file?: File) => {
+		setFile4(file);
+	};
 	const handleInput = (value: string) => {
 		form.setValue("prompt", value); // Atualiza o campo "prompt" do formulário com a pergunta predefinida
 	};
@@ -158,7 +169,7 @@ export default function FaceImageNiver() {
 		<div className="h-auto flex flex-col justify-between rounded-lg text-white bg-[#655C5D]">
 			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
 				<Heading
-					title="Transforme suas Fotos Felipe 1 ano "
+					title="Transforme suas Fotos"
 					icon={BsPersonBoundingBox}
 					iconColor="text-[#FFD9DF]"
 					bgColor="bg-[#8D495A]"
@@ -179,9 +190,7 @@ export default function FaceImageNiver() {
                
                   border-red-400"
 				>
-					<h1 className="text-center text-2xl mb-2">
-						Insira 1 ou 4 fotos de Rosto
-					</h1>
+					<h1 className="text-center text-2xl mb-2">Insira 4 fotos de Rosto</h1>
 					<div className=" flex items-center justify-center flex-wrap gap-2 ">
 						<div className="flex items-center justify-center flex-wrap gap-2  ">
 							<SingleImageDropzone
@@ -192,25 +201,50 @@ export default function FaceImageNiver() {
 								onChange={handleFileChange1}
 								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
 							/>
+							<SingleImageDropzone
+								className="bg-[#310937]"
+								width={100}
+								height={100}
+								value={file2}
+								onChange={handleFileChange2}
+								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+							/>
+							<SingleImageDropzone
+								className="bg-[#310937]"
+								width={100}
+								height={100}
+								value={file3}
+								onChange={handleFileChange3}
+								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+							/>
+							<SingleImageDropzone
+								className="bg-[#310937]"
+								width={100}
+								height={100}
+								value={file4}
+								onChange={handleFileChange4}
+								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+							/>
 						</div>
 						<div className="  flex items-center justify-center flex-col gap-2 pb-2 ">
 							<FormField
-								control={form.control}
 								name="photoStyle"
 								render={({ field }) => (
 									<FormItem className="col-span-12  lg:col-span-2 w-full ">
 										<Select
 											disabled={isLoading}
 											onValueChange={(value) => {
+												// Encontra o estilo selecionado
 												const selectedOption = photoStyle.find(
 													(option) => option.value === value
 												);
+												// Se encontrar o estilo, atualiza o campo de input com o prompt
 												if (selectedOption) {
-													form.setValue("photoStyle", value);
-													handleInput(selectedOption.prompt); // Atualiza o prompt com base no estilo selecionado
+													handleInput(selectedOption.prompt); // Atualiza o campo de texto com o prompt selecionado
 												}
 											}}
-											defaultValue={field.value}
+											// Valor inicial (pode ser ajustado se necessário)
+											defaultValue={photoStyle[0]?.value}
 										>
 											<FormControl>
 												<SelectTrigger className="w-full h-28 border-0 outline-none bg-[#310937] text-white">
@@ -349,10 +383,10 @@ export default function FaceImageNiver() {
 						<p className="text-sm text-white">Status: {predictionStatus}</p>
 					</div>
 				)}
-				{images && !isLoading && (
+				{images.length === 0 && !isLoading && (
 					<div className="p-20 flex flex-col gap-4 items-center justify-center">
-						<Image src="/toy.webp" width={200} height={125} alt="Empty" />
-						<p className="text-lg text-muted/50">Vamos Brincar? </p>
+						<Image alt="Empty" src="/toy.webp" width={200} height={125} />
+						<p>Vamos Brincar?</p>
 					</div>
 				)}
 

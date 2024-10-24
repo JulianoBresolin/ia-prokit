@@ -1,7 +1,6 @@
 import * as z from "zod";
 
 export const formSchema = z.object({
-	photoStyle: z.string(),
 	forceStyle: z.string(),
 	amountOptions: z.string(),
 	prompt: z.string().min(1, {
@@ -22,48 +21,52 @@ export const amountOptions = [
 
 export const photoStyle = [
 	{
-		value: "Photographic (Default)", // ok
-		label: "Fotográfico",
-		src: "/02-foto.JPG",
-		prompt: "teste1",
-	},
-	{
-		value: "Cinematic", //ok
-		label: "Cinematográfico",
-		src: "/03-cinema.JPG",
-		prompt: "teste2",
-	},
-	{
-		value: "Disney Charactor", // ok
-		label: "Personagem da Disney",
+		value: "Escolha um Estilo",
+		label: "Escolha um Estilo",
 		src: "/toy-disney.JPG",
+		prompt: "",
+	},
+	{
+		value: "Disney Charactor1",
+		label: "Woody",
+		src: "/woody.JPG",
 		prompt:
-			"a plastic-looking Toy Story character. Add playful, toy-like clothing and place the character in a vibrant setting like Andy's bedroom, surrounded by toys and bright colors.",
+			"A Toy Story character resembling Woody, with a cowboy hat and cheerful expression.",
 	},
 	{
-		value: "Fantasy art", //ok
-		label: "Arte fantasia",
-		src: "/05-fantasy.JPG",
-		prompt: "teste4",
+		value: "Disney Charactor2",
+		label: "Jessie",
+		src: "/jessie.JPG",
+		prompt:
+			"A Toy Story character resembling Jessie, with a cowgirl outfit and a bright smile.",
 	},
 	{
-		value: "Neonpunk", // ok
-		label: "Neonpunk",
-		src: "/06-neon.JPG",
-		prompt: "teste5",
-	},
-
-	{
-		value: "Comic book", //ok
-		label: "Quadrinhos",
-		src: "/08-comic.JPG",
-		prompt: "teste6",
+		value: "Disney Charactor3",
+		label: "Buzz Lightyear",
+		src: "/buzz.JPG",
+		prompt:
+			"A Toy Story character resembling Buzz Lightyear, wearing a space suit and heroic pose.",
 	},
 	{
-		value: "Lowpoly", //ok
-		label: "Estilo 3D com poucos polígonos",
-		src: "/3d.JPG",
-		prompt: "teste7",
+		value: "Disney Charactor4",
+		label: "Bo Peep",
+		src: "/bopeep.JPG",
+		prompt:
+			"A Toy Story character resembling Bo Peep, with her shepherd staff and confident look.",
+	},
+	{
+		value: "Disney Charactor5",
+		label: "Rex",
+		src: "/rex.JPG",
+		prompt:
+			"A Toy Story character resembling Rex, with a friendly dinosaur face and curious expression.",
+	},
+	{
+		value: "Disney Charactor6",
+		label: "Barbie",
+		src: "/barbie.JPG",
+		prompt:
+			"A Toy Story character resembling Barbie, with her stylish outfit and playful expression.",
 	},
 ];
 

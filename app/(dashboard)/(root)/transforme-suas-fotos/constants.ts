@@ -22,54 +22,52 @@ export const amountOptions = [
 
 export const photoStyle = [
 	{
-		value: "(No style)", //ok
-		label: "Sem estilo",
-		src: "/01-nostyle.JPG",
-	},
-	{
-		value: "Photographic (Default)", // ok
+		value: "Photographic (Default)",
 		label: "Fotográfico",
 		src: "/02-foto.JPG",
+		prompt:
+			"A realistic, photograph of a person's, with natural lighting and fine detail.",
 	},
 	{
-		value: "Cinematic", //ok
+		value: "Cinematic",
 		label: "Cinematográfico",
 		src: "/03-cinema.JPG",
+		prompt:
+			"A portrait of a person with dramatic lighting, lens flare, and a film-like color grade.",
 	},
 	{
-		value: "Disney Charactor", // ok
+		value: "Disney Charactor",
 		label: "Personagem da Disney",
-		src: "/04-disney.JPG",
+		src: "/toy-disney.JPG",
+		prompt: "A cheerful Toy Story-style character",
 	},
 	{
-		value: "Fantasy art", //ok
+		value: "Fantasy art",
 		label: "Arte fantasia",
 		src: "/05-fantasy.JPG",
+		prompt:
+			"A portrait of a person with magical elements, intricate details, and vibrant colors.",
 	},
 	{
-		value: "Neonpunk", // ok
+		value: "Neonpunk",
 		label: "Neonpunk",
 		src: "/06-neon.JPG",
+		prompt:
+			"A futuristic portrait of a person with bright neon lights, cybernetic elements, and bold contrasts.",
 	},
 	{
-		value: "Enhance", //ok
-		label: "Melhorar",
-		src: "/07-enhance.JPG",
-	},
-	{
-		value: "Comic book", //ok
+		value: "Comic book",
 		label: "Quadrinhos",
 		src: "/08-comic.JPG",
+		prompt:
+			"A portrait of a person with bold lines, dynamic shading, and vibrant colors.",
 	},
 	{
-		value: "Lowpoly", //ok
+		value: "Lowpoly",
 		label: "Estilo 3D com poucos polígonos",
 		src: "/3d.JPG",
-	},
-	{
-		value: "Line art", //ok
-		label: "Linhas",
-		src: "/09-lines.JPG",
+		prompt:
+			"A portrait of a person with simple geometric shapes and flat colors.",
 	},
 ];
 
