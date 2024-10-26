@@ -2,22 +2,11 @@ import * as z from "zod";
 
 export const formSchema = z.object({
 	forceStyle: z.string(),
-	amountOptions: z.string(),
+
 	prompt: z.string().min(1, {
 		message: "Adicione um texto",
 	}),
 });
-
-export const amountOptions = [
-	{
-		value: "1",
-		label: "1 Foto",
-	},
-	{
-		value: "2",
-		label: "2 Fotos",
-	},
-];
 
 export const photoStyle = [
 	{
