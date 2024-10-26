@@ -12,9 +12,8 @@ import { BsPersonBoundingBox } from "react-icons/bs";
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
-import Empty from "@/components/empyt";
 import { useProModal } from "@/hooks/use-pro-modal";
-import { Card, CardFooter, CardContent } from "@/components/ui/card";
+import { Card, CardFooter } from "@/components/ui/card";
 import HelpChatImgRest from "@/components/help-chat-img-rest";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -34,7 +33,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { photoStyle, formSchema, forceStyle, amountOptions } from "./constants";
+import { photoStyle, formSchema, forceStyle } from "./constants";
 import { useQRCode } from "next-qrcode";
 import {
 	Accordion,
@@ -47,7 +46,6 @@ export default function FaceImage() {
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			forceStyle: "20",
-			amountOptions: "1",
 			prompt: "",
 		},
 	});
@@ -59,7 +57,7 @@ export default function FaceImage() {
 	const [file4, setFile4] = useState<File>();
 	const { edgestore } = useEdgeStore();
 	const [Urls, setUrls] = useState<{ url: string }[]>([]);
-	const [images, setImages] = useState<string[]>([]);
+	const [images, setImages] = useState<string>();
 	const [predictionStatus, setPredictionStatus] = useState<string>("");
 	const isLoading = form.formState.isSubmitting;
 	const { Canvas } = useQRCode();
@@ -93,7 +91,7 @@ export default function FaceImage() {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			setImages([]); // Limpa as imagens ao começar o upload
+			setImages(undefined); // Limpa as imagens ao começar o upload
 			const uploadedUrls = await uploadImages();
 
 			if (!uploadedUrls.length) {
@@ -129,8 +127,7 @@ export default function FaceImage() {
 			}
 
 			if (prediction.status === "succeeded") {
-				const urls = prediction.output.map((url: string) => url); // Mapeia todas as URLs
-				setImages(urls); // Define todas as URLs das imagens no estado
+				setImages(prediction.output); // Define todas as URLs das imagens no estado
 			} else {
 				toast.error("Nenhuma imagem retornada pela API.");
 			}
@@ -182,13 +179,7 @@ export default function FaceImage() {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="
-               
-               p-3 max-w-7xl mx-auto 
-             
-                focus-within:shadow-sm
-               
-                  border-red-400"
+					className="p-3 max-w-7xl mx-auto focus-within:shadow-sm"
 				>
 					<h1 className="text-center text-2xl mb-2">Insira 4 fotos de Rosto</h1>
 					<div className=" flex items-center justify-center flex-wrap gap-2 ">
@@ -276,7 +267,7 @@ export default function FaceImage() {
 									</FormItem>
 								)}
 							/>
-							<div className="grid grid-cols-2 gap-2   ">
+							<div className="w-full   ">
 								<div>
 									<FormField
 										control={form.control}
@@ -295,38 +286,6 @@ export default function FaceImage() {
 													</FormControl>
 													<SelectContent className="bg-[#310937] text-white ">
 														{forceStyle.map((option) => (
-															<SelectItem
-																key={option.value}
-																value={option.value}
-															>
-																{option.label}
-															</SelectItem>
-														))}
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-								</div>
-								<div>
-									<FormField
-										control={form.control}
-										name="amountOptions"
-										render={({ field }) => (
-											<FormItem className="col-span-12 lg:col-span-2 w-full">
-												<Select
-													disabled={isLoading}
-													onValueChange={field.onChange}
-													defaultValue={field.value}
-												>
-													<FormControl>
-														<SelectTrigger className="w-full border-0 outline-none bg-[#310937] text-white">
-															<SelectValue placeholder="1 Imagem" />
-														</SelectTrigger>
-													</FormControl>
-													<SelectContent className="bg-[#310937] text-white ">
-														{amountOptions.map((option) => (
 															<SelectItem
 																key={option.value}
 																value={option.value}
@@ -383,25 +342,22 @@ export default function FaceImage() {
 						<p className="text-sm text-white">Status: {predictionStatus}</p>
 					</div>
 				)}
-				{images.length === 0 && !isLoading && (
+				{!images && !isLoading && (
 					<div className="p-20 flex flex-col gap-4 items-center justify-center">
 						<Image alt="Empty" src="/toy.webp" width={200} height={125} />
 						<p>Vamos Brincar?</p>
 					</div>
 				)}
 
-				<div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 mx-4">
-					{images.map((urls) => (
-						<Card
-							key={urls}
-							className="rounded-lg bg-[#310937] overflow-hidden"
-						>
+				<div className="flex flex-col justify-center items-center mt-8 mx-4">
+					{images && (
+						<Card className="rounded-lg bg-[#310937] overflow-hidden">
 							<div className="relative aspect-square">
-								<Image fill alt="Generated" src={urls} />
+								<Image fill alt="Generated" src={images} />
 							</div>
 							<CardFooter className=" grid grid-cols-1 p-4 ">
 								<Button
-									onClick={() => window.open(urls)}
+									onClick={() => window.open(images)}
 									variant="default"
 									className="w-full"
 								>
@@ -415,11 +371,12 @@ export default function FaceImage() {
 										</AccordionTrigger>
 										<AccordionContent className="flex justify-center">
 											<Canvas
-												text={urls}
+												text={images}
 												options={{
-													errorCorrectionLevel: "M",
+													errorCorrectionLevel: "H",
+													quality: 1,
 													margin: 1,
-													scale: 1,
+													scale: 4,
 													width: 80,
 												}}
 											/>
@@ -428,7 +385,7 @@ export default function FaceImage() {
 								</Accordion>
 							</CardFooter>
 						</Card>
-					))}
+					)}
 				</div>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 		const { userId } = auth();
 		const body = await req.json();
 		console.log("Valores recebidos no corpo da requisição:", body);
-		const { prompt, amountOptions, forceStyle, input_images } = body;
+		const { prompt, forceStyle, input_images } = body;
 
 		if (!userId) {
 			return new NextResponse("Unauthorized", { status: 401 });
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 				prompt: `img ${prompt}`,
 				num_steps: 50,
 				style_name: "Disney Charactor",
-				num_outputs: parseInt(amountOptions, 10),
+				num_outputs: 1,
 				input_image: input_images[0], // Primeira imagem
 				input_image2: input_images[1], // Segunda imagem
 				input_image3: input_images[2], // Terceira imagem

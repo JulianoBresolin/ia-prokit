@@ -149,9 +149,10 @@ export default function Imagepage() {
 												<Canvas
 													text={urls}
 													options={{
-														errorCorrectionLevel: "M",
+														errorCorrectionLevel: "H",
+														quality: 1,
 														margin: 1,
-														scale: 1,
+														scale: 4,
 														width: 80,
 													}}
 												/>
