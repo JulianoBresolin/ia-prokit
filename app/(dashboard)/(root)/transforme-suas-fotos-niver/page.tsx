@@ -127,7 +127,7 @@ export default function FaceImage() {
 			}
 
 			if (prediction.status === "succeeded") {
-				setImages(prediction.output); // Define todas as URLs das imagens no estado
+				setImages(prediction.output[0]); // Define todas as URLs das imagens no estado
 			} else {
 				toast.error("Nenhuma imagem retornada pela API.");
 			}
