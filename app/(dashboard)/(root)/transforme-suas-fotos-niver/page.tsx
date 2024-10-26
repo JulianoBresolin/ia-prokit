@@ -34,14 +34,17 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { photoStyle, formSchema, forceStyle } from "./constants";
-import { useQRCode } from "next-qrcode";
+
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-export default function FaceImage() {
+import { CldImage } from "next-cloudinary";
+import QRCode from "react-qr-code";
+
+export default function FaceImageNiver() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -58,9 +61,11 @@ export default function FaceImage() {
 	const { edgestore } = useEdgeStore();
 	const [Urls, setUrls] = useState<{ url: string }[]>([]);
 	const [images, setImages] = useState<string>();
+
 	const [predictionStatus, setPredictionStatus] = useState<string>("");
 	const isLoading = form.formState.isSubmitting;
-	const { Canvas } = useQRCode();
+
+	const namecld = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
 	const sleep = (ms: number) =>
 		new Promise((resolve) => setTimeout(resolve, ms));
@@ -127,7 +132,13 @@ export default function FaceImage() {
 			}
 
 			if (prediction.status === "succeeded") {
-				setImages(prediction.output[0]); // Define todas as URLs das imagens no estado
+				const replicateImageURL = prediction.output[0];
+				const cloudinaryBaseURL = `https://res.cloudinary.com/${namecld}/image/fetch/l_frame_boh4ip,c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/`;
+				const finalurl = `${cloudinaryBaseURL}${encodeURIComponent(
+					replicateImageURL
+				)}`;
+
+				setImages(finalurl);
 			} else {
 				toast.error("Nenhuma imagem retornada pela API.");
 			}
@@ -162,6 +173,13 @@ export default function FaceImage() {
 	const handleInput = (value: string) => {
 		form.setValue("prompt", value); // Atualiza o campo "prompt" do formulário com a pergunta predefinida
 	};
+
+	const textImageUrl =
+		"https://res.cloudinary.com/dgq9fqtni/image/fetch/https://replicate.delivery/pbxt/R3K5jpMbpg5IFtIuGWzzdwBNfBvgf53C2EeVgW18T0Zq9dTnA/image_0.png";
+
+	const urltrasform =
+		"https://res.cloudinary.com/dgq9fqtni/image/fetch/l_frame_boh4ip,c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/https://res.cloudinary.com/dgq9fqtni/image/fetch/https://replicate.delivery/pbxt/R3K5jpMbpg5IFtIuGWzzdwBNfBvgf53C2EeVgW18T0Zq9dTnA/image_0.png?_a=BAVAZGDW0";
+
 	return (
 		<div className="h-auto flex flex-col justify-between rounded-lg text-white bg-[#655C5D]">
 			<div className="flex bg-[#847375] justify-between gap-4 pr-4 items-center">
@@ -179,7 +197,7 @@ export default function FaceImage() {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="p-3 max-w-7xl mx-auto focus-within:shadow-sm"
+					className="p-3 max-w-7xl mx-auto focus-within:shadow-sm "
 				>
 					<h1 className="text-center text-2xl mb-2">Insira 4 fotos de Rosto</h1>
 					<div className=" flex items-center justify-center flex-wrap gap-2 ">
@@ -335,7 +353,7 @@ export default function FaceImage() {
 					</div>
 				</form>
 			</Form>
-			<div className=" max-h-[85vh] space-y-4 mt-4 scroll-smooth">
+			<div className=" max-h-[85vh] space-y-4 mt-4 scroll-smooth bg-[#655C5D]">
 				{isLoading && (
 					<div className="p-20 flex flex-col gap-4 items-center justify-center">
 						<Loader />
@@ -349,10 +367,10 @@ export default function FaceImage() {
 					</div>
 				)}
 
-				<div className="flex flex-col justify-center items-center mt-8 mx-4">
+				<div className="flex justify-center  items-center mt-8   mx-4">
 					{images && (
-						<Card className="rounded-lg bg-[#310937] overflow-hidden">
-							<div className="relative aspect-square">
+						<Card className="rounded-lg bg-[#310937]  overflow-hidden">
+							<div className="relative aspect-square w-full h-full  min-w-80 ">
 								<Image fill alt="Generated" src={images} />
 							</div>
 							<CardFooter className=" grid grid-cols-1 p-4 ">
@@ -370,15 +388,10 @@ export default function FaceImage() {
 											Download com QRcode
 										</AccordionTrigger>
 										<AccordionContent className="flex justify-center">
-											<Canvas
-												text={images}
-												options={{
-													errorCorrectionLevel: "H",
-													quality: 1,
-													margin: 1,
-													scale: 4,
-													width: 80,
-												}}
+											<QRCode
+												size={100}
+												value={images}
+												viewBox={`0 0 256 256`}
 											/>
 										</AccordionContent>
 									</AccordionItem>
