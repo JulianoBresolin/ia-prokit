@@ -133,7 +133,7 @@ export default function FaceImageNiver() {
 
 			if (prediction.status === "succeeded") {
 				const replicateImageURL = prediction.output[0];
-				const cloudinaryBaseURL = `https://res.cloudinary.com/${namecld}/image/fetch/l_rgrsyhvu0rubk6agqbdp,c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/`;
+				const cloudinaryBaseURL = `https://res.cloudinary.com/${namecld}/image/fetch/l_cwapvfx129ap3u541ydk,c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/`;
 				const finalurl = `${cloudinaryBaseURL}${encodeURIComponent(
 					replicateImageURL
 				)}`;
@@ -174,7 +174,7 @@ export default function FaceImageNiver() {
 		form.setValue("prompt", value); // Atualiza o campo "prompt" do formulário com a pergunta predefinida
 	};
 
-	//const urltrasform ="https://res.cloudinary.com/dgq9fqtni/image/fetch/l_rgrsyhvu0rubk6agqbdp,c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/https://res.cloudinary.com/dgq9fqtni/image/fetch/https://replicate.delivery/pbxt/MOQFiGsBQSabA1qKEVzom5WFIfyIUm1X6We9oUsAYpxQ0uqTA/image_0.png";
+	//const urltrasform ="https://res.cloudinary.com/dgq9fqtni/image/fetch/l_cwapvfx129ap3u541ydk,c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/https://res.cloudinary.com/dgq9fqtni/image/fetch/https://replicate.delivery/pbxt/MOQFiGsBQSabA1qKEVzom5WFIfyIUm1X6We9oUsAYpxQ0uqTA/image_0.png";
 
 	return (
 		<div className="h-auto flex flex-col justify-between rounded-lg text-white bg-[#655C5D]">
