@@ -20,42 +20,49 @@ export const photoStyle = [
 		label: "Woody",
 		src: "/woody.JPG",
 		prompt:
-			"A Toy Story character resembling Woody, with a cowboy hat and cheerful expression.",
+			"A Toy Story character Woody, with a cowboy hat and cheerful expression.",
 	},
 	{
 		value: "Disney Charactor2",
 		label: "Jessie",
 		src: "/Jessie.JPG",
 		prompt:
-			"A Toy Story character resembling Jessie, with a cowgirl outfit and a bright smile.",
+			"A Toy Story character Jessie, with a cowgirl outfit and a bright smile.",
 	},
 	{
 		value: "Disney Charactor3",
 		label: "Buzz Lightyear",
 		src: "/buzz.JPG",
 		prompt:
-			"A Toy Story character resembling Buzz Lightyear, wearing a space suit and heroic pose.",
+			"A Toy Story character Buzz Lightyear, wearing a space suit and heroic pose.",
 	},
 	{
 		value: "Disney Charactor4",
 		label: "Bo Peep",
 		src: "/bopeep.JPG",
 		prompt:
-			"A Toy Story character resembling Bo Peep, with her shepherd staff and confident look.",
+			"A Toy Story character Bo Peep, with her shepherd staff and confident look.",
 	},
 	{
 		value: "Disney Charactor5",
-		label: "Rex",
-		src: "/rex.JPG",
+		label: "Mrs. Potato Head",
+		src: "/mrspotatohead.JPG",
 		prompt:
-			"A Toy Story character resembling Rex, with a friendly dinosaur face and curious expression.",
+			"A Toy Story character Mrs. Potato Head, with her wide-brimmed hat, red lips, and friendly expression.",
 	},
 	{
 		value: "Disney Charactor6",
 		label: "Barbie",
 		src: "/barbie.JPG",
 		prompt:
-			"A Toy Story character resembling Barbie, with her stylish outfit and playful expression.",
+			"A Toy Story character Barbie, with her stylish outfit and playful expression.",
+	},
+	{
+		value: "Disney Charactor6",
+		label: "Andy",
+		src: "/andy.JPG",
+		prompt:
+			"A Toy Story character Andy, a young boy with a friendly face, casual clothing, and an enthusiastic expression.",
 	},
 ];
 
