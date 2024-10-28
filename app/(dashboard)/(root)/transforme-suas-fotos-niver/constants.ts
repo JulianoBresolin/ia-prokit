@@ -58,7 +58,7 @@ export const photoStyle = [
 			"A Toy Story character Barbie, with her stylish outfit and playful expression.",
 	},
 	{
-		value: "Disney Charactor6",
+		value: "Disney Charactor7",
 		label: "Andy",
 		src: "/andy.JPG",
 		prompt:
