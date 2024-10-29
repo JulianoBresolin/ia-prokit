@@ -32,11 +32,13 @@ export default function ModelIa({
 	icon,
 	apiUrl,
 	DescriptionModel,
+	size,
 }: {
 	title: string;
 	icon: React.ComponentType;
 	apiUrl: string;
 	DescriptionModel: string;
+	size: number;
 }) {
 	const proModal = useProModal();
 	const router = useRouter();
@@ -128,7 +130,7 @@ export default function ModelIa({
 					height={200}
 					value={file}
 					onChange={handleFileChange}
-					dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+					dropzoneOptions={{ maxSize: 1024 * 1024 * (size as number) }}
 				/>
 				<Button
 					size="icon"
