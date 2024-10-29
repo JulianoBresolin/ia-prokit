@@ -204,7 +204,7 @@ export default function FaceImageNiver() {
 								height={100}
 								value={file1}
 								onChange={handleFileChange1}
-								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+								dropzoneOptions={{ maxSize: 1024 * 1024 * 10 }}
 							/>
 							<SingleImageDropzone
 								className="bg-[#310937]"
@@ -212,7 +212,7 @@ export default function FaceImageNiver() {
 								height={100}
 								value={file2}
 								onChange={handleFileChange2}
-								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+								dropzoneOptions={{ maxSize: 1024 * 1024 * 10 }}
 							/>
 							<SingleImageDropzone
 								className="bg-[#310937]"
@@ -220,7 +220,7 @@ export default function FaceImageNiver() {
 								height={100}
 								value={file3}
 								onChange={handleFileChange3}
-								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+								dropzoneOptions={{ maxSize: 1024 * 1024 * 10 }}
 							/>
 							<SingleImageDropzone
 								className="bg-[#310937]"
@@ -228,7 +228,7 @@ export default function FaceImageNiver() {
 								height={100}
 								value={file4}
 								onChange={handleFileChange4}
-								dropzoneOptions={{ maxSize: 1024 * 1024 * 1 }}
+								dropzoneOptions={{ maxSize: 1024 * 1024 * 10 }}
 							/>
 						</div>
 						<div className="  flex items-center justify-center flex-col gap-2 pb-2 ">
