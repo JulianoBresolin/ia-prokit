@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Card, CardFooter } from "@/components/ui/card";
-import HelpChatImgRest from "@/components/help-chat-img-rest";
+import HelpChatImgTransform from "@/components/help-chat-transform";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -186,7 +186,7 @@ export default function FaceImageNiver() {
 					bgColor="bg-[#8D495A]"
 				/>
 				<div>
-					<HelpChatImgRest />
+					<HelpChatImgTransform />
 				</div>
 			</div>
 

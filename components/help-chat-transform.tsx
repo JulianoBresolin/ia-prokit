@@ -10,14 +10,14 @@ import {
 	DialogClose,
 } from "@/components/ui/dialog";
 
-export default function HelpChatReq({ Service, Value }: any) {
+export default function HelpChatImgTransform() {
 	return (
 		<>
 			<Dialog>
 				<DialogTrigger asChild>
 					<Button variant="destructive">Ajuda</Button>
 				</DialogTrigger>
-				<DialogContent className="max-w-[425px] text-white md:max-w-[625px] lg:max-w-[725px]">
+				<DialogContent className="max-w-[425px] text-white  md:max-w-[625px]  lg:max-w-[725px]">
 					<DialogHeader>
 						<DialogTitle>Informações</DialogTitle>
 						<DialogDescription className="text-white/75">
@@ -25,16 +25,21 @@ export default function HelpChatReq({ Service, Value }: any) {
 							valores. Caso tenha mais dúvidas entre em contato.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="overflow-y-auto max-h-[calc(100vh-400px)] ">
+					<div className="overflow-y-auto pb-10 max-h-[calc(100vh-400px)] ">
 						<section id="como-usar">
 							<ol>
 								<li>
-									<strong>Iniciar uma criação de {Service}:</strong> Escreva sua
-									solicitação de criação de {Service} através do formulário.
-									Clique no botão enviar para interagir com o modelo de i.a.
+									<strong>Iniciar uma transformação de imagem :</strong>
+									Envie 4 fotos de rosto , pode ser a mesma foto para as 4
+									vezes, no formulário escolha um estilo de imagem , você também
+									tem a opção de forçar o estilo e gerar até duas fotos
+									trasformadas. clique no botão enviar para interagir com o
+									modelo de i.a. Aguarde sua imagem ser criada. Você poderá
+									clicar no botão de download para baixar a imagem ou escanear o
+									qrcode para baixar no celular.
 								</li>
 								<li>
-									<strong>Erros:</strong> Caso tenha algum problema ou error na
+									<strong>Erros:</strong> Caso tenha algum problema ou erro na
 									resposta do modelo de i.a. , aguarde alguns instantes e tente
 									novamente, se persistir o erro entre em contato. Você também
 									pode tentar atualizar a página antes de tentar uma nova
@@ -66,8 +71,9 @@ export default function HelpChatReq({ Service, Value }: any) {
 									consumo.
 								</li>
 								<li>
-									<strong>Valores:</strong>Cada {Service} criada(o) custa{" "}
-									{Value} tokens.
+									<strong>Valores:</strong>Cada modelo mostra o custo por tokens
+									e valores em reais por cada rquisição na tela inical do
+									modelo.
 								</li>
 								<li>
 									<strong>Plano Pro:</strong> Você tem uma assinatura mensal e é

@@ -16,7 +16,7 @@ import { Loader } from "@/components/Loader";
 import Empty from "@/components/empyt";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Card, CardFooter } from "@/components/ui/card";
-import HelpChatImgRest from "@/components/help-chat-img-rest";
+import HelpChat from "@/components/help-chat";
 import { useQRCode } from "next-qrcode";
 import {
 	Accordion,
@@ -119,7 +119,7 @@ export default function ModelIa({
 					bgColor="bg-[#8D495A]"
 				/>
 				<div>
-					<HelpChatImgRest />
+					<HelpChat />
 				</div>
 			</div>
 

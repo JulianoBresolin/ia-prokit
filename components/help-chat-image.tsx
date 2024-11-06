@@ -33,7 +33,9 @@ export default function HelpChatImage() {
 									solicitação de criação de imagem através do formulário.
 									Escolha as medidas e a quantidade de imagens desejadas no
 									formulário. Clique no botão enviar para interagir com o modelo
-									de i.a.
+									de i.a.Aguarde um instante o processamento. Você poderá fazer
+									o download ou escanear o qrcode após a resposta do modelo de
+									i.a ficar pronta.
 								</li>
 								<li>
 									<strong>Erros:</strong> Caso tenha algum problema ou erro na
@@ -58,12 +60,8 @@ export default function HelpChatImage() {
 							<ol>
 								<li>
 									<strong>Tokens:</strong> Nossa plataforma utiliza um sistema
-									de tokens para medir o uso do serviço. Cada interação ou
-									comando específico consome uma quantidade predeterminada de
-									tokens. Cada tamanho de imagem tem um valor específico em
-									tokens. Ao escolher um tamanho e uma quantidade de imagens, o
-									valor de tokens é multiplicado pela quantidade de imagens
-									selecionadas, resultando no valor total de tokens consumidos.
+									de tokens para medir o uso do serviço. Cada solicitação do
+									formulário consome uma quantidade de tokens.
 								</li>
 								<li>
 									<strong>Monitoramento de Uso:</strong> Mantenha-se informado
@@ -72,13 +70,8 @@ export default function HelpChatImage() {
 									consumo.
 								</li>
 								<li>
-									<strong>Valores:</strong>
-
-									<ul>
-										<li>256x256: 20 tokens</li>
-										<li>512x512: 30 tokens</li>
-										<li>1024x1024: 50 tokens</li>
-									</ul>
+									<strong>Valores:</strong>Na tela inicial de cada modelo mostra
+									o custo por tokens e o valor em reais por cada requisição.
 								</li>
 								<li>
 									<strong>Plano Pro:</strong> Você tem uma assinatura mensal e é
