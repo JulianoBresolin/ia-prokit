@@ -9,7 +9,9 @@ import {
 	DialogTrigger,
 	DialogClose,
 } from "@/components/ui/dialog";
+import Link from "next/link";
 
+import { Youtube } from "lucide-react";
 export default function HelpChatImage() {
 	return (
 		<>
@@ -35,7 +37,15 @@ export default function HelpChatImage() {
 									formulário. Clique no botão enviar para interagir com o modelo
 									de i.a.Aguarde um instante o processamento. Você poderá fazer
 									o download ou escanear o qrcode após a resposta do modelo de
-									i.a ficar pronta.
+									i.a ficar pronta.você também pode ver nossos videos no canal
+									do youtube:
+									<Link
+										target="_blank"
+										href="https://www.youtube.com/@iaprokit"
+										className="flex items-center"
+									>
+										<Youtube className="w-8 h-8  text-white hover:text-[#470e1d] " />
+									</Link>
 								</li>
 								<li>
 									<strong>Erros:</strong> Caso tenha algum problema ou erro na

@@ -9,7 +9,9 @@ import {
 	DialogTrigger,
 	DialogClose,
 } from "@/components/ui/dialog";
+import Link from "next/link";
 
+import { Youtube } from "lucide-react";
 export default function HelpChatImgTransform() {
 	return (
 		<>
@@ -36,7 +38,15 @@ export default function HelpChatImgTransform() {
 									trasformadas. clique no botão enviar para interagir com o
 									modelo de i.a. Aguarde sua imagem ser criada. Você poderá
 									clicar no botão de download para baixar a imagem ou escanear o
-									qrcode para baixar no celular.
+									qrcode para baixar no celular.você também pode ver nossos
+									videos no canal do youtube:
+									<Link
+										target="_blank"
+										href="https://www.youtube.com/@iaprokit"
+										className="flex items-center"
+									>
+										<Youtube className="w-8 h-8  text-white hover:text-[#470e1d] " />
+									</Link>
 								</li>
 								<li>
 									<strong>Erros:</strong> Caso tenha algum problema ou erro na

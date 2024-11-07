@@ -43,6 +43,7 @@ import {
 } from "@/components/ui/accordion";
 import { CldImage } from "next-cloudinary";
 import QRCode from "react-qr-code";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function FaceImageNiver() {
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -61,6 +62,7 @@ export default function FaceImageNiver() {
 	const { edgestore } = useEdgeStore();
 	const [Urls, setUrls] = useState<{ url: string }[]>([]);
 	const [images, setImages] = useState<string>();
+	const [publicId, setPublicId] = useState(null);
 
 	const [predictionStatus, setPredictionStatus] = useState<string>("");
 	const isLoading = form.formState.isSubmitting;
@@ -131,9 +133,9 @@ export default function FaceImageNiver() {
 				}
 			}
 
-			if (prediction.status === "succeeded") {
+			if (prediction.status === "succeeded" && publicId) {
 				const replicateImageURL = prediction.output[0];
-				const cloudinaryBaseURL = `https://res.cloudinary.com/${namecld}/image/fetch/l_cwapvfx129ap3u541ydk,c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/`;
+				const cloudinaryBaseURL = `https://res.cloudinary.com/${namecld}/image/fetch/l_${publicId},c_fill,g_auto,w_1024,h_1024/fl_layer_apply,fl_no_overflow,g_center/c_limit,w_1920/f_auto/q_auto/v1/`;
 				const finalurl = `${cloudinaryBaseURL}${encodeURIComponent(
 					replicateImageURL
 				)}`;
@@ -196,6 +198,23 @@ export default function FaceImageNiver() {
 					className="p-3 max-w-7xl mx-auto focus-within:shadow-sm "
 				>
 					<h1 className="text-center text-2xl mb-2">Insira 4 fotos de Rosto</h1>
+					<div>
+						<CldUploadWidget
+							uploadPreset="b0k3mdsl"
+							onSuccess={(results: any) => {
+								if (results) {
+									const publicId = results.info.public_id; // Captura o public_id da imagem
+									setPublicId(publicId);
+									console.log(publicId);
+								}
+							}}
+						>
+							{({ open }) => (
+								<button onClick={() => open()}>Upload an Image</button>
+							)}
+						</CldUploadWidget>
+					</div>
+
 					<div className=" flex items-center justify-center flex-wrap gap-2 ">
 						<div className="flex items-center justify-center flex-wrap gap-2  ">
 							<SingleImageDropzone
