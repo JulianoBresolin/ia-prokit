@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 		const options: any = {
 			version:
 				"c75db81db6cbd809d93cc3b7e7a088a351a3349c9fa02b6d393e35e0d51ba799", // Atualize para a versão desejada
-			input: { image: prompt, with_scratch: true },
+			input: { image: prompt, with_scratch: true, HR: true },
 		};
 
 		// Adiciona o webhook se o host estiver definido
