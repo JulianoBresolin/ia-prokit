@@ -41,7 +41,7 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { CldImage } from "next-cloudinary";
+
 import QRCode from "react-qr-code";
 import { CldUploadWidget } from "next-cloudinary";
 
@@ -62,12 +62,31 @@ export default function FaceImageNiver() {
 	const { edgestore } = useEdgeStore();
 	const [Urls, setUrls] = useState<{ url: string }[]>([]);
 	const [images, setImages] = useState<string>();
-	const [publicId, setPublicId] = useState(null);
+	const [publicId, setPublicId] = useState(() => {
+		if (typeof window !== "undefined") {
+			return localStorage.getItem("cloudinaryPublicId") || null;
+		}
+		return null;
+	});
 
 	const [predictionStatus, setPredictionStatus] = useState<string>("");
 	const isLoading = form.formState.isSubmitting;
 
 	const namecld = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+
+	const handlePublicId = (newPublicId: string) => {
+		setPublicId(newPublicId);
+		if (typeof window !== "undefined") {
+			localStorage.setItem("cloudinaryPublicId", newPublicId);
+		}
+	};
+
+	const clearPublicId = () => {
+		setPublicId(null);
+		if (typeof window !== "undefined") {
+			localStorage.removeItem("cloudinaryPublicId");
+		}
+	};
 
 	const sleep = (ms: number) =>
 		new Promise((resolve) => setTimeout(resolve, ms));
@@ -198,21 +217,26 @@ export default function FaceImageNiver() {
 					className="p-3 max-w-7xl mx-auto focus-within:shadow-sm "
 				>
 					<h1 className="text-center text-2xl mb-2">Insira 4 fotos de Rosto</h1>
-					<div>
+					<div className=" flex items-center justify-center flex-wrap gap-2 ">
 						<CldUploadWidget
 							uploadPreset="b0k3mdsl"
 							onSuccess={(results: any) => {
 								if (results) {
-									const publicId = results.info.public_id; // Captura o public_id da imagem
-									setPublicId(publicId);
+									const publicId = results.info.public_id;
+									handlePublicId(publicId);
 									console.log(publicId);
 								}
 							}}
 						>
 							{({ open }) => (
-								<button onClick={() => open()}>Upload an Image</button>
+								<button className="bg-amber-900" onClick={() => open()}>
+									Upload an Image
+								</button>
 							)}
 						</CldUploadWidget>
+						<button className="bg-lime-800" onClick={clearPublicId}>
+							Reset Frame
+						</button>
 					</div>
 
 					<div className=" flex items-center justify-center flex-wrap gap-2 ">
