@@ -9,7 +9,7 @@ export default function RestaureImage() {
 			title="Restaurar Fotos"
 			icon={BiImageAdd}
 			apiUrl="/api/image-restauration"
-			DescriptionModel="Envie uma foto antiga de até 7mb para restaurar esse modelo custa 30 tokens ou 0,25 centavos por requisição . atenção esse modelo pode demorar até 5 minutos para ser processado."
+			DescriptionModel="Envie uma foto antiga de até 7mb e medidas de 1800x1800px para restaurar. Esse modelo custa 30 tokens ou 0,25 centavos por requisição . atenção esse modelo pode demorar até 5 minutos para ser processado."
 			size={7}
 		/>
 	);
