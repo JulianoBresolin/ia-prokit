@@ -6,7 +6,7 @@ export const formSchema = z.object({
 	amountOptions: z.string(),
 	input_images: z
 		.array(z.string())
-		.length(1, { message: "Insira exatamente 1 ou 4 fotos de rosto." }),
+		.length(4, { message: "Insira exatamente 4 fotos de rosto." }),
 	prompt: z.string().min(1, {
 		message: "Adicione um texto",
 	}),
