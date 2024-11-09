@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 			});
 		}
 
-		if (!prompt || !input_images || input_images.length !== 4) {
+		if (!prompt || !input_images || input_images.length !== 0) {
 			return new NextResponse("Prompt and 4 input images are required", {
 				status: 400,
 			});

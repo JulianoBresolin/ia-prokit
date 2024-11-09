@@ -4,6 +4,9 @@ export const formSchema = z.object({
 	photoStyle: z.string(),
 	forceStyle: z.string(),
 	amountOptions: z.string(),
+	input_images: z
+		.array(z.string())
+		.length(1, { message: "Insira exatamente 1 ou 4 fotos de rosto." }),
 	prompt: z.string().min(1, {
 		message: "Adicione um texto",
 	}),
