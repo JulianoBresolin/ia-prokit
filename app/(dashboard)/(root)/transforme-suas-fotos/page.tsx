@@ -50,7 +50,6 @@ export default function FaceImage() {
 			forceStyle: "15",
 			amountOptions: "1",
 			prompt: "",
-			input_images: [],
 		},
 	});
 	const proModal = useProModal();
@@ -361,11 +360,6 @@ export default function FaceImage() {
 										/>
 									</FormControl>
 									<FormMessage />
-									{form.formState.errors.input_images && (
-										<p className="error-message">
-											{form.formState.errors.input_images.message}
-										</p>
-									)}
 								</FormItem>
 							)}
 						/>
