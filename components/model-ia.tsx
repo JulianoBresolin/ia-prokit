@@ -52,54 +52,76 @@ export default function ModelIa({
 
 	const handleUpload = async () => {
 		if (file) {
-			try {
-				setImg(undefined);
-				setIsLoading(true);
-				const res = await edgestore.publicFiles.upload({
-					file,
-				});
+			const img = document.createElement("img");
+			const reader = new FileReader();
 
-				setUrls({
-					url: res.url,
-				});
-
-				const response = await axios.post(apiUrl, {
-					prompt: res.url,
-				});
-
-				let prediction = response.data;
-				setPredictionStatus(prediction.status);
-
-				while (
-					prediction.status !== "succeeded" &&
-					prediction.status !== "failed"
-				) {
-					await sleep(5000);
-					const statusResponse = await axios.get(`${apiUrl}/${prediction.id}`);
-					prediction = statusResponse.data;
-					setPredictionStatus(prediction.status);
-
-					if (statusResponse.status !== 200) {
-						toast.error("Failed to fetch prediction status.");
-						return;
+			// Verifica as dimensões da imagem
+			reader.onload = (e) => {
+				img.onload = async () => {
+					if (img.width > 1800 || img.height > 1800) {
+						toast.error(
+							"A imagem precisa ter no máximo 1800px de altura ou largura."
+						);
+						return; // Encerra a função se a imagem não atender aos requisitos
 					}
-				}
 
-				if (prediction.status === "succeeded") {
-					setImg(prediction.output);
-				} else {
-					toast.error("Prediction failed.");
-				}
-			} catch (error: any) {
-				if (error?.response?.status === 403) {
-					proModal.onOpen();
-				} else {
-					toast.error("Something went wrong.");
-				}
-			} finally {
-				setIsLoading(false);
-				router.refresh();
-			}
+					try {
+						setFile(file); // Define o arquivo se as dimensões forem válidas
+						setImg(undefined);
+						setIsLoading(true);
+
+						// Upload do arquivo para edgestore
+						const res = await edgestore.publicFiles.upload({ file });
+
+						setUrls({ url: res.url });
+
+						// Envia o link da imagem para a API
+						const response = await axios.post(apiUrl, {
+							prompt: res.url,
+						});
+
+						let prediction = response.data;
+						setPredictionStatus(prediction.status);
+
+						// Aguarda até o status de 'succeeded' ou 'failed'
+						while (
+							prediction.status !== "succeeded" &&
+							prediction.status !== "failed"
+						) {
+							await sleep(5000);
+							const statusResponse = await axios.get(
+								`${apiUrl}/${prediction.id}`
+							);
+							prediction = statusResponse.data;
+							setPredictionStatus(prediction.status);
+
+							if (statusResponse.status !== 200) {
+								toast.error("Failed to fetch prediction status.");
+								return;
+							}
+						}
+
+						if (prediction.status === "succeeded") {
+							setImg(prediction.output);
+						} else {
+							toast.error("Prediction failed.");
+						}
+					} catch (error: any) {
+						if (error?.response?.status === 403) {
+							proModal.onOpen();
+						} else {
+							toast.error("Something went wrong.");
+						}
+					} finally {
+						setIsLoading(false);
+						router.refresh();
+					}
+				};
+
+				img.src = e.target?.result as string;
+			};
+
+			reader.readAsDataURL(file);
 		}
 	};
 
