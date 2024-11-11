@@ -98,7 +98,7 @@ export default function FaceImage() {
 			setImages([]); // Limpa as imagens ao começar o upload
 			const uploadedUrls = await uploadImages();
 
-			if (!uploadedUrls.length) {
+			if (!uploadedUrls.length || uploadedUrls.length != 4) {
 				toast.error("insira 4 fotos de rosto.");
 				return; // Se não houver URLs carregadas, sai da função
 			}
@@ -143,7 +143,7 @@ export default function FaceImage() {
 			if (error?.response?.status === 403) {
 				proModal.onOpen(); // Abre o modal caso haja erro de autorização
 			} else {
-				toast.error("Algo deu errado.");
+				toast.error("Algo deu errado.você adicionou 4 fotos de rosto?");
 			}
 		} finally {
 			router.refresh();
