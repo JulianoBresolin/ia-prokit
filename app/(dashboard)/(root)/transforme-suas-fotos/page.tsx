@@ -49,7 +49,8 @@ export default function FaceImage() {
 			photoStyle: "Photographic (Default)",
 			forceStyle: "15",
 			amountOptions: "1",
-			prompt: "",
+			prompt:
+				"Uma fotografia realista de uma pessoa, com iluminação natural e detalhes finos.",
 		},
 	});
 	const proModal = useProModal();

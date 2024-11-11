@@ -27,48 +27,48 @@ export const photoStyle = [
 		label: "Fotográfico",
 		src: "/02-foto.JPG",
 		prompt:
-			"A realistic, photograph of a person's, with natural lighting and fine detail.",
+			"Uma fotografia realista de uma pessoa, com iluminação natural e detalhes finos.",
 	},
 	{
 		value: "Cinematic",
 		label: "Cinematográfico",
 		src: "/03-cinema.JPG",
 		prompt:
-			"A portrait of a person with dramatic lighting, lens flare, and a film-like color grade.",
+			"Um retrato de uma pessoa com iluminação dramática, reflexos de lente e um estilo de cor de filme.",
 	},
 	{
 		value: "Disney Charactor",
 		label: "Personagem da Disney",
 		src: "/toy-disney.JPG",
-		prompt: "A cheerful Toy Story-style character",
+		prompt: "Um personagem alegre no estilo Toy Story.",
 	},
 	{
 		value: "Fantasy art",
 		label: "Arte fantasia",
 		src: "/05-fantasy.JPG",
 		prompt:
-			"A portrait of a person with magical elements, intricate details, and vibrant colors.",
+			"Um retrato de uma pessoa com elementos mágicos, detalhes intrincados e cores vibrantes.",
 	},
 	{
 		value: "Neonpunk",
 		label: "Neonpunk",
 		src: "/06-neon.JPG",
 		prompt:
-			"A futuristic portrait of a person with bright neon lights, cybernetic elements, and bold contrasts.",
+			"Um retrato futurista de uma pessoa com luzes neon brilhantes, elementos cibernéticos e contrastes fortes.",
 	},
 	{
 		value: "Comic book",
 		label: "Quadrinhos",
 		src: "/08-comic.JPG",
 		prompt:
-			"A portrait of a person with bold lines, dynamic shading, and vibrant colors.",
+			"Um retrato de uma pessoa com linhas marcantes, sombreamento dinâmico e cores vibrantes.",
 	},
 	{
 		value: "Lowpoly",
 		label: "Estilo 3D com poucos polígonos",
 		src: "/3d.JPG",
 		prompt:
-			"A portrait of a person with simple geometric shapes and flat colors.",
+			"Um retrato de uma pessoa com formas geométricas simples e cores chapadas.",
 	},
 ];
 

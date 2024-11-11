@@ -8,6 +8,7 @@ import {
 } from "@/lib/api-limit";
 import { incrementPro } from "@/lib/api-UsagePro";
 import { checkSubscription } from "@/lib/subscription"; // Controle de assinatura personalizado
+import { translate } from "@vitalets/google-translate-api";
 
 const replicate = new Replicate({
 	auth: process.env.REPLICATE_API_KEY,
@@ -53,14 +54,15 @@ export async function POST(req: Request) {
 				{ status: 403 }
 			);
 		}
-
+		// Translate the prompt to English
+		const translatedPrompt = await translate(prompt, { to: "en" });
 		// Chama a API Replicate com os parâmetros recebidos
-
+		console.log(translatedPrompt.text);
 		const options: any = {
 			version:
 				"ddfc2b08d209f9fa8c1eca692712918bd449f695dabb4a958da31802a9570fe4", // Atualize para a versão desejada
 			input: {
-				prompt: `img ${prompt}`,
+				prompt: `img ${translatedPrompt.text}`, // Use the translated prompt
 				num_steps: 50,
 				style_name: photoStyle,
 				num_outputs: parseInt(amountOptions, 10),
