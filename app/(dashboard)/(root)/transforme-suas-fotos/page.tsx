@@ -346,7 +346,7 @@ export default function FaceImage() {
 							</div>
 						</div>
 					</div>
-					<div className=" flex items-center justify-center flex-wrap gap-2  ">
+					<div className=" flex items-center justify-center  gap-2  ">
 						<FormField
 							control={form.control}
 							name="prompt"
@@ -355,7 +355,7 @@ export default function FaceImage() {
 									<FormControl>
 										<Input
 											className="w-full border-0 outline-none bg-[#310937] px-2 text-white focus-visible:ring-0 focus-visible:ring-transparent"
-											placeholder="o texto funciona melhor em inglês"
+											placeholder="insira um texto seja criativo"
 											{...field}
 											disabled={isLoading}
 										/>
@@ -365,14 +365,18 @@ export default function FaceImage() {
 							)}
 						/>
 						<Button
-							className="w-full  lg:col-span-2 lg:w-40"
+							className="w-20 lg:col-span-2 lg:w-40"
 							variant="Enviar"
 							type="submit"
 							size="icon"
 							disabled={isLoading}
 						>
-							<div className="flex items-center justify-center gap-2 font-bold text-lg">
-								<Send /> Enviar
+							<div className="flex items-center justify-center gap-2 font-bold text-sm lg:text-lg">
+								<div className="lg:hidden">Enviar</div>
+
+								<div className="hidden lg:flex gap-1">
+									<Send /> Enviar
+								</div>
 							</div>
 						</Button>
 					</div>
