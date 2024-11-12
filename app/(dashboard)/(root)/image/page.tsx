@@ -190,7 +190,7 @@ export default function Imagepage() {
 											className="border-0 outline-none 
 												bg-[#310937] px-2 text-white focus-visible:ring-0 focus-visible:ring-transparent"
 											disabled={isLoading}
-											placeholder="o texto funciona melhor em inglês"
+											placeholder="um gato segurando uma placa que diz olá mundo"
 											{...field}
 										/>
 									</FormControl>

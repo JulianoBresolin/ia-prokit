@@ -9,7 +9,7 @@ import {
 } from "@/lib/api-limit";
 import { incrementPro } from "@/lib/api-UsagePro";
 import { checkSubscription } from "@/lib/subscription";
-
+import { translate } from "@vitalets/google-translate-api";
 // Cria uma instância de Configuration com a chave da API da OpenAI
 const replicate = new Replicate({
 	auth: process.env.REPLICATE_API_KEY,
@@ -70,11 +70,12 @@ export async function POST(req: Request) {
 				{ status: 403 }
 			);
 		}
+		const translatedPrompt = await translate(prompt, { to: "en" });
 
 		const options: any = {
 			model: "black-forest-labs/flux-schnell", // Atualize para a versão desejada
 			input: {
-				prompt: prompt,
+				prompt: `${translatedPrompt.text}`,
 				go_fast: true,
 				megapixels: "1",
 				num_outputs: parseInt(amount, 10),
