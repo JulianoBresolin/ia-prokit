@@ -12,14 +12,14 @@ export const LandingFooter = () => {
 			</p>
 			<Link
 				target="_blank"
-				href="https://www.facebook.com/profile.php?id=61554635802528"
+				href="https://www.facebook.com/iaprokit/"
 				className="flex items-center"
 			>
 				<FacebookIcon className="w-8 h-8  text-[#8D495A] hover:text-white " />
 			</Link>
 			<Link
 				target="_blank"
-				href="https://www.instagram.com/iaprokit?igsh=eTRscjg4ZWZ1YXkz"
+				href="https://www.instagram.com/iaprokit/"
 				className="flex items-center"
 			>
 				<InstagramIcon className="w-8 h-8  text-[#8D495A] hover:text-white " />
