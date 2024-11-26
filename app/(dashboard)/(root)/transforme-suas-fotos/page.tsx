@@ -50,7 +50,7 @@ export default function FaceImage() {
 			forceStyle: "15",
 			amountOptions: "1",
 			prompt:
-				"Uma fotografia realista de uma pessoa, com iluminação natural e detalhes finos.",
+				"Uma fotografia realista de (substitua por Homem ou Mulher / menino ou menina), com iluminação natural e detalhes finos.",
 		},
 	});
 	const proModal = useProModal();
@@ -237,16 +237,15 @@ export default function FaceImage() {
 									<FormItem className="col-span-12  lg:col-span-2 w-full ">
 										<Select
 											disabled={isLoading}
-											onValueChange={(value) => {
+											onValueChange={(label) => {
 												const selectedOption = photoStyle.find(
-													(option) => option.value === value
+													(option) => option.label === label
 												);
 												if (selectedOption) {
-													form.setValue("photoStyle", value);
+													form.setValue("photoStyle", selectedOption.value);
 													handleInput(selectedOption.prompt); // Atualiza o prompt com base no estilo selecionado
 												}
 											}}
-											defaultValue={field.value}
 										>
 											<FormControl>
 												<SelectTrigger className="w-full h-28 border-0 outline-none bg-[#310937] text-white">
@@ -256,7 +255,7 @@ export default function FaceImage() {
 
 											<SelectContent className="bg-[#310937] text-white overflow-y-auto h-60 lg:h-80  ">
 												{photoStyle.map((option) => (
-													<SelectItem key={option.value} value={option.value}>
+													<SelectItem key={option.label} value={option.label}>
 														<div className=" w-full gap-8 flex flex-row items-center justify-between ">
 															<span>
 																{" "}

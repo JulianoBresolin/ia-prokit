@@ -24,51 +24,101 @@ export const amountOptions = [
 export const photoStyle = [
 	{
 		value: "Photographic (Default)",
-		label: "Fotográfico",
-		src: "/02-foto.JPG",
+		label: "Fotográfico feminino",
+		src: "/natal/photo-fem.png",
 		prompt:
-			"Uma fotografia realista de uma pessoa, com iluminação natural e detalhes finos.",
+			"Uma fotografia realista de uma mulher, com iluminação suave de luzes natalinas, vestindo roupas típicas de Natal e segurando uma xícara de chocolate quente ao lado de uma árvore de Natal iluminada.",
+	},
+	{
+		value: "Photographic (Default)",
+		label: "Fotográfico masculino",
+		src: "/natal/photo-men.png",
+		prompt:
+			"Uma fotografia realista de um homem, com iluminação quente, vestindo um suéter de Natal ao lado de uma lareira decorada com guirlandas e luzes.",
 	},
 	{
 		value: "Cinematic",
-		label: "Cinematográfico",
-		src: "/03-cinema.JPG",
+		label: "Cinematográfico feminino",
+		src: "/natal/cinema-fem.png",
 		prompt:
-			"Um retrato de uma pessoa com iluminação dramática, reflexos de lente e um estilo de cor de filme.",
+			"Um retrato de uma mulher com iluminação dramática, segurando um globo de neve mágico em um cenário cinematográfico com neve caindo e tons quentes de Natal.",
+	},
+	{
+		value: "Cinematic",
+		label: "Cinematográfico masculino",
+		src: "/natal/cinema-men.png",
+		prompt:
+			"Uma fotografia de um homem com reflexos de lente e iluminação de cinema,vestindo um suéter vermelho sentado em um trenó decorado com presentes e luzes natalinas brilhando ao fundo.",
 	},
 	{
 		value: "Disney Charactor",
-		label: "Personagem da Disney",
-		src: "/toy-disney.JPG",
-		prompt: "Um personagem alegre no estilo Toy Story.",
+		label: "Personagem da Disney feminino",
+		src: "/natal/disney-fem.png",
+		prompt:
+			"Elsa, de Frozen, em um deslumbrante vestido azul e branco decorado com flocos de neve, cercada por uma paisagem congelada mágica com luzes natalinas brilhando ao fundo.",
+	},
+	{
+		value: "Disney Charactor",
+		label: "Personagem da Disney masculino",
+		src: "/natal/disney-men.png",
+		prompt:
+			"Um carismático Papai Noel, com seu traje vermelho clássico, cercado por renas animadas e um saco cheio de presentes, pronto para celebrar o Natal com um toque mágico.",
 	},
 	{
 		value: "Fantasy art",
-		label: "Arte fantasia",
-		src: "/05-fantasy.JPG",
+		label: "Arte fantasia feminino",
+		src: "/natal/fantasy-fem.png",
 		prompt:
-			"Um retrato de uma pessoa com elementos mágicos, detalhes intrincados e cores vibrantes.",
+			"Um retrato de uma mulher no estilo fantasia, vestida como uma rainha natalina, cercada por flocos de neve mágicos e luzes cintilantes.",
+	},
+	{
+		value: "Fantasy art",
+		label: "Arte fantasia masculino",
+		src: "/natal/fantasy-men.png",
+		prompt:
+			"Um retrato de um homem no estilo fantasia, como um guardião das estrelas de Natal, com detalhes mágicos e uma aurora boreal ao fundo.",
 	},
 	{
 		value: "Neonpunk",
-		label: "Neonpunk",
-		src: "/06-neon.JPG",
+		label: "Neonpunk feminino",
+		src: "/natal/neon-fem.png",
 		prompt:
-			"Um retrato futurista de uma pessoa com luzes neon brilhantes, elementos cibernéticos e contrastes fortes.",
+			"Um retrato futurista de uma mulher, com cabelo brilhante e enfeites neon, segurando uma estrela de Natal em um cenário cyberpunk iluminado com luzes vermelhas e verdes.",
+	},
+	{
+		value: "Neonpunk",
+		label: "Neonpunk masculino",
+		src: "/natal/neon-men.png",
+		prompt:
+			"Um retrato futurista de um homem, com  uma jaqueta estilizada com luzes neon, em um mercado natalino cyberpunk cheio de cores vibrantes.",
 	},
 	{
 		value: "Comic book",
-		label: "Quadrinhos",
-		src: "/08-comic.JPG",
+		label: "Quadrinhos feminino",
+		src: "/natal/comic-fem.png",
 		prompt:
-			"Um retrato de uma pessoa com linhas marcantes, sombreamento dinâmico e cores vibrantes.",
+			"Um retrato de uma mulher em estilo de quadrinhos, decorando uma árvore de Natal com expressões dinâmicas e luzes piscando ao fundo.",
+	},
+	{
+		value: "Comic book",
+		label: "Quadrinhos masculino",
+		src: "/natal/comic-men.png",
+		prompt:
+			"Um retrato de um homem em estilo de quadrinhos, vestido como Papai Noel, em um cenário animado de Natal.",
 	},
 	{
 		value: "Lowpoly",
-		label: "Estilo 3D com poucos polígonos",
-		src: "/3d.JPG",
+		label: "Estilo 3D feminino",
+		src: "/natal/3d-fem.png",
 		prompt:
-			"Um retrato de uma pessoa com formas geométricas simples e cores chapadas.",
+			"Um retrato estilizado de uma mulher em 3D com poucos polígonos, vestindo um gorro de Natal e segurando um presente em um cenário de neve geométrica.",
+	},
+	{
+		value: "Lowpoly",
+		label: "Estilo 3D masculino",
+		src: "/natal/3d-men.png",
+		prompt:
+			"Um retrato estilizado de um homem em 3D com poucos polígonos, segurando uma bengala doce em um cenário de Natal com formas geométricas de árvores e estrelas.",
 	},
 ];
 
